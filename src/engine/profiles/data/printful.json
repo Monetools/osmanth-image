@@ -1,0 +1,189 @@
+{
+  "destination": "printful",
+  "label": "Printful",
+  "profiles": [
+    {
+      "id": "printful.poster.12x18",
+      "destination": "printful",
+      "product": "Enhanced Matte Paper Poster",
+      "variant": "12×18 in",
+      "size": {
+        "width": 12,
+        "height": 18,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "png",
+        "jpeg"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": 200000000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "wall",
+      "special_rules": [
+        "Size the file to the actual print dimensions."
+      ],
+      "source": {
+        "source_url": "https://support.printful.com/hc/en-us/articles/41396495537553-What-type-of-print-files-does-Printful-require",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": true,
+        "notes": "Paper prints: minimum 150 DPI, 300 DPI recommended, max upload 200MB, PNG/JPG, sRGB. Taken from search-engine summaries of official Printful pages on 2026-09-20; direct fetch failed, so a human must confirm. Poster variant list is a representative V1 subset.",
+        "review_status": "unverified",
+        "last_checked": null,
+        "last_changed": null
+      },
+      "max_file_size_bytes_upper": 209715200
+    },
+    {
+      "id": "printful.poster.18x24",
+      "destination": "printful",
+      "product": "Enhanced Matte Paper Poster",
+      "variant": "18×24 in",
+      "size": {
+        "width": 18,
+        "height": 24,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "png",
+        "jpeg"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": 200000000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "large_wall",
+      "special_rules": [
+        "Size the file to the actual print dimensions."
+      ],
+      "source": {
+        "source_url": "https://support.printful.com/hc/en-us/articles/41396495537553-What-type-of-print-files-does-Printful-require",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": true,
+        "notes": "Paper prints: minimum 150 DPI, 300 DPI recommended, max upload 200MB, PNG/JPG, sRGB. Taken from search-engine summaries of official Printful pages on 2026-09-20; direct fetch failed, so a human must confirm. Poster variant list is a representative V1 subset.",
+        "review_status": "unverified",
+        "last_checked": null,
+        "last_changed": null
+      },
+      "max_file_size_bytes_upper": 209715200
+    },
+    {
+      "id": "printful.poster.24x36",
+      "destination": "printful",
+      "product": "Enhanced Matte Paper Poster",
+      "variant": "24×36 in",
+      "size": {
+        "width": 24,
+        "height": 36,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "png",
+        "jpeg"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": 200000000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "large_wall",
+      "special_rules": [
+        "Size the file to the actual print dimensions."
+      ],
+      "source": {
+        "source_url": "https://support.printful.com/hc/en-us/articles/41396495537553-What-type-of-print-files-does-Printful-require",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": true,
+        "notes": "Paper prints: minimum 150 DPI, 300 DPI recommended, max upload 200MB, PNG/JPG, sRGB. Taken from search-engine summaries of official Printful pages on 2026-09-20; direct fetch failed, so a human must confirm. Poster variant list is a representative V1 subset.",
+        "review_status": "unverified",
+        "last_checked": null,
+        "last_changed": null
+      },
+      "max_file_size_bytes_upper": 209715200
+    },
+    {
+      "id": "printful.dtg-tee.front",
+      "destination": "printful",
+      "product": "Unisex t-shirt (DTG)",
+      "variant": "Front print area 12×16 in",
+      "size": {
+        "width": 12,
+        "height": 16,
+        "unit": "in"
+      },
+      "rotatable": false,
+      "ppi": {
+        "preferred": 150,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "png",
+        "jpeg"
+      ],
+      "output_format": "png",
+      "transparency": "preferred",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": 200000000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "apparel",
+      "special_rules": [
+        "Transparent background recommended; the garment shows through transparent areas.",
+        "Artwork does not need to fill the whole print area.",
+        "1-bit line art (solid black artwork) is judged at twice the normal resolution: hard edges show ragged on fabric."
+      ],
+      "source": {
+        "source_url": "https://support.printful.com/hc/en-us/articles/41396495537553-What-type-of-print-files-does-Printful-require",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": true,
+        "notes": "Paper prints: minimum 150 DPI, 300 DPI recommended, max upload 200MB, PNG/JPG, sRGB. Taken from search-engine summaries of official Printful pages on 2026-09-20; direct fetch failed, so a human must confirm. Poster variant list is a representative V1 subset. The 12×16 in front print area and 150 DPI DTG file convention are NOT verified against a current product page.",
+        "review_status": "unverified",
+        "last_checked": null,
+        "last_changed": null
+      },
+      "max_file_size_bytes_upper": 209715200,
+      "line_art_ppi_multiplier": 2
+    }
+  ]
+}

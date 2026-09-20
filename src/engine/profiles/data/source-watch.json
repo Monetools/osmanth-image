@@ -1,0 +1,81 @@
+{
+  "updatedAt": "2026-09-20",
+  "sources": [
+    {
+      "url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+      "verifiedHash": null,
+      "lastSeenHash": null,
+      "lastChecked": "2026-09-20",
+      "lastChanged": null,
+      "status": "fetch-failed",
+      "usedBy": [
+        "etsy.11x14",
+        "etsy.2x3",
+        "etsy.3x4",
+        "etsy.4x5",
+        "etsy.5x7",
+        "etsy.iso",
+        "photo.11x14",
+        "photo.12x18",
+        "photo.18x24",
+        "photo.24x36",
+        "photo.4x6",
+        "photo.5x7",
+        "photo.8x10",
+        "photo.a2",
+        "photo.a3",
+        "photo.a4",
+        "photo.a5"
+      ],
+      "note": "Could not fetch: HTTP 403. Freshness cannot be confirmed automatically; a human must check this page."
+    },
+    {
+      "url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
+      "verifiedHash": null,
+      "lastSeenHash": null,
+      "lastChecked": "2026-09-20",
+      "lastChanged": null,
+      "status": "fetch-failed",
+      "usedBy": [
+        "etsy.11x14 (constraints)",
+        "etsy.2x3 (constraints)",
+        "etsy.3x4 (constraints)",
+        "etsy.4x5 (constraints)",
+        "etsy.5x7 (constraints)",
+        "etsy.iso (constraints)",
+        "etsy_printable marketplace"
+      ],
+      "note": "Could not fetch: fetch failed. Freshness cannot be confirmed automatically; a human must check this page."
+    },
+    {
+      "url": "https://support.printful.com/hc/en-us/articles/41396495537553-What-type-of-print-files-does-Printful-require",
+      "verifiedHash": null,
+      "lastSeenHash": null,
+      "lastChecked": "2026-09-20",
+      "lastChanged": null,
+      "status": "fetch-failed",
+      "usedBy": [
+        "printful.dtg-tee.front",
+        "printful.poster.12x18",
+        "printful.poster.18x24",
+        "printful.poster.24x36"
+      ],
+      "note": "Could not fetch: fetch failed. Freshness cannot be confirmed automatically; a human must check this page."
+    },
+    {
+      "url": "https://help.printify.com/hc/en-us/articles/4483617936657-What-type-of-print-files-does-Printify-require",
+      "verifiedHash": null,
+      "lastSeenHash": null,
+      "lastChecked": "2026-09-20",
+      "lastChanged": null,
+      "status": "fetch-failed",
+      "usedBy": [
+        "printify.poster.12x18",
+        "printify.poster.18x24",
+        "printify.poster.24x36",
+        "printify.tee.front"
+      ],
+      "note": "Could not fetch: HTTP 403. Freshness cannot be confirmed automatically; a human must check this page."
+    }
+  ]
+}

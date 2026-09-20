@@ -1,0 +1,479 @@
+{
+  "destination": "photo_poster",
+  "label": "Photo / Poster",
+  "profiles": [
+    {
+      "id": "photo.4x6",
+      "destination": "photo_poster",
+      "product": "Photo print",
+      "variant": "4×6 in",
+      "size": {
+        "width": 4,
+        "height": 6,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 200
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "tiff"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": null,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "handheld",
+      "special_rules": [],
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      }
+    },
+    {
+      "id": "photo.5x7",
+      "destination": "photo_poster",
+      "product": "Photo print",
+      "variant": "5×7 in",
+      "size": {
+        "width": 5,
+        "height": 7,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 200
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "tiff"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": null,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "handheld",
+      "special_rules": [],
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      }
+    },
+    {
+      "id": "photo.8x10",
+      "destination": "photo_poster",
+      "product": "Photo print",
+      "variant": "8×10 in",
+      "size": {
+        "width": 8,
+        "height": 10,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 180
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "tiff"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": null,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "tabletop",
+      "special_rules": [],
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      }
+    },
+    {
+      "id": "photo.11x14",
+      "destination": "photo_poster",
+      "product": "Poster / wall print",
+      "variant": "11×14 in",
+      "size": {
+        "width": 11,
+        "height": 14,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "tiff"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": null,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "wall",
+      "special_rules": [],
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      }
+    },
+    {
+      "id": "photo.12x18",
+      "destination": "photo_poster",
+      "product": "Poster / wall print",
+      "variant": "12×18 in",
+      "size": {
+        "width": 12,
+        "height": 18,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "tiff"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": null,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "wall",
+      "special_rules": [],
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      }
+    },
+    {
+      "id": "photo.18x24",
+      "destination": "photo_poster",
+      "product": "Poster / wall print",
+      "variant": "18×24 in",
+      "size": {
+        "width": 18,
+        "height": 24,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 200,
+        "minimum": 120
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "tiff"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": null,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "large_wall",
+      "special_rules": [],
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      }
+    },
+    {
+      "id": "photo.24x36",
+      "destination": "photo_poster",
+      "product": "Poster / wall print",
+      "variant": "24×36 in",
+      "size": {
+        "width": 24,
+        "height": 36,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 150,
+        "minimum": 100
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "tiff"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": null,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "large_wall",
+      "special_rules": [],
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      }
+    },
+    {
+      "id": "photo.a5",
+      "destination": "photo_poster",
+      "product": "Photo print",
+      "variant": "A5 (148×210 mm)",
+      "size": {
+        "width": 148,
+        "height": 210,
+        "unit": "mm"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 200
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "tiff"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": null,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "handheld",
+      "special_rules": [],
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      }
+    },
+    {
+      "id": "photo.a4",
+      "destination": "photo_poster",
+      "product": "Photo print",
+      "variant": "A4 (210×297 mm)",
+      "size": {
+        "width": 210,
+        "height": 297,
+        "unit": "mm"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 180
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "tiff"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": null,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "tabletop",
+      "special_rules": [],
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      }
+    },
+    {
+      "id": "photo.a3",
+      "destination": "photo_poster",
+      "product": "Poster / wall print",
+      "variant": "A3 (297×420 mm)",
+      "size": {
+        "width": 297,
+        "height": 420,
+        "unit": "mm"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "tiff"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": null,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "wall",
+      "special_rules": [],
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      }
+    },
+    {
+      "id": "photo.a2",
+      "destination": "photo_poster",
+      "product": "Poster / wall print",
+      "variant": "A2 (420×594 mm)",
+      "size": {
+        "width": 420,
+        "height": 594,
+        "unit": "mm"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 200,
+        "minimum": 120
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "tiff"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": null,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "large_wall",
+      "special_rules": [],
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      }
+    }
+  ]
+}

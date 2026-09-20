@@ -1,0 +1,9 @@
+# Benchmark + GPU worker environment (Python 3.11/3.12 recommended; torch wheels lag new Python releases).
+# Install torch with the CUDA build matching your driver, e.g.:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu124
+torch>=2.3
+numpy>=1.26
+pillow>=10.3
+spandrel>=0.4          # MIT — loads Real-ESRGAN / SwinIR weights without BasicSR's pinned deps
+scikit-image>=0.23     # PSNR / SSIM
+psutil>=5.9

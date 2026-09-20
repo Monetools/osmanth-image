@@ -1,0 +1,534 @@
+{
+  "destination": "etsy_printable",
+  "label": "Etsy Printable",
+  "marketplace_constraints": {
+    "max_files_per_listing": 5,
+    "max_file_size_bytes": 20000000,
+    "filename_max_length": 70,
+    "filename_allowed": "^[A-Za-z0-9._-]+$",
+    "source": {
+      "source_url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
+      "source_type": "official_documentation",
+      "last_verified_at": "2026-09-20",
+      "profile_version": "1.0.0",
+      "review_required": true,
+      "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
+      "review_status": "unverified",
+      "last_checked": null,
+      "last_changed": null
+    },
+    "max_file_size_bytes_upper": 20971520
+  },
+  "profiles": [
+    {
+      "id": "etsy.2x3",
+      "destination": "etsy_printable",
+      "product": "Etsy printable",
+      "variant": "2:3 ratio",
+      "size": {
+        "width": 24,
+        "height": 36,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "pdf"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": 20000000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "large_wall",
+      "special_rules": [
+        "One file must serve every size in the ratio family; sizes whose effective PPI falls below the minimum are reported, not hidden."
+      ],
+      "ratio_family": {
+        "label": "2:3",
+        "sizes": [
+          {
+            "width": 4,
+            "height": 6,
+            "unit": "in",
+            "label": "4×6 in"
+          },
+          {
+            "width": 8,
+            "height": 12,
+            "unit": "in",
+            "label": "8×12 in"
+          },
+          {
+            "width": 12,
+            "height": 18,
+            "unit": "in",
+            "label": "12×18 in"
+          },
+          {
+            "width": 16,
+            "height": 24,
+            "unit": "in",
+            "label": "16×24 in"
+          },
+          {
+            "width": 20,
+            "height": 30,
+            "unit": "in",
+            "label": "20×30 in"
+          },
+          {
+            "width": 24,
+            "height": 36,
+            "unit": "in",
+            "label": "24×36 in"
+          }
+        ]
+      },
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance. Etsy does not prescribe print resolution; ratio files are prepared at 300 PPI for the largest family size when the source allows it.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      },
+      "max_file_size_bytes_upper": 20971520,
+      "constraints_source": {
+        "source_url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": true,
+        "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
+        "review_status": "unverified",
+        "last_checked": null,
+        "last_changed": null
+      }
+    },
+    {
+      "id": "etsy.3x4",
+      "destination": "etsy_printable",
+      "product": "Etsy printable",
+      "variant": "3:4 ratio",
+      "size": {
+        "width": 18,
+        "height": 24,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "pdf"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": 20000000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "large_wall",
+      "special_rules": [
+        "One file must serve every size in the ratio family; sizes whose effective PPI falls below the minimum are reported, not hidden."
+      ],
+      "ratio_family": {
+        "label": "3:4",
+        "sizes": [
+          {
+            "width": 6,
+            "height": 8,
+            "unit": "in",
+            "label": "6×8 in"
+          },
+          {
+            "width": 9,
+            "height": 12,
+            "unit": "in",
+            "label": "9×12 in"
+          },
+          {
+            "width": 12,
+            "height": 16,
+            "unit": "in",
+            "label": "12×16 in"
+          },
+          {
+            "width": 18,
+            "height": 24,
+            "unit": "in",
+            "label": "18×24 in"
+          }
+        ]
+      },
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance. Etsy does not prescribe print resolution; ratio files are prepared at 300 PPI for the largest family size when the source allows it.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      },
+      "max_file_size_bytes_upper": 20971520,
+      "constraints_source": {
+        "source_url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": true,
+        "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
+        "review_status": "unverified",
+        "last_checked": null,
+        "last_changed": null
+      }
+    },
+    {
+      "id": "etsy.4x5",
+      "destination": "etsy_printable",
+      "product": "Etsy printable",
+      "variant": "4:5 ratio",
+      "size": {
+        "width": 16,
+        "height": 20,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "pdf"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": 20000000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "wall",
+      "special_rules": [
+        "One file must serve every size in the ratio family; sizes whose effective PPI falls below the minimum are reported, not hidden."
+      ],
+      "ratio_family": {
+        "label": "4:5",
+        "sizes": [
+          {
+            "width": 4,
+            "height": 5,
+            "unit": "in",
+            "label": "4×5 in"
+          },
+          {
+            "width": 8,
+            "height": 10,
+            "unit": "in",
+            "label": "8×10 in"
+          },
+          {
+            "width": 16,
+            "height": 20,
+            "unit": "in",
+            "label": "16×20 in"
+          }
+        ]
+      },
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance. Etsy does not prescribe print resolution; ratio files are prepared at 300 PPI for the largest family size when the source allows it.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      },
+      "max_file_size_bytes_upper": 20971520,
+      "constraints_source": {
+        "source_url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": true,
+        "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
+        "review_status": "unverified",
+        "last_checked": null,
+        "last_changed": null
+      }
+    },
+    {
+      "id": "etsy.5x7",
+      "destination": "etsy_printable",
+      "product": "Etsy printable",
+      "variant": "5:7 ratio",
+      "size": {
+        "width": 20,
+        "height": 28,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "pdf"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": 20000000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "wall",
+      "special_rules": [
+        "One file must serve every size in the ratio family; sizes whose effective PPI falls below the minimum are reported, not hidden."
+      ],
+      "ratio_family": {
+        "label": "5:7",
+        "sizes": [
+          {
+            "width": 5,
+            "height": 7,
+            "unit": "in",
+            "label": "5×7 in"
+          },
+          {
+            "width": 10,
+            "height": 14,
+            "unit": "in",
+            "label": "10×14 in"
+          },
+          {
+            "width": 20,
+            "height": 28,
+            "unit": "in",
+            "label": "20×28 in"
+          }
+        ]
+      },
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance. Etsy does not prescribe print resolution; ratio files are prepared at 300 PPI for the largest family size when the source allows it.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      },
+      "max_file_size_bytes_upper": 20971520,
+      "constraints_source": {
+        "source_url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": true,
+        "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
+        "review_status": "unverified",
+        "last_checked": null,
+        "last_changed": null
+      }
+    },
+    {
+      "id": "etsy.11x14",
+      "destination": "etsy_printable",
+      "product": "Etsy printable",
+      "variant": "11:14 ratio",
+      "size": {
+        "width": 22,
+        "height": 28,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "pdf"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": 20000000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "wall",
+      "special_rules": [
+        "One file must serve every size in the ratio family; sizes whose effective PPI falls below the minimum are reported, not hidden."
+      ],
+      "ratio_family": {
+        "label": "11:14",
+        "sizes": [
+          {
+            "width": 11,
+            "height": 14,
+            "unit": "in",
+            "label": "11×14 in"
+          },
+          {
+            "width": 22,
+            "height": 28,
+            "unit": "in",
+            "label": "22×28 in"
+          }
+        ]
+      },
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance. Etsy does not prescribe print resolution; ratio files are prepared at 300 PPI for the largest family size when the source allows it.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      },
+      "max_file_size_bytes_upper": 20971520,
+      "constraints_source": {
+        "source_url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": true,
+        "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
+        "review_status": "unverified",
+        "last_checked": null,
+        "last_changed": null
+      }
+    },
+    {
+      "id": "etsy.iso",
+      "destination": "etsy_printable",
+      "product": "Etsy printable",
+      "variant": "ISO A-series ratio",
+      "size": {
+        "width": 594,
+        "height": 841,
+        "unit": "mm"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "jpeg",
+        "png",
+        "pdf"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": 20000000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "large_wall",
+      "special_rules": [
+        "One file must serve every size in the ratio family; sizes whose effective PPI falls below the minimum are reported, not hidden."
+      ],
+      "ratio_family": {
+        "label": "ISO A-series",
+        "sizes": [
+          {
+            "width": 148,
+            "height": 210,
+            "unit": "mm",
+            "label": "A5"
+          },
+          {
+            "width": 210,
+            "height": 297,
+            "unit": "mm",
+            "label": "A4"
+          },
+          {
+            "width": 297,
+            "height": 420,
+            "unit": "mm",
+            "label": "A3"
+          },
+          {
+            "width": 420,
+            "height": 594,
+            "unit": "mm",
+            "label": "A2"
+          },
+          {
+            "width": 594,
+            "height": 841,
+            "unit": "mm",
+            "label": "A1"
+          }
+        ]
+      },
+      "source": {
+        "source_url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
+        "source_type": "printready_policy",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance. Etsy does not prescribe print resolution; ratio files are prepared at 300 PPI for the largest family size when the source allows it.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null
+      },
+      "max_file_size_bytes_upper": 20971520,
+      "constraints_source": {
+        "source_url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": true,
+        "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
+        "review_status": "unverified",
+        "last_checked": null,
+        "last_changed": null
+      }
+    }
+  ]
+}

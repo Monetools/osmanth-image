@@ -1,0 +1,183 @@
+{
+  "destination": "printify",
+  "label": "Printify",
+  "profiles": [
+    {
+      "id": "printify.poster.12x18",
+      "destination": "printify",
+      "product": "Matte poster",
+      "variant": "12×18 in",
+      "size": {
+        "width": 12,
+        "height": 18,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "png",
+        "jpeg"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": true
+      },
+      "max_file_size_bytes": 100000000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "wall",
+      "special_rules": [],
+      "source": {
+        "source_url": "https://help.printify.com/hc/en-us/articles/4483617936657-What-type-of-print-files-does-Printify-require",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": true,
+        "notes": "JPEG/PNG max 100MB; 300 DPI recommended (120-150 DPI acceptable for large products); PNG must be RGB; JPEG RGB or CMYK (converted to RGB internally). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm. Exact print-area pixel sizes vary per print provider and are NOT verified.",
+        "review_status": "unverified",
+        "last_checked": null,
+        "last_changed": null
+      },
+      "max_file_size_bytes_upper": 104857600
+    },
+    {
+      "id": "printify.poster.18x24",
+      "destination": "printify",
+      "product": "Matte poster",
+      "variant": "18×24 in",
+      "size": {
+        "width": 18,
+        "height": 24,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "png",
+        "jpeg"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": true
+      },
+      "max_file_size_bytes": 100000000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "large_wall",
+      "special_rules": [],
+      "source": {
+        "source_url": "https://help.printify.com/hc/en-us/articles/4483617936657-What-type-of-print-files-does-Printify-require",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": true,
+        "notes": "JPEG/PNG max 100MB; 300 DPI recommended (120-150 DPI acceptable for large products); PNG must be RGB; JPEG RGB or CMYK (converted to RGB internally). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm. Exact print-area pixel sizes vary per print provider and are NOT verified.",
+        "review_status": "unverified",
+        "last_checked": null,
+        "last_changed": null
+      },
+      "max_file_size_bytes_upper": 104857600
+    },
+    {
+      "id": "printify.poster.24x36",
+      "destination": "printify",
+      "product": "Matte poster",
+      "variant": "24×36 in",
+      "size": {
+        "width": 24,
+        "height": 36,
+        "unit": "in"
+      },
+      "rotatable": true,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "png",
+        "jpeg"
+      ],
+      "output_format": "jpeg",
+      "transparency": "flatten_to_white",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": true
+      },
+      "max_file_size_bytes": 100000000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "large_wall",
+      "special_rules": [],
+      "source": {
+        "source_url": "https://help.printify.com/hc/en-us/articles/4483617936657-What-type-of-print-files-does-Printify-require",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": true,
+        "notes": "JPEG/PNG max 100MB; 300 DPI recommended (120-150 DPI acceptable for large products); PNG must be RGB; JPEG RGB or CMYK (converted to RGB internally). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm. Exact print-area pixel sizes vary per print provider and are NOT verified.",
+        "review_status": "unverified",
+        "last_checked": null,
+        "last_changed": null
+      },
+      "max_file_size_bytes_upper": 104857600
+    },
+    {
+      "id": "printify.tee.front",
+      "destination": "printify",
+      "product": "Unisex t-shirt",
+      "variant": "Front print area 15×17 in",
+      "size": {
+        "width": 15,
+        "height": 17,
+        "unit": "in"
+      },
+      "rotatable": false,
+      "ppi": {
+        "preferred": 300,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "png",
+        "jpeg"
+      ],
+      "output_format": "png",
+      "transparency": "preferred",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": 100000000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "apparel",
+      "special_rules": [
+        "PNG must be RGB, non-interlaced.",
+        "Transparent background recommended.",
+        "1-bit line art (solid black artwork) is judged at twice the normal resolution: hard edges show ragged on fabric."
+      ],
+      "source": {
+        "source_url": "https://help.printify.com/hc/en-us/articles/4483617936657-What-type-of-print-files-does-Printify-require",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-20",
+        "profile_version": "1.0.0",
+        "review_required": true,
+        "notes": "JPEG/PNG max 100MB; 300 DPI recommended (120-150 DPI acceptable for large products); PNG must be RGB; JPEG RGB or CMYK (converted to RGB internally). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm. Exact print-area pixel sizes vary per print provider and are NOT verified. The 15×17 in (4500×5100 px) front area is a common provider size and must be confirmed per provider.",
+        "review_status": "unverified",
+        "last_checked": null,
+        "last_changed": null
+      },
+      "max_file_size_bytes_upper": 104857600,
+      "line_art_ppi_multiplier": 2
+    }
+  ]
+}
