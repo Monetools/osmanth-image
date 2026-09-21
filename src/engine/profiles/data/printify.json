@@ -41,7 +41,14 @@
         "notes": "JPEG/PNG max 100MB; 300 DPI recommended (120-150 DPI acceptable for large products); PNG must be RGB; JPEG RGB or CMYK (converted to RGB internally). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm. Exact print-area pixel sizes vary per print provider and are NOT verified.",
         "review_status": "unverified",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "none",
+          "verified_at": null,
+          "verified_by": null,
+          "review_due_at": null,
+          "evidence": []
+        }
       },
       "max_file_size_bytes_upper": 104857600
     },
@@ -84,7 +91,14 @@
         "notes": "JPEG/PNG max 100MB; 300 DPI recommended (120-150 DPI acceptable for large products); PNG must be RGB; JPEG RGB or CMYK (converted to RGB internally). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm. Exact print-area pixel sizes vary per print provider and are NOT verified.",
         "review_status": "unverified",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "none",
+          "verified_at": null,
+          "verified_by": null,
+          "review_due_at": null,
+          "evidence": []
+        }
       },
       "max_file_size_bytes_upper": 104857600
     },
@@ -127,7 +141,14 @@
         "notes": "JPEG/PNG max 100MB; 300 DPI recommended (120-150 DPI acceptable for large products); PNG must be RGB; JPEG RGB or CMYK (converted to RGB internally). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm. Exact print-area pixel sizes vary per print provider and are NOT verified.",
         "review_status": "unverified",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "none",
+          "verified_at": null,
+          "verified_by": null,
+          "review_due_at": null,
+          "evidence": []
+        }
       },
       "max_file_size_bytes_upper": 104857600
     },
@@ -174,7 +195,14 @@
         "notes": "JPEG/PNG max 100MB; 300 DPI recommended (120-150 DPI acceptable for large products); PNG must be RGB; JPEG RGB or CMYK (converted to RGB internally). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm. Exact print-area pixel sizes vary per print provider and are NOT verified. The 15×17 in (4500×5100 px) front area is a common provider size and must be confirmed per provider.",
         "review_status": "unverified",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "none",
+          "verified_at": null,
+          "verified_by": null,
+          "review_due_at": null,
+          "evidence": []
+        }
       },
       "max_file_size_bytes_upper": 104857600,
       "line_art_ppi_multiplier": 2

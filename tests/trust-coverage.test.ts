@@ -12,15 +12,30 @@ import { describeLimit, formatBytes } from "@/engine/units";
 import { makeJpeg, makePng } from "./fixtures";
 
 const NOW = new Date("2026-09-20T12:00:00Z");
-const src = (over: Partial<ProfileSource> = {}): ProfileSource => ({
-  source_url: "https://example.com/spec",
-  source_type: "official_documentation",
-  last_verified_at: "2026-09-01",
-  review_status: "current",
-  review_required: false,
-  profile_version: "1.0.0",
-  ...over,
-});
+const src = (over: Partial<ProfileSource> = {}): ProfileSource => {
+  const base: ProfileSource = {
+    source_url: "https://example.com/spec",
+    source_type: "official_documentation",
+    last_verified_at: "2026-09-01",
+    review_status: "current",
+    review_required: false,
+    profile_version: "1.0.0",
+    verification: {
+      method: "human_page_read",
+      verified_at: "2026-09-01",
+      verified_by: "tester",
+      review_due_at: null,
+      evidence: [{ quote: "Maximum file size is 20MB.", supports: ["max_file_size_bytes"] }],
+    },
+    ...over,
+  };
+  // Keep the record consistent unless a test overrides it on purpose.
+  if (!over.verification && over.last_verified_at) base.verification.verified_at = over.last_verified_at;
+  if (over.review_status === "unverified" && !over.verification) {
+    base.verification = { method: "none", verified_at: null, verified_by: null, evidence: [] };
+  }
+  return base;
+};
 const watch = (status: SourceWatchState["sources"][number]["status"]): SourceWatchState => ({
   sources: [{ url: "https://example.com/spec", verifiedHash: "a", lastSeenHash: "b", lastChecked: "2026-09-19", lastChanged: "2026-09-19", status }],
 });

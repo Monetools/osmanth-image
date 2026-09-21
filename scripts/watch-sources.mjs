@@ -13,12 +13,17 @@
  * `effectiveFreshness()` turns into "needs review" at read time. Snapshots of the fetched text are
  * written next to the data so a human can diff what actually changed.
  *
+ * It also never overwrites a HUMAN verification: `--accept` refuses to take over a source that a
+ * person verified (use scripts/record-verification.mjs for those), so automation can lower trust
+ * but never claim it.
+ *
  * Exit code: 0 = every source unchanged, 2 = at least one change or fetch failure.
  */
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { canAutomationClaim } from "../src/engine/profiles/verification.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const dataDir = resolve(here, "../src/engine/profiles/data");
@@ -53,6 +58,7 @@ function slug(url) {
 
 function collectSources() {
   const urls = new Map();
+  const humanVerified = new Set();
   for (const file of readdirSync(dataDir)) {
     if (!file.endsWith(".json") || file === "source-watch.json") continue;
     const group = JSON.parse(readFileSync(resolve(dataDir, file), "utf8"));
@@ -60,6 +66,7 @@ function collectSources() {
       if (!src?.source_url || src.source_type === "user_supplied") return;
       if (!urls.has(src.source_url)) urls.set(src.source_url, new Set());
       urls.get(src.source_url).add(where);
+      if (!canAutomationClaim(src.verification)) humanVerified.add(src.source_url);
     };
     for (const p of group.profiles ?? []) {
       add(p.source, p.id);
@@ -67,12 +74,12 @@ function collectSources() {
     }
     add(group.marketplace_constraints?.source, `${group.destination} marketplace`);
   }
-  return urls;
+  return { urls, humanVerified };
 }
 
 async function main() {
   const today = new Date().toISOString().slice(0, 10);
-  const urls = collectSources();
+  const { urls, humanVerified } = collectSources();
   const previous = JSON.parse(readFileSync(watchPath, "utf8"));
   const byUrl = new Map(previous.sources.map((s) => [s.url, s]));
   mkdirSync(snapDir, { recursive: true });
@@ -101,8 +108,17 @@ async function main() {
     entry.lastChecked = today;
     entry.lastSeenHash = hash;
     delete entry.note;
-    if (accept) {
+    if (accept && humanVerified.has(url)) {
+      // A person verified this source. Automation may not take that over.
+      entry.status = entry.verifiedHash && entry.verifiedHash !== hash ? "changed-needs-review" : entry.status;
+      if (entry.status === "changed-needs-review") {
+        entry.lastChanged = today;
+        problems++;
+      }
+      console.log(`SKIPPED       ${url} — verified by a person; use scripts/record-verification.mjs to update it`);
+    } else if (accept) {
       entry.verifiedHash = hash;
+      entry.baselineFrom = "automated-fetch";
       entry.status = "unchanged";
       console.log(`ACCEPTED      ${url}`);
     } else if (entry.verifiedHash && entry.verifiedHash !== hash) {

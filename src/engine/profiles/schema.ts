@@ -5,6 +5,8 @@
  * it reads them from a validated PrintProfile. See docs/PRINT_PROFILE_SCHEMA.md.
  */
 
+import { validateVerification, type Verification } from "./verification";
+
 export type LengthUnit = "in" | "mm";
 export type FileFormat = "jpeg" | "png" | "webp" | "tiff" | "pdf" | "svg";
 export type OutputFormat = "jpeg" | "png";
@@ -50,7 +52,10 @@ export interface ProfileSource {
   source_type: SourceType;
   /** Verbatim sentence from the source that this rule is based on. Only fill it from the real page. */
   source_quote?: string;
-  /** ISO date (YYYY-MM-DD) a human last verified the rule against the source. */
+  /**
+   * ISO date (YYYY-MM-DD) the rule was last verified. When `verification.method` is "none" this is
+   * only the date the rule was written down — it is NOT a claim that anybody checked it.
+   */
   last_verified_at: string;
   /** ISO date the automated source watch last fetched the page (null = never). */
   last_checked?: string | null;
@@ -62,6 +67,11 @@ export interface ProfileSource {
   profile_version: string;
   /** Mirror of `review_status !== "current"`, kept explicit in the data and enforced by the validator. */
   review_required: boolean;
+  /**
+   * Who verified this rule, how, when, with what evidence, and when it must be re-checked.
+   * A rule may only be `current` if it has a real verification record.
+   */
+  verification: Verification;
   notes?: string;
 }
 
@@ -174,6 +184,15 @@ export function validateSource(id: string, s: ProfileSource): void {
   if (typeof s.review_required !== "boolean") fail(id, "review_required must be boolean");
   if (s.review_required !== (s.review_status !== "current")) {
     fail(id, `review_required (${s.review_required}) disagrees with review_status (${s.review_status})`);
+  }
+  validateVerification(id, s.source_type, s.last_verified_at, s.verification);
+  // A rule cannot claim to be current if nobody ever verified it.
+  if (s.review_status === "current" && s.verification.method === "none") {
+    fail(id, "review_status 'current' requires a verification record");
+  }
+  // The quote we show must be one we actually recorded as evidence.
+  if (s.source_quote && !s.verification.evidence.some((e) => e.quote === s.source_quote)) {
+    fail(id, "source_quote must appear in the verification evidence");
   }
 }
 

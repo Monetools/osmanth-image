@@ -42,7 +42,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     },
     {
@@ -85,7 +92,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     },
     {
@@ -128,7 +142,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     },
     {
@@ -171,7 +192,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     },
     {
@@ -214,7 +242,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     },
     {
@@ -257,7 +292,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     },
     {
@@ -300,7 +342,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     },
     {
@@ -343,7 +392,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     },
     {
@@ -386,7 +442,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     },
     {
@@ -429,7 +492,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     },
     {
@@ -472,7 +542,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     }
   ]

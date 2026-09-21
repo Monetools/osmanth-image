@@ -43,7 +43,14 @@
         "notes": "Paper prints: minimum 150 DPI, 300 DPI recommended, max upload 200MB, PNG/JPG, sRGB. Taken from search-engine summaries of official Printful pages on 2026-09-20; direct fetch failed, so a human must confirm. Poster variant list is a representative V1 subset.",
         "review_status": "unverified",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "none",
+          "verified_at": null,
+          "verified_by": null,
+          "review_due_at": null,
+          "evidence": []
+        }
       },
       "max_file_size_bytes_upper": 209715200
     },
@@ -88,7 +95,14 @@
         "notes": "Paper prints: minimum 150 DPI, 300 DPI recommended, max upload 200MB, PNG/JPG, sRGB. Taken from search-engine summaries of official Printful pages on 2026-09-20; direct fetch failed, so a human must confirm. Poster variant list is a representative V1 subset.",
         "review_status": "unverified",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "none",
+          "verified_at": null,
+          "verified_by": null,
+          "review_due_at": null,
+          "evidence": []
+        }
       },
       "max_file_size_bytes_upper": 209715200
     },
@@ -133,7 +147,14 @@
         "notes": "Paper prints: minimum 150 DPI, 300 DPI recommended, max upload 200MB, PNG/JPG, sRGB. Taken from search-engine summaries of official Printful pages on 2026-09-20; direct fetch failed, so a human must confirm. Poster variant list is a representative V1 subset.",
         "review_status": "unverified",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "none",
+          "verified_at": null,
+          "verified_by": null,
+          "review_due_at": null,
+          "evidence": []
+        }
       },
       "max_file_size_bytes_upper": 209715200
     },
@@ -180,7 +201,14 @@
         "notes": "Paper prints: minimum 150 DPI, 300 DPI recommended, max upload 200MB, PNG/JPG, sRGB. Taken from search-engine summaries of official Printful pages on 2026-09-20; direct fetch failed, so a human must confirm. Poster variant list is a representative V1 subset. The 12×16 in front print area and 150 DPI DTG file convention are NOT verified against a current product page.",
         "review_status": "unverified",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "none",
+          "verified_at": null,
+          "verified_by": null,
+          "review_due_at": null,
+          "evidence": []
+        }
       },
       "max_file_size_bytes_upper": 209715200,
       "line_art_ppi_multiplier": 2

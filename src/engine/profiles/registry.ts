@@ -97,6 +97,13 @@ export function buildCustomProfile(o: CustomProfileOptions): PrintProfile {
       // The user told us this size; there is no external source to go stale.
       review_status: "current",
       review_required: false,
+      verification: {
+        method: "internal_policy",
+        verified_at: new Date().toISOString().slice(0, 10),
+        verified_by: "the person using PrintReady",
+        review_due_at: null,
+        evidence: [],
+      },
       notes: o.sourceNote ?? "Size entered by the user; resolution thresholds follow PrintReady policy.",
     },
   };

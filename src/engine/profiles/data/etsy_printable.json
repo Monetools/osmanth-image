@@ -15,7 +15,14 @@
       "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
       "review_status": "unverified",
       "last_checked": null,
-      "last_changed": null
+      "last_changed": null,
+      "verification": {
+        "method": "none",
+        "verified_at": null,
+        "verified_by": null,
+        "review_due_at": null,
+        "evidence": []
+      }
     },
     "max_file_size_bytes_upper": 20971520
   },
@@ -103,7 +110,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance. Etsy does not prescribe print resolution; ratio files are prepared at 300 PPI for the largest family size when the source allows it.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       },
       "max_file_size_bytes_upper": 20971520,
       "constraints_source": {
@@ -115,7 +129,14 @@
         "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
         "review_status": "unverified",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "none",
+          "verified_at": null,
+          "verified_by": null,
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     },
     {
@@ -189,7 +210,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance. Etsy does not prescribe print resolution; ratio files are prepared at 300 PPI for the largest family size when the source allows it.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       },
       "max_file_size_bytes_upper": 20971520,
       "constraints_source": {
@@ -201,7 +229,14 @@
         "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
         "review_status": "unverified",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "none",
+          "verified_at": null,
+          "verified_by": null,
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     },
     {
@@ -269,7 +304,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance. Etsy does not prescribe print resolution; ratio files are prepared at 300 PPI for the largest family size when the source allows it.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       },
       "max_file_size_bytes_upper": 20971520,
       "constraints_source": {
@@ -281,7 +323,14 @@
         "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
         "review_status": "unverified",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "none",
+          "verified_at": null,
+          "verified_by": null,
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     },
     {
@@ -349,7 +398,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance. Etsy does not prescribe print resolution; ratio files are prepared at 300 PPI for the largest family size when the source allows it.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       },
       "max_file_size_bytes_upper": 20971520,
       "constraints_source": {
@@ -361,7 +417,14 @@
         "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
         "review_status": "unverified",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "none",
+          "verified_at": null,
+          "verified_by": null,
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     },
     {
@@ -423,7 +486,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance. Etsy does not prescribe print resolution; ratio files are prepared at 300 PPI for the largest family size when the source allows it.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       },
       "max_file_size_bytes_upper": 20971520,
       "constraints_source": {
@@ -435,7 +505,14 @@
         "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
         "review_status": "unverified",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "none",
+          "verified_at": null,
+          "verified_by": null,
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     },
     {
@@ -515,7 +592,14 @@
         "notes": "PrintReady quality policy (not a platform requirement). The 300 PPI ideal / ~150 PPI floor convention is referenced from print-provider guidance; per-size minimums are scaled by typical viewing distance. Etsy does not prescribe print resolution; ratio files are prepared at 300 PPI for the largest family size when the source allows it.",
         "review_status": "current",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "internal_policy",
+          "verified_at": "2026-09-20",
+          "verified_by": "PrintReady team",
+          "review_due_at": null,
+          "evidence": []
+        }
       },
       "max_file_size_bytes_upper": 20971520,
       "constraints_source": {
@@ -527,7 +611,14 @@
         "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
         "review_status": "unverified",
         "last_checked": null,
-        "last_changed": null
+        "last_changed": null,
+        "verification": {
+          "method": "none",
+          "verified_at": null,
+          "verified_by": null,
+          "review_due_at": null,
+          "evidence": []
+        }
       }
     }
   ]

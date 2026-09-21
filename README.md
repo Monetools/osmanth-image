@@ -8,7 +8,7 @@ Upload an image, choose where it will be printed (photo/poster size, Etsy printa
 
 ```bash
 npm install
-npm test          # deterministic engine tests (114)
+npm test          # deterministic engine tests (139)
 npm run build
 npm start         # http://localhost:3000
 ```
@@ -16,7 +16,9 @@ npm start         # http://localhost:3000
 `npm run dev` for development. Node 20+.
 
 ```bash
-npm run watch:sources   # re-check every printer's requirements page; exit 2 = something changed
+npm run watch:sources             # re-check every printer's requirements page; exit 2 = changed
+npm run verify:record -- --help   # record a manual verification of a page we cannot fetch
+npm run trust:inventory           # regenerate docs/PROFILE_TRUST_INVENTORY.md
 ```
 
 ## What's in the MVP
@@ -25,6 +27,8 @@ npm run watch:sources   # re-check every printer's requirements page; exit 2 = s
 |---|---|
 | Print Profile Engine with source/version/date on every profile | ✅ `src/engine/profiles` (4 groups, 25 profiles) |
 | Source trust: freshness, staleness, page-change watch, ambiguity handling | ✅ `profiles/freshness.ts`, `scripts/watch-sources.mjs` |
+| Manual verification: method, author, evidence quotes, archived copy + sha256, review-due date | ✅ `profiles/verification.ts`, `scripts/record-verification.mjs` |
+| Trust inventory for every profile | ✅ [docs/PROFILE_TRUST_INVENTORY.md](docs/PROFILE_TRUST_INVENTORY.md) |
 | Coverage: checked / not applicable / could not verify / not checked | ✅ `preflight/coverage.ts` |
 | Per-side bleed and line-art resolution rules, opt-in per profile | ✅ |
 | Local inspection (dims, orientation, DPI tag, ICC, alpha, JPEG quality, CMYK) without upload | ✅ `src/engine/inspect` |

@@ -23,7 +23,9 @@ Destination (ProfileGroup)          photo_poster | etsy_printable | printful | p
       ├── ratio_family?                (Etsy) every nominal size a single file must serve
       ├── source                       quality rules: source_url, source_type, source_quote?,
       │                                last_verified_at, last_checked?, last_changed?,
-      │                                review_status, profile_version, review_required, notes
+      │                                review_status, profile_version, review_required,
+      │                                verification {method, verified_at, verified_by,
+      │                                              review_due_at?, evidence[]}, notes
       └── constraints_source?          delivery rules (file size, formats) when they come from a
                                        different place than the quality rules
 ```
@@ -56,6 +58,17 @@ Aspect ratio is derived from `size` (plus bleed) and is not stored separately, s
 | `source.last_checked` / `last_changed` | date \| null | written by the source watch, never by hand |
 | `source.source_quote` | string? | verbatim sentence from the source; only fill it from the real page |
 | `constraints_source` | ProfileSource? | validated exactly like `source` |
+| `source.verification.method` | enum | `none` \| `automated_fetch` \| `human_page_read` \| `human_archived_copy` \| `vendor_reply` \| `internal_policy` |
+| `source.verification.verified_at` | date \| null | must equal `last_verified_at`; must be null when the method is `none` |
+| `source.verification.verified_by` | string | required for every method except `none` |
+| `source.verification.review_due_at` | date \| null | after `verified_at`, at most 365 days later |
+| `source.verification.evidence[]` | Evidence[] | required for human methods: verbatim `quote` + `supports` (known field names); an `archived_copy` must carry its `archived_sha256` |
+
+Two rules the validator enforces that are easy to miss:
+* `review_status: "current"` is rejected when `verification.method` is `none`. A rule cannot claim to
+  be current if nobody ever checked it.
+* `source_quote` must appear verbatim in the evidence. The sentence shown to users is the sentence
+  somebody actually recorded.
 
 ## Source-of-truth policy (spec §2)
 
@@ -96,6 +109,38 @@ apply, so the number is findable on the platform's own page.
 `npm run watch:sources:accept` so the page's current text is recorded as the verified baseline. Paste
 the sentence you relied on into `source_quote` while you are there.
 
+## Verifying a source by hand
+
+Etsy, Printful and Printify all refuse our automated fetches, so their rules can only become
+trustworthy when a person reads the official page. That is a recorded, auditable act:
+
+```bash
+npm run verify:record -- \
+  --url https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings \
+  --method human_page_read \
+  --by "Jane" \
+  --quote "You can upload up to five digital files, with a maximum size of 20MB each." \
+  --supports marketplace.max_files_per_listing,marketplace.max_file_size_bytes \
+  --archive ~/Downloads/etsy-digital-listings.html \
+  --due 2026-12-20
+```
+
+What it does, and deliberately does not do:
+
+* It updates only trust metadata - `verification`, `last_verified_at`, `review_status`,
+  `source_quote` - on **every** profile that cites that URL (one Etsy verification covers all six
+  ratio profiles plus the marketplace record).
+* It **never changes a rule value**. If the page says something different from what the profile
+  claims, edit the profile data first, as a separate reviewable change, then record the verification.
+* With `--archive`, the saved page is copied into `src/engine/profiles/verifications/`, its sha256 is
+  stored in the evidence, and the normalised text becomes the watch baseline - so a page we cannot
+  fetch today can still be compared automatically the day it becomes fetchable.
+* `--dry-run` prints which records would change and writes nothing.
+
+Methods: `human_page_read` (a person read the official page), `human_archived_copy` (a person saved
+the page or spec sheet into the repo), `vendor_reply` (written answer from the vendor's support),
+`internal_policy` (our own decision - only valid for `printready_policy` sources).
+
 ## Source watch
 
 `npm run watch:sources` fetches every `source_url` in the profile data, normalises the page text,
@@ -103,6 +148,25 @@ hashes it, and compares it with the hash recorded at the last human verification
 `changed-needs-review` in `data/source-watch.json`; snapshots are written to `profiles/snapshots/` so a
 human can diff what actually changed. **The script never edits profile data.** Exit code 2 means at
 least one source changed or could not be fetched, so it can gate CI.
+
+The automation is strictly one-directional:
+
+| Automation may | Automation may not |
+|---|---|
+| mark a page `changed-needs-review`, which downgrades trust at read time | raise any rule's trust |
+| record what it last saw (`lastSeenHash`, `lastChecked`) | turn `unverified` into `current` |
+| take a baseline for a source **no person has verified** (`--accept`) | overwrite a human's baseline - `--accept` skips those and says so |
+| - | edit profile rule values, ever |
+
+`effectiveFreshness()` also downgrades a `current` rule to `stale` once `review_due_at` has passed
+(90 days for platform documentation, 365 for our own policy, or an earlier date a verifier chose).
+
+## Trust inventory
+
+`npm run trust:inventory` regenerates [PROFILE_TRUST_INVENTORY.md](PROFILE_TRUST_INVENTORY.md): every
+profile's key constraints, source, live trust status, verification method, review-due date, watch
+state, and the records still missing a reliable source. `--check` fails with exit 2 when the document
+is out of date, so CI can keep it honest.
 
 ## Line art
 

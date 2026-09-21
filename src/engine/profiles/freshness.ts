@@ -1,5 +1,8 @@
 import watchFile from "./data/source-watch.json";
-import type { ProfileSource, ReviewStatus, SourceType } from "./schema";
+import type { ProfileSource, ReviewStatus } from "./schema";
+import { computeFreshness, isHumanVerified, METHOD_LABEL, reviewDueAt } from "./verification";
+
+export { MAX_VERIFICATION_AGE_DAYS } from "./verification";
 
 /**
  * Trust freshness (approach adopted from the sibling CheckBeforeSubmit engine).
@@ -11,18 +14,6 @@ import type { ProfileSource, ReviewStatus, SourceType } from "./schema";
  * Automation may only DOWNGRADE trust at read time. The watch script never edits profile data,
  * and nothing here can upgrade `unverified` into `current` — only a human editing the profile can.
  */
-
-/** How long a verification stays good, by where the rule came from. */
-export const MAX_VERIFICATION_AGE_DAYS: Record<SourceType, number | null> = {
-  // Platforms change their requirements without notice.
-  official_documentation: 90,
-  // Our own quality policy does not expire because someone else edited a page, but it should still
-  // be revisited yearly.
-  printready_policy: 365,
-  industry_convention: 365,
-  // A size the user typed in this session.
-  user_supplied: null,
-};
 
 export interface SourceWatchEntry {
   url: string;
@@ -42,26 +33,36 @@ export interface SourceWatchState {
 
 export const sourceWatch: SourceWatchState = watchFile as SourceWatchState;
 
-export function daysSince(isoDate: string, now: Date): number {
-  return (now.getTime() - new Date(`${isoDate}T00:00:00Z`).getTime()) / 86_400_000;
-}
-
 export function watchEntry(url: string, watch: SourceWatchState = sourceWatch): SourceWatchEntry | undefined {
   return watch.sources.find((s) => s.url === url);
 }
 
-/** The trust state to act on right now, which may be worse than the stored one. */
+/** When this rule must be re-checked. null = it does not expire. */
+export function dueDate(source: ProfileSource): string | null {
+  return reviewDueAt(source.source_type, source.verification, source.last_verified_at);
+}
+
+/**
+ * The trust state to act on right now, which may be worse than the stored one.
+ *
+ * Automation can only ever lower trust here: a changed source page downgrades a `current` rule to
+ * `needs-review`, and an overdue re-check downgrades it to `stale`. Nothing in this function can
+ * raise trust, and nothing can turn an `unverified` rule into a verified one — only a human
+ * recording a verification (see verification.ts) can do that.
+ */
 export function effectiveFreshness(
   source: ProfileSource,
   watch: SourceWatchState = sourceWatch,
   now: Date = new Date(),
 ): ReviewStatus {
-  if (source.review_status !== "current") return source.review_status;
-  const w = watchEntry(source.source_url, watch);
-  if (w?.status === "changed-needs-review") return "needs-review";
-  const maxAge = MAX_VERIFICATION_AGE_DAYS[source.source_type];
-  if (maxAge !== null && daysSince(source.last_verified_at, now) > maxAge) return "stale";
-  return "current";
+  return computeFreshness(
+    source.review_status,
+    source.source_type,
+    source.verification,
+    source.last_verified_at,
+    watchEntry(source.source_url, watch)?.status,
+    now,
+  );
 }
 
 /** Worst (least trusted) state among a profile's quality source and its delivery-constraint source. */
@@ -79,16 +80,26 @@ export function profileFreshness(
 }
 
 export function freshnessMessage(status: ReviewStatus, source: ProfileSource): string {
+  const due = dueDate(source);
   switch (status) {
     case "current":
-      return `Checked against ${hostOf(source.source_url)} on ${source.last_verified_at}.`;
+      return source.verification.method === "internal_policy"
+        ? `PrintReady guideline, set on ${source.last_verified_at}${due ? ` and due for review by ${due}` : ""}.`
+        : `Verified ${METHOD_LABEL[source.verification.method]} on ${source.last_verified_at}` +
+          `${source.verification.verified_by ? ` by ${source.verification.verified_by}` : ""}` +
+          `${due ? `, due for re-check by ${due}` : ""}.`;
     case "stale":
-      return `These requirements were last confirmed on ${source.last_verified_at}. Printers change their rules, so check ${hostOf(source.source_url)} before ordering.`;
+      return `These requirements were last confirmed on ${source.last_verified_at}${due ? ` and were due for re-check by ${due}` : ""}. Printers change their rules, so check ${hostOf(source.source_url)} before ordering.`;
     case "needs-review":
       return `${hostOf(source.source_url)} has changed since we last confirmed these requirements. Check their current guide before ordering.`;
     case "unverified":
-      return `We could not confirm these requirements against ${hostOf(source.source_url)} automatically. Check their current guide before ordering.`;
+      return `We could not confirm these requirements against ${hostOf(source.source_url)} automatically, and nobody has verified them by hand yet. Check their current guide before ordering.`;
   }
+}
+
+/** True when a person, not the fetcher, established this rule. */
+export function humanVerified(source: ProfileSource): boolean {
+  return isHumanVerified(source.verification);
 }
 
 export function hostOf(url: string): string {

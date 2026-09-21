@@ -66,12 +66,21 @@ Known browser limits: iOS Safari caps canvas area (≈16.7 MP historically); ver
 Three mechanisms adopted from the sibling CheckBeforeSubmit engine (see `SHARED_CORE_REUSE_ANALYSIS.md`),
 implemented here on PrintReady's own data model:
 
-* **Freshness** (`profiles/freshness.ts`). A stored `review_status` is downgraded at read time when the
-  watched source page changed (`needs-review`) or when the last human verification is older than the
-  maximum age for that source type (`stale`; 90 days for platform documentation, 365 for our own
-  policy). Automation can only downgrade — `scripts/watch-sources.mjs` never edits profile data, and
-  nothing can promote `unverified` to `current` except a human. A profile's effective trust is the
-  weaker of its quality `source` and its `constraints_source`.
+* **Verification records** (`profiles/verification.ts`). Every source carries *how* it was verified
+  (`human_page_read`, `human_archived_copy`, `vendor_reply`, `internal_policy`, `automated_fetch` or
+  `none`), by whom, on what date, with verbatim evidence quotes tied to the fields they support, an
+  optional tamper-evident archived copy (path + sha256), and when the check falls due. The validator
+  rejects a `current` rule with no verification, and a displayed quote that is not in the evidence.
+  `scripts/record-verification.mjs` is how a person records one; it touches trust metadata only and
+  never a rule value.
+* **Freshness** (`profiles/freshness.ts` over `computeFreshness()`). A stored `review_status` is
+  downgraded at read time when the watched source page changed (`needs-review`) or when
+  `review_due_at` has passed (`stale`; default 90 days for platform documentation, 365 for our own
+  policy; a verifier may choose an earlier date but never one more than a year out). Automation can
+  only downgrade — the watch never edits profile data, `--accept` refuses to overwrite a human's
+  baseline, and nothing can promote `unverified` to `current` except a person recording a
+  verification. A profile's effective trust is the weaker of its quality `source` and its
+  `constraints_source`. The engine, the scripts and the tests all call the same pure function.
 * **Ambiguity.** Where a platform publishes "20MB" without defining a megabyte, both readings are
   stored and a file between them is reported as *could not verify* — never guessed. Prepared output is
   always kept under the stricter figure.

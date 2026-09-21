@@ -3,7 +3,8 @@ import type { PrintProfile } from "../profiles/schema";
 import { describeLimit, describeRatio, formatBytes, formatInches, toInches } from "../units";
 import { ASPECT, cropToRatio, effectivePpiFor, maxPrintSize, resolveTarget, type CropRect, type Target } from "./geometry";
 import { assessQuality, type QualityAssessment, type SourceSignals } from "./quality";
-import { freshnessMessage, hostOf, profileFreshness } from "../profiles/freshness";
+import { dueDate, freshnessMessage, hostOf, profileFreshness } from "../profiles/freshness";
+import { METHOD_LABEL } from "../profiles/verification";
 import { isMislabelledSrgb } from "../inspect/icc";
 import { type CoverageItem } from "./coverage";
 import type { ReviewStatus } from "../profiles/schema";
@@ -374,7 +375,14 @@ export function runPreflight(input: PreflightInput): PreflightResult {
     "Colour": `${img.colorModel.toUpperCase()}${img.icc ? `, profile: ${img.icc.description ?? img.icc.family}` : img.srgbChunk ? ", sRGB" : ", no profile (treated as sRGB)"}`,
     "Transparency": img.hasAlphaChannel ? (input.alphaUsed === false ? "alpha channel present but unused" : "yes") : "no",
     "Compression": img.jpegQuality !== null ? `JPEG quality ≈ ${img.jpegQuality}` : "lossless",
-    "Profile source": `${profile.source.source_type}, v${profile.source.profile_version}, verified ${profile.source.last_verified_at} -> ${trustStatus}`,
+    "Requirements trust": [
+      `${trustStatus}`,
+      `${profile.source.source_type} v${profile.source.profile_version}`,
+      `${METHOD_LABEL[profile.source.verification.method]}${profile.source.verification.verified_by ? ` (${profile.source.verification.verified_by})` : ""}`,
+      profile.source.verification.method === "none"
+        ? "never verified — needs a first check"
+        : `re-check by ${dueDate(profile.source) ?? "n/a"}`,
+    ].join(" · "),
     "File integrity": img.complete ? "complete" : img.structureProblems.join(" "),
   };
 

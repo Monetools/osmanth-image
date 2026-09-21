@@ -11,8 +11,10 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "profiles:check": "vitest run tests/profiles.test.ts",
-    "watch:sources": "node scripts/watch-sources.mjs",
-    "watch:sources:accept": "node scripts/watch-sources.mjs --accept"
+    "watch:sources": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/watch-sources.mjs",
+    "watch:sources:accept": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/watch-sources.mjs --accept",
+    "verify:record": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/record-verification.mjs",
+    "trust:inventory": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/trust-inventory.mjs"
   },
   "dependencies": {
     "fflate": "^0.8.3",
