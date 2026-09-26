@@ -6,11 +6,11 @@
 export const SITE_NAME = "Osmanth Image";
 
 /**
- * Canonical origin, without a trailing slash. `osmanthimage.com` is the official domain in the
- * Brand Asset Kit; `www.` is expected to redirect to it at the host. Override for previews with
+ * Canonical origin, without a trailing slash. `www.osmanthimage.com` is the canonical address (owner
+ * decision, 2026-09-27); the bare `osmanthimage.com` is expected to 301 to it at the host. Override for previews with
  * NEXT_PUBLIC_SITE_URL.
  */
-export const SITE_ORIGIN = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://osmanthimage.com").replace(/\/+$/, "");
+export const SITE_ORIGIN = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.osmanthimage.com").replace(/\/+$/, "");
 
 export const TAGLINE = "Tell us where you're printing. We'll prepare the file.";
 

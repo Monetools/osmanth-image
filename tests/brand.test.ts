@@ -231,11 +231,11 @@ describe("brand language (Brand Asset Kit, section 7)", () => {
 /* -------------------------------------------------------------- site + headers */
 
 describe("site identity and delivery", () => {
-  it("the official domain is osmanthimage.com, and pages get slash-terminated canonical URLs", () => {
-    expect(SITE_ORIGIN).toBe("https://osmanthimage.com");
-    expect(pageUrl("/")).toBe("https://osmanthimage.com/");
-    expect(pageUrl("/8x10-photo-resolution")).toBe("https://osmanthimage.com/8x10-photo-resolution/");
-    expect(pageUrl("privacy/")).toBe("https://osmanthimage.com/privacy/");
+  it("the canonical address is www.osmanthimage.com, and pages get slash-terminated canonical URLs", () => {
+    expect(SITE_ORIGIN).toBe("https://www.osmanthimage.com");
+    expect(pageUrl("/")).toBe("https://www.osmanthimage.com/");
+    expect(pageUrl("/8x10-photo-resolution")).toBe("https://www.osmanthimage.com/8x10-photo-resolution/");
+    expect(pageUrl("privacy/")).toBe("https://www.osmanthimage.com/privacy/");
   });
 
   it("the endorsement is the exact wording the brand requires", () => {

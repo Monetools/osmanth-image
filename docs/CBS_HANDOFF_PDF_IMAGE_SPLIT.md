@@ -25,10 +25,10 @@
 
 ## 2. ⚠ 顺序要求：Osmanth Image 上线之前，不要删 CBS 的图片功能
 
-截至本文写作时，**Osmanth Image 还没有部署**（域名已定：`osmanthimage.com`，正式地址为 `https://osmanthimage.com`，不带 www）。如果 CBS 先删掉图片入口，用户就无处可去，搜索排名也无法转移。
+截至本文写作时，**Osmanth Image 还没有部署**（域名已定：`osmanthimage.com`，正式地址为 `https://www.osmanthimage.com`，带 www；不带 www 的会 301 跳到带 www 的）。如果 CBS 先删掉图片入口，用户就无处可去，搜索排名也无法转移。
 
 正确顺序：
-1. Osmanth Image 部署上线，`https://osmanthimage.com/` 可以正常访问。
+1. Osmanth Image 部署上线，`https://www.osmanthimage.com/` 可以正常访问。
 2. 确认 Osmanth Image 上与下表对应的页面可以访问。
 3. CBS 再按第 3 节修改，并同时上线 301 跳转。
 
@@ -42,7 +42,7 @@
 
 | CBS 页面 | 现在 | 改成 |
 |---|---|---|
-| `/dpi-checker/` | 只收图片（`PrintApp` mode `dpi`） | **下线**，301 跳转到 `https://osmanthimage.com/300-dpi-image-checker/`（带结尾斜杠，避免多一次跳转） |
+| `/dpi-checker/` | 只收图片（`PrintApp` mode `dpi`） | **下线**，301 跳转到 `https://www.osmanthimage.com/300-dpi-image-checker/`（带结尾斜杠，避免多一次跳转） |
 | `/`（首页，mode `home`） | 收 PDF 和图片 | **只收 PDF**；用户上传图片时提示并链接到 Osmanth Image |
 | `/check/`（`CheckFlow`，默认 mode `home`） | 收 PDF 和图片 | 同上 |
 | `/print-size-calculator/` | 不收文件，只做像素 ↔ 英寸 ↔ 厘米换算 | **保留**。它不处理文件，两边都用得上 |
@@ -92,8 +92,8 @@ sitemap 由 `scripts/build/postbuild.mjs` 生成。页面入口删掉后，sitem
 CBS 部署在 Cloudflare Pages（`postbuild.mjs` 会写出 `_headers`）。Cloudflare Pages 支持在 `_redirects` 文件里写跨域 301，建议由 `postbuild.mjs` 一并生成：
 
 ```
-/dpi-checker/   https://osmanthimage.com/300-dpi-image-checker/   301
-/dpi-checker    https://osmanthimage.com/300-dpi-image-checker/   301
+/dpi-checker/   https://www.osmanthimage.com/300-dpi-image-checker/   301
+/dpi-checker    https://www.osmanthimage.com/300-dpi-image-checker/   301
 ```
 
 跳转目标选 `/300-dpi-image-checker`，是因为它和 CBS DPI Checker 的搜索意图最接近（"文件里的 DPI 不决定清晰度，要看像素"）。Osmanth Image 的其他图片入口也可以作为站内交叉链接的目标：

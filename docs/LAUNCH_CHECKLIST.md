@@ -1,6 +1,6 @@
 # Launch checklist — Osmanth Image
 
-Canonical origin: `https://osmanthimage.com` (apex, no www). Set at build time with `NEXT_PUBLIC_SITE_URL` if it ever changes.
+Canonical origin: `https://www.osmanthimage.com` (owner decision, 2026-09-27); the bare `osmanthimage.com` 301s to it. Set at build time with `NEXT_PUBLIC_SITE_URL` if it ever changes.
 Status of each line is honest: "done" means verified in this repo; everything else is for a person.
 
 ## Done in the repo
@@ -12,11 +12,11 @@ Status of each line is honest: "done" means verified in this repo; everything el
 - Browser audit (headless Chromium, light/dark/mobile): no console errors, no failed requests, no request leaves the site's own origin, no horizontal overflow.
 
 ## Hosting and DNS (needs a person)
-- [ ] Deploy `out/` to a static host that honours `_headers` (Cloudflare Pages does). Confirm the CSP header is actually served: `curl -I https://osmanthimage.com/`.
-- [ ] Redirect `www.osmanthimage.com` → `https://osmanthimage.com/` with a 301 at the host. **Decision needed:** the brief said `www.`; this repo assumes the apex is canonical.
+- [ ] Deploy `out/` to a static host that honours `_headers` (Cloudflare Pages does). Confirm the CSP header is actually served: `curl -I https://www.osmanthimage.com/`.
+- [ ] Redirect `osmanthimage.com` (bare) → `https://www.osmanthimage.com/` with a 301 at the host (Cloudflare Redirect Rule, keep path and query). Both hostnames need DNS records, or the bare one cannot redirect.
 - [ ] HTTPS on both hostnames; HSTS once HTTPS is confirmed.
 - [ ] Unknown URLs return a real 404 (the host must serve `404.html`).
-- [ ] Submit `https://osmanthimage.com/sitemap.xml` to Search Console.
+- [ ] Submit `https://www.osmanthimage.com/sitemap.xml` to Search Console.
 
 ## Trust data (needs a person — do not skip)
 - [ ] 15 profile records are still `unverified` (`method: none`). Nothing here was fabricated. Someone must open each official page, check it, and record it with `npm run verify:record`. Until then the product says so on the page.

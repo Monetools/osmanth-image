@@ -9,20 +9,41 @@
     "source": {
       "source_url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
       "source_type": "official_documentation",
-      "last_verified_at": "2026-09-20",
+      "last_verified_at": "2026-09-26",
       "profile_version": "1.0.0",
-      "review_required": true,
+      "review_required": false,
       "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
-      "review_status": "unverified",
+      "review_status": "current",
       "last_checked": null,
       "last_changed": null,
       "verification": {
-        "method": "none",
-        "verified_at": null,
-        "verified_by": null,
+        "method": "human_page_read",
+        "verified_at": "2026-09-26",
+        "verified_by": "Osmanth team",
         "review_due_at": null,
-        "evidence": []
-      }
+        "evidence": [
+          {
+            "quote": "You can upload up to five digital files. The maximum size for each file is 20MB.",
+            "supports": [
+              "marketplace.max_files_per_listing",
+              "marketplace.max_file_size_bytes",
+              "max_file_size_bytes"
+            ],
+            "archived_copy": null,
+            "archived_sha256": null
+          },
+          {
+            "quote": "File names are limited to 70 alphanumeric characters, periods, underscores, or hyphens.",
+            "supports": [
+              "marketplace.filename_max_length",
+              "marketplace.filename_allowed"
+            ],
+            "archived_copy": null,
+            "archived_sha256": null
+          }
+        ]
+      },
+      "source_quote": "You can upload up to five digital files. The maximum size for each file is 20MB."
     },
     "max_file_size_bytes_upper": 20971520
   },
@@ -123,20 +144,41 @@
       "constraints_source": {
         "source_url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
         "source_type": "official_documentation",
-        "last_verified_at": "2026-09-20",
+        "last_verified_at": "2026-09-26",
         "profile_version": "1.0.0",
-        "review_required": true,
+        "review_required": false,
         "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
-        "review_status": "unverified",
+        "review_status": "current",
         "last_checked": null,
         "last_changed": null,
         "verification": {
-          "method": "none",
-          "verified_at": null,
-          "verified_by": null,
+          "method": "human_page_read",
+          "verified_at": "2026-09-26",
+          "verified_by": "Osmanth team",
           "review_due_at": null,
-          "evidence": []
-        }
+          "evidence": [
+            {
+              "quote": "You can upload up to five digital files. The maximum size for each file is 20MB.",
+              "supports": [
+                "marketplace.max_files_per_listing",
+                "marketplace.max_file_size_bytes",
+                "max_file_size_bytes"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "File names are limited to 70 alphanumeric characters, periods, underscores, or hyphens.",
+              "supports": [
+                "marketplace.filename_max_length",
+                "marketplace.filename_allowed"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "You can upload up to five digital files. The maximum size for each file is 20MB."
       }
     },
     {
@@ -223,20 +265,41 @@
       "constraints_source": {
         "source_url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
         "source_type": "official_documentation",
-        "last_verified_at": "2026-09-20",
+        "last_verified_at": "2026-09-26",
         "profile_version": "1.0.0",
-        "review_required": true,
+        "review_required": false,
         "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
-        "review_status": "unverified",
+        "review_status": "current",
         "last_checked": null,
         "last_changed": null,
         "verification": {
-          "method": "none",
-          "verified_at": null,
-          "verified_by": null,
+          "method": "human_page_read",
+          "verified_at": "2026-09-26",
+          "verified_by": "Osmanth team",
           "review_due_at": null,
-          "evidence": []
-        }
+          "evidence": [
+            {
+              "quote": "You can upload up to five digital files. The maximum size for each file is 20MB.",
+              "supports": [
+                "marketplace.max_files_per_listing",
+                "marketplace.max_file_size_bytes",
+                "max_file_size_bytes"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "File names are limited to 70 alphanumeric characters, periods, underscores, or hyphens.",
+              "supports": [
+                "marketplace.filename_max_length",
+                "marketplace.filename_allowed"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "You can upload up to five digital files. The maximum size for each file is 20MB."
       }
     },
     {
@@ -317,20 +380,41 @@
       "constraints_source": {
         "source_url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
         "source_type": "official_documentation",
-        "last_verified_at": "2026-09-20",
+        "last_verified_at": "2026-09-26",
         "profile_version": "1.0.0",
-        "review_required": true,
+        "review_required": false,
         "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
-        "review_status": "unverified",
+        "review_status": "current",
         "last_checked": null,
         "last_changed": null,
         "verification": {
-          "method": "none",
-          "verified_at": null,
-          "verified_by": null,
+          "method": "human_page_read",
+          "verified_at": "2026-09-26",
+          "verified_by": "Osmanth team",
           "review_due_at": null,
-          "evidence": []
-        }
+          "evidence": [
+            {
+              "quote": "You can upload up to five digital files. The maximum size for each file is 20MB.",
+              "supports": [
+                "marketplace.max_files_per_listing",
+                "marketplace.max_file_size_bytes",
+                "max_file_size_bytes"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "File names are limited to 70 alphanumeric characters, periods, underscores, or hyphens.",
+              "supports": [
+                "marketplace.filename_max_length",
+                "marketplace.filename_allowed"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "You can upload up to five digital files. The maximum size for each file is 20MB."
       }
     },
     {
@@ -411,20 +495,41 @@
       "constraints_source": {
         "source_url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
         "source_type": "official_documentation",
-        "last_verified_at": "2026-09-20",
+        "last_verified_at": "2026-09-26",
         "profile_version": "1.0.0",
-        "review_required": true,
+        "review_required": false,
         "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
-        "review_status": "unverified",
+        "review_status": "current",
         "last_checked": null,
         "last_changed": null,
         "verification": {
-          "method": "none",
-          "verified_at": null,
-          "verified_by": null,
+          "method": "human_page_read",
+          "verified_at": "2026-09-26",
+          "verified_by": "Osmanth team",
           "review_due_at": null,
-          "evidence": []
-        }
+          "evidence": [
+            {
+              "quote": "You can upload up to five digital files. The maximum size for each file is 20MB.",
+              "supports": [
+                "marketplace.max_files_per_listing",
+                "marketplace.max_file_size_bytes",
+                "max_file_size_bytes"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "File names are limited to 70 alphanumeric characters, periods, underscores, or hyphens.",
+              "supports": [
+                "marketplace.filename_max_length",
+                "marketplace.filename_allowed"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "You can upload up to five digital files. The maximum size for each file is 20MB."
       }
     },
     {
@@ -499,20 +604,41 @@
       "constraints_source": {
         "source_url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
         "source_type": "official_documentation",
-        "last_verified_at": "2026-09-20",
+        "last_verified_at": "2026-09-26",
         "profile_version": "1.0.0",
-        "review_required": true,
+        "review_required": false,
         "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
-        "review_status": "unverified",
+        "review_status": "current",
         "last_checked": null,
         "last_changed": null,
         "verification": {
-          "method": "none",
-          "verified_at": null,
-          "verified_by": null,
+          "method": "human_page_read",
+          "verified_at": "2026-09-26",
+          "verified_by": "Osmanth team",
           "review_due_at": null,
-          "evidence": []
-        }
+          "evidence": [
+            {
+              "quote": "You can upload up to five digital files. The maximum size for each file is 20MB.",
+              "supports": [
+                "marketplace.max_files_per_listing",
+                "marketplace.max_file_size_bytes",
+                "max_file_size_bytes"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "File names are limited to 70 alphanumeric characters, periods, underscores, or hyphens.",
+              "supports": [
+                "marketplace.filename_max_length",
+                "marketplace.filename_allowed"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "You can upload up to five digital files. The maximum size for each file is 20MB."
       }
     },
     {
@@ -605,20 +731,41 @@
       "constraints_source": {
         "source_url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
         "source_type": "official_documentation",
-        "last_verified_at": "2026-09-20",
+        "last_verified_at": "2026-09-26",
         "profile_version": "1.0.0",
-        "review_required": true,
+        "review_required": false,
         "notes": "Up to 5 files per digital listing, 20MB each, filenames up to 70 characters (letters, numbers, periods, underscores, hyphens). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm.",
-        "review_status": "unverified",
+        "review_status": "current",
         "last_checked": null,
         "last_changed": null,
         "verification": {
-          "method": "none",
-          "verified_at": null,
-          "verified_by": null,
+          "method": "human_page_read",
+          "verified_at": "2026-09-26",
+          "verified_by": "Osmanth team",
           "review_due_at": null,
-          "evidence": []
-        }
+          "evidence": [
+            {
+              "quote": "You can upload up to five digital files. The maximum size for each file is 20MB.",
+              "supports": [
+                "marketplace.max_files_per_listing",
+                "marketplace.max_file_size_bytes",
+                "max_file_size_bytes"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "File names are limited to 70 alphanumeric characters, periods, underscores, or hyphens.",
+              "supports": [
+                "marketplace.filename_max_length",
+                "marketplace.filename_allowed"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "You can upload up to five digital files. The maximum size for each file is 20MB."
       }
     }
   ]

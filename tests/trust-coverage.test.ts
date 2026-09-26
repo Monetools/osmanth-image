@@ -78,10 +78,10 @@ describe("source trust and freshness", () => {
   });
 
   it("the shipped data reflects what we could actually verify", () => {
-    // Etsy printables: our PPI policy is ours, but the 20MB limit is Etsy's and is unverified.
+    // Etsy printables: our PPI policy is ours; the 20MB limit is Etsy's, and a person read it on Etsy's page.
     const etsy = requireProfile("etsy.2x3");
     expect(etsy.source.source_type).toBe("printready_policy");
-    expect(etsy.constraints_source?.review_status).toBe("unverified");
+    expect(etsy.constraints_source?.review_status).toBe("current");
     for (const d of ["printful", "printify"] as const) {
       for (const p of getGroup(d)!.profiles) expect(p.source.review_status).toBe("unverified");
     }
@@ -90,10 +90,10 @@ describe("source trust and freshness", () => {
 
   it("preflight reports the weakest source and never says READY for an unverified one", () => {
     const img = inspectImage(makeJpeg({ width: 4800, height: 7200, quality: 92 }), "a.jpg").inspection!;
-    const r = runPreflight({ inspection: img, profile: requireProfile("etsy.2x3"), now: NOW });
+    const r = runPreflight({ inspection: img, profile: requireProfile("printify.poster.18x24"), now: NOW });
     expect(r.trust.status).toBe("unverified");
     expect(r.status).not.toBe("READY");
-    expect(r.issues.find((i) => i.id === "profile.review")?.detail).toMatch(/etsy\.com/);
+    expect(r.issues.find((i) => i.id === "profile.review")?.detail).toMatch(/printify\.com/);
   });
 });
 

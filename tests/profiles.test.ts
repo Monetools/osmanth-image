@@ -25,7 +25,10 @@ describe("profile data", () => {
     for (const d of ["printful", "printify"] as const) {
       for (const p of getGroup(d)!.profiles) expect(p.source.review_required).toBe(true);
     }
-    expect(getGroup("etsy_printable")!.marketplace_constraints!.source.review_required).toBe(true);
+    // Etsy's page was read by a person on 2026-09-26 and quoted; that is what clears the flag.
+    const etsy = getGroup("etsy_printable")!.marketplace_constraints!.source;
+    expect(etsy.review_required).toBe(false);
+    expect(etsy.verification.evidence.length).toBeGreaterThan(0);
   });
 
   it("third-party conventions are never labelled as official platform requirements", () => {

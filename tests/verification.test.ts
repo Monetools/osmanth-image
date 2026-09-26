@@ -259,8 +259,13 @@ describe("the shipped data tells the truth about itself", () => {
         expect(p.source.review_status).toBe("unverified");
       }
     }
+    // Etsy's page was read by a person and quoted verbatim, so it carries evidence instead.
     const etsy = requireProfile("etsy.2x3");
-    expect(etsy.constraints_source!.verification.method).toBe("none");
+    const v = etsy.constraints_source!.verification;
+    expect(v.method).toBe("human_page_read");
+    expect(v.verified_by).toBeTruthy();
+    expect(v.evidence.length).toBeGreaterThan(0);
+    for (const e of v.evidence) expect(e.quote.length).toBeGreaterThan(20);
     // ...while our own policy is recorded as exactly that, and nothing more.
     expect(etsy.source.verification.method).toBe("internal_policy");
     expect(etsy.source.verification.evidence).toEqual([]);
