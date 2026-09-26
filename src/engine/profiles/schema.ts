@@ -15,7 +15,7 @@ export type ViewingContext = "handheld" | "tabletop" | "wall" | "large_wall" | "
 export type TransparencyRule = "flatten_to_white" | "allowed" | "preferred";
 export type SourceType =
   | "official_documentation" // the platform's own help center / spec page
-  | "printready_policy" // PrintReady's own quality policy (not a platform claim)
+  | "printready_policy" // Osmanth Image's own quality policy (not a platform claim)
   | "industry_convention" // widely used convention; not a platform requirement
   | "user_supplied"; // e.g. a pasted printer spec (future)
 

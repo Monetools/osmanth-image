@@ -11,10 +11,6 @@ export const LIMITS = {
   minDimension: 16,
   /** Upper bound for anything the browser is asked to render into a single canvas. */
   maxCanvasPixels: 100_000_000,
-  /** Server-side enhancement job limits (see src/engine/enhance). */
-  serverJobTimeoutMs: 120_000,
-  serverMaxInputPixels: 25_000_000,
-  tempRetentionMinutes: 30,
 } as const;
 
 export type LimitViolation =

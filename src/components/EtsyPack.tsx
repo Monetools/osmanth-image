@@ -52,7 +52,6 @@ export function EtsyPack({ loaded }: Props) {
         const verification = verifyOutput(r.bytes, item.fileName, item.profile, r.spec, {
           outputAlphaUsed: false,
           source: { jpegQuality: loaded.inspection.jpegQuality, sharpness: null },
-          enhancementScale: 1,
           colorConverted: item.plan.steps.some((s) => s.kind === "color"),
           thresholds: item.preflight.thresholds,
         });
@@ -87,8 +86,10 @@ export function EtsyPack({ loaded }: Props) {
 
   return (
     <section className="card" aria-labelledby="etsy">
-      <div className="step-label">Step 3</div>
-      <h2 id="etsy">Your Etsy printable pack</h2>
+      <div className="card-head">
+        <span className="step-num" aria-hidden="true">3</span>
+        <h2 id="etsy">Your Etsy printable pack</h2>
+      </div>
       <p className="muted" style={{ marginTop: 0 }}>
         One file per shape. Nothing is stretched — each file is a crop of your artwork. Check what each crop keeps.
       </p>

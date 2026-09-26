@@ -5,7 +5,7 @@ import { iccProfile, makeJpeg, makePng, SRGB_XYZ, WIDE_XYZ } from "./fixtures";
 
 /**
  * Capabilities adopted from the sibling CheckBeforeSubmit engine (colorant-based sRGB decision,
- * JPEG structure/truncation reporting) plus PrintReady's own line-art detection.
+ * JPEG structure/truncation reporting) plus Osmanth Image's own line-art detection.
  */
 
 describe("ICC: colorants decide sRGB, not the profile name", () => {

@@ -169,7 +169,7 @@ export function parseJpeg(bytes: Uint8Array): JpegInfo {
     const expected = iccCount || iccChunks.length;
     const complete = iccChunks.length === expected && iccChunks.every((c, i) => c.seq === i + 1);
     if (!complete) {
-      info.problems.push("The embedded colour profile is incomplete, so the colour space could not be confirmed.");
+      info.problems.push("The embedded colour profile is incomplete, so the colours could not be confirmed.");
     } else {
       const total = iccChunks.reduce((n, c) => n + c.data.length, 0);
       const buf = new Uint8Array(total);

@@ -100,11 +100,11 @@ export function buildCustomProfile(o: CustomProfileOptions): PrintProfile {
       verification: {
         method: "internal_policy",
         verified_at: new Date().toISOString().slice(0, 10),
-        verified_by: "the person using PrintReady",
+        verified_by: "the person using Osmanth Image",
         review_due_at: null,
         evidence: [],
       },
-      notes: o.sourceNote ?? "Size entered by the user; resolution thresholds follow PrintReady policy.",
+      notes: o.sourceNote ?? "Size entered by the user; resolution thresholds follow Osmanth Image policy.",
     },
   };
   validateProfile(profile);

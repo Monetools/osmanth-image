@@ -5,9 +5,4 @@ out/
 next-env.d.ts
 .env*
 .data/
-benchmark/.venv/
-benchmark/weights/
-benchmark/output/
-benchmark/corpus/*.jpg
-benchmark/corpus/*.png
 __pycache__/

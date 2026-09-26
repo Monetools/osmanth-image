@@ -9,7 +9,7 @@ import { makeJpeg, makePng } from "./fixtures";
 
 const p810 = requireProfile("photo.8x10");
 const src = (w: number, h: number) => inspectImage(makeJpeg({ width: w, height: h, quality: 92 }), "in.jpg").inspection!;
-const ctx = { outputAlphaUsed: false, source: { jpegQuality: 92, sharpness: 80 }, enhancementScale: 1, colorConverted: false };
+const ctx = { outputAlphaUsed: false, source: { jpegQuality: 92, sharpness: 80 }, colorConverted: false };
 
 describe("fix planner", () => {
   it("downsizes a large image to exactly 8×10 at 300 PPI", () => {
@@ -18,7 +18,6 @@ describe("fix planner", () => {
     const plan = planFix(img, p810, pre, { aspectMode: "crop", cropOffset: 0 });
     expect(plan.spec.canvas).toEqual({ w: 2400, h: 3000 });
     expect(plan.spec.ppi).toBe(300);
-    expect(plan.ai).toBeNull();
   });
   it("never adds pixels locally: a small image keeps its native crop size", () => {
     const img = src(1200, 1600);
@@ -27,7 +26,6 @@ describe("fix planner", () => {
     expect(plan.spec.canvas).toEqual({ w: 1200, h: 1500 });
     expect(plan.spec.canvas.w).toBeLessThanOrEqual(plan.spec.source.w);
     expect(plan.spec.ppi).toBe(150);
-    expect(plan.ai?.scale).toBe(2);
     expect(plan.steps.find((s) => s.kind === "metadata")?.label).toMatch(/does not change quality/);
   });
   it("fit mode letterboxes on white without stretching", () => {
@@ -82,12 +80,6 @@ describe("verification inspects the actual output", () => {
     const v = verifyOutput(png, "o.png", p810, spec, { ...ctx, outputAlphaUsed: true });
     expect(v.checks.find((c) => c.name === "No transparency")?.passed).toBe(false);
     expect(v.checks.find((c) => c.name === "File format")?.passed).toBe(false);
-  });
-  it("AI-enhanced output is only 'technically compatible'", () => {
-    const out = setJpegPpi(makeJpeg({ width: 2400, height: 3000 }), 300);
-    const v = verifyOutput(out, "o.jpg", p810, spec, { ...ctx, enhancementScale: 2 });
-    expect(v.label).toBe(REVIEW_LABEL);
-    expect(v.status).toBe("READY_WITH_WARNINGS");
   });
   it("a valid but low-detail file is not called ready", () => {
     const small = src(900, 1125);

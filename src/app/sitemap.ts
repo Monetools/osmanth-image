@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
 import { INTENTS } from "@/engine/intents";
+import { pageUrl } from "@/site";
+
+export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-  return [{ url: base }, ...INTENTS.map((i) => ({ url: `${base}/${i.slug}` }))];
+  return [pageUrl("/"), ...INTENTS.map((i) => pageUrl(i.slug)), pageUrl("privacy")].map((url) => ({ url }));
 }

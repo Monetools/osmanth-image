@@ -29,24 +29,13 @@ export interface RenderSpec {
 }
 
 export interface FixStep {
-  kind: "orient" | "crop" | "fit" | "resize" | "flatten" | "color" | "convert" | "metadata" | "compress" | "enhance";
-  tier: "local" | "ai";
+  kind: "orient" | "crop" | "fit" | "resize" | "flatten" | "color" | "convert" | "metadata" | "compress";
   label: string;
-}
-
-export interface AiRecommendation {
-  /** Upscale factor the router should request (2 or 4). */
-  scale: 2 | 4;
-  reason: string;
-  /** Source pixels that would be sent (the crop), and resulting output pixels. */
-  inputPixels: { w: number; h: number };
-  outputPixels: { w: number; h: number };
 }
 
 export interface FixPlan {
   spec: RenderSpec;
   steps: FixStep[];
-  ai: AiRecommendation | null;
 }
 
 export interface FixChoices {
@@ -63,7 +52,7 @@ export function planFix(img: ImageInspection, profile: PrintProfile, pre: Prefli
   const flatten = profile.transparency === "flatten_to_white" || profile.output_format === "jpeg";
   let spec: RenderSpec;
 
-  if (img.orientation !== 1) steps.push({ kind: "orient", tier: "local", label: "Rotate the photo upright" });
+  if (img.orientation !== 1) steps.push({ kind: "orient", label: "Rotate the photo upright" });
 
   if (choices.aspectMode === "fit" && pre.crop.axis !== "none") {
     const ppiNative = effectivePpiFor(img.width, img.height, t.fullW, t.fullH);
@@ -76,7 +65,7 @@ export function planFix(img: ImageInspection, profile: PrintProfile, pre: Prefli
     spec = baseSpec(profile, flatten, { x: 0, y: 0, w: img.width, h: img.height }, cw, ch, t);
     spec.draw = { x: Math.floor((cw - dw) / 2), y: Math.floor((ch - dh) / 2), w: dw, h: dh };
     spec.background = "#ffffff";
-    steps.push({ kind: "fit", tier: "local", label: "Keep the whole image and add white borders" });
+    steps.push({ kind: "fit", label: "Keep the whole image and add white borders" });
   } else {
     const c = pre.crop;
     const ppiNative = effectivePpiFor(c.w, c.h, t.fullW, t.fullH);
@@ -86,24 +75,24 @@ export function planFix(img: ImageInspection, profile: PrintProfile, pre: Prefli
     const cw = native ? c.w : Math.round(t.fullW * ppi);
     const ch = native ? c.h : Math.round(t.fullH * ppi);
     spec = baseSpec(profile, flatten, { x: c.x, y: c.y, w: c.w, h: c.h }, cw, ch, t);
-    if (c.axis !== "none") steps.push({ kind: "crop", tier: "local", label: `Crop to the print shape (${(c.loss * 100).toFixed(1)}% trimmed)` });
+    if (c.axis !== "none") steps.push({ kind: "crop", label: `Crop to the print shape (${(c.loss * 100).toFixed(1)}% trimmed)` });
   }
 
   const downscale = spec.source.w / spec.draw.w;
-  if (downscale > 1.01) steps.push({ kind: "resize", tier: "local", label: `Resize to ${spec.canvas.w} × ${spec.canvas.h} pixels` });
+  if (downscale > 1.01) steps.push({ kind: "resize", label: `Resize to ${spec.canvas.w} × ${spec.canvas.h} pixels` });
   if (choices.sharpen && downscale >= 1.5) {
     spec.sharpen = 0.35;
-    steps.push({ kind: "resize", tier: "local", label: "Apply light sharpening after resizing" });
+    steps.push({ kind: "resize", label: "Apply light sharpening after resizing" });
   }
-  if (flatten && img.hasAlphaChannel) steps.push({ kind: "flatten", tier: "local", label: "Fill transparent areas with white" });
+  if (flatten && img.hasAlphaChannel) steps.push({ kind: "flatten", label: "Fill transparent areas with white" });
   if (img.colorModel === "cmyk" || img.colorModel === "ycck" || (img.icc && img.icc.family !== "sRGB" && img.icc.family !== "Gray")) {
-    steps.push({ kind: "color", tier: "local", label: "Convert colours to standard sRGB" });
+    steps.push({ kind: "color", label: "Convert colours to standard sRGB" });
   }
-  if (img.format !== profile.output_format) steps.push({ kind: "convert", tier: "local", label: `Save as ${profile.output_format.toUpperCase()}` });
-  steps.push({ kind: "metadata", tier: "local", label: `Set the print-size tag to ${Math.round(spec.ppi)} PPI (does not change quality)` });
-  if (spec.maxBytes) steps.push({ kind: "compress", tier: "local", label: "Keep the file under the upload limit" });
+  if (img.format !== profile.output_format) steps.push({ kind: "convert", label: `Save as ${profile.output_format.toUpperCase()}` });
+  steps.push({ kind: "metadata", label: `Set the print-size tag to ${Math.round(spec.ppi)} PPI (does not change quality)` });
+  if (spec.maxBytes) steps.push({ kind: "compress", label: "Keep the file under the upload limit" });
 
-  return { spec, steps, ai: recommendAi(pre, spec) };
+  return { spec, steps };
 }
 
 function baseSpec(
@@ -128,16 +117,3 @@ function baseSpec(
   };
 }
 
-function recommendAi(pre: PreflightResult, spec: RenderSpec): AiRecommendation | null {
-  const q = pre.quality;
-  if (q.technical !== "low" && q.technical !== "very_low") return null;
-  const scale: 2 | 4 = q.scaleToPreferred <= 2 ? 2 : 4;
-  return {
-    scale,
-    reason:
-      `To look crisp at this size the image needs about ${q.scaleToPreferred.toFixed(1)}× more pixels across and down.` +
-      (scale === 4 ? " Enlarging this much can look artificial." : ""),
-    inputPixels: { w: spec.source.w, h: spec.source.h },
-    outputPixels: { w: spec.source.w * scale, h: spec.source.h * scale },
-  };
-}

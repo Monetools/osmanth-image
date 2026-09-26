@@ -106,6 +106,14 @@ export function isHumanVerified(v: Verification | undefined): boolean {
   return v !== undefined && HUMAN_METHODS.includes(v.method);
 }
 
+/** What a source type is called on screen. The identifiers themselves are internal. */
+export const SOURCE_TYPE_LABEL: Record<SourceType, string> = {
+  official_documentation: "the printer's published requirements",
+  printready_policy: "Osmanth Image guideline",
+  industry_convention: "common print practice",
+  user_supplied: "the size you entered",
+};
+
 export const METHOD_LABEL: Record<VerificationMethod, string> = {
   none: "not verified",
   automated_fetch: "read automatically from the source page",

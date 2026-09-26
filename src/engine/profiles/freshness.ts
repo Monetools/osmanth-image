@@ -84,7 +84,7 @@ export function freshnessMessage(status: ReviewStatus, source: ProfileSource): s
   switch (status) {
     case "current":
       return source.verification.method === "internal_policy"
-        ? `PrintReady guideline, set on ${source.last_verified_at}${due ? ` and due for review by ${due}` : ""}.`
+        ? `Osmanth Image guideline, set on ${source.last_verified_at}${due ? ` and due for review by ${due}` : ""}.`
         : `Verified ${METHOD_LABEL[source.verification.method]} on ${source.last_verified_at}` +
           `${source.verification.verified_by ? ` by ${source.verification.verified_by}` : ""}` +
           `${due ? `, due for re-check by ${due}` : ""}.`;

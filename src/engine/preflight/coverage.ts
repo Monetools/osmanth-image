@@ -6,7 +6,7 @@
  *   checked           — we inspected it and the result is in the issue list
  *   not_applicable    — this destination has no such requirement, so there is nothing to report
  *   could_not_verify  — the requirement exists but the file (or the source) does not let us decide
- *   not_checked       — PrintReady does not inspect this at all
+ *   not_checked       — Osmanth Image does not inspect this at all
  */
 export type CoverageState = "checked" | "not_applicable" | "could_not_verify" | "not_checked";
 

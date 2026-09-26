@@ -35,14 +35,24 @@ export const UNSUPPORTED_MESSAGES: Partial<Record<DetectedFormat, string>> = {
   tiff: "TIFF files aren't supported in the browser yet. Please export the image as a high-quality JPEG or PNG.",
   gif: "GIF is a low-colour format that isn't suitable for printing. Please use the original JPEG or PNG.",
   bmp: "BMP files aren't supported. Please export the image as PNG.",
-  pdf: "PDF files aren't supported yet — upload the image itself (JPEG or PNG).",
+  pdf: "Osmanth Image prepares image files (JPEG, PNG, WebP). To check a PDF before printing, use Check Before Submit.",
   svg: "Vector (SVG) files aren't supported yet. Export a PNG at the size you want to print.",
   unknown: "This doesn't look like an image file we can read. Please upload a JPEG, PNG or WebP.",
 };
 
+/** Where to send people whose file belongs to our sibling product. */
+export const UNSUPPORTED_LINKS: Partial<Record<DetectedFormat, { label: string; href: string }>> = {
+  pdf: { label: "Check a PDF at Check Before Submit", href: "https://checkbeforesubmit.com/" },
+};
+
 export interface InspectResult {
   inspection: ImageInspection | null;
-  error: { code: "unsupported_format" | "malformed" | "limit"; message: string; violation?: LimitViolation } | null;
+  error: {
+    code: "unsupported_format" | "malformed" | "limit";
+    message: string;
+    violation?: LimitViolation;
+    link?: { label: string; href: string };
+  } | null;
 }
 
 function orientDims(w: number, h: number, orientation: number): [number, number] {
@@ -63,7 +73,14 @@ export function inspectImage(bytes: Uint8Array, fileName = "image", declaredMime
     exifColorSpace: null, complete: true, structureProblems: [], lineArt: false, warnings: [],
   };
   if (!base.supported) {
-    return { inspection: null, error: { code: "unsupported_format", message: UNSUPPORTED_MESSAGES[format] ?? UNSUPPORTED_MESSAGES.unknown! } };
+    return {
+      inspection: null,
+      error: {
+        code: "unsupported_format",
+        message: UNSUPPORTED_MESSAGES[format] ?? UNSUPPORTED_MESSAGES.unknown!,
+        link: UNSUPPORTED_LINKS[format],
+      },
+    };
   }
   const i = base;
   try {

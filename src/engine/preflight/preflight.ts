@@ -4,7 +4,7 @@ import { describeLimit, describeRatio, formatBytes, formatInches, toInches } fro
 import { ASPECT, cropToRatio, effectivePpiFor, maxPrintSize, resolveTarget, type CropRect, type Target } from "./geometry";
 import { assessQuality, type QualityAssessment, type SourceSignals } from "./quality";
 import { dueDate, freshnessMessage, hostOf, profileFreshness } from "../profiles/freshness";
-import { METHOD_LABEL } from "../profiles/verification";
+import { METHOD_LABEL, SOURCE_TYPE_LABEL } from "../profiles/verification";
 import { isMislabelledSrgb } from "../inspect/icc";
 import { type CoverageItem } from "./coverage";
 import type { ReviewStatus } from "../profiles/schema";
@@ -33,12 +33,11 @@ export type IssueCategory =
 
 /**
  * How an issue gets resolved:
- *  auto     — PrintReady fixes it locally, no decision needed
- *  decision — the user must choose (e.g. how to crop)
- *  ai       — only AI enhancement (paid, gated) can address it
- *  none     — informational / nothing to fix
+ *  auto     — Osmanth Image fixes it locally, no decision needed
+ *  decision — the user must choose (e.g. how to crop, or a smaller print size)
+ *  none     — informational / nothing Osmanth Image can fix
  */
-export type Resolution = "auto" | "decision" | "ai" | "none";
+export type Resolution = "auto" | "decision" | "none";
 
 export interface Issue {
   id: string;
@@ -60,8 +59,6 @@ export interface PreflightInput {
   cropOffset?: number;
   /** "crop" fills the print (trims edges); "fit" keeps the whole image and adds white borders. */
   aspectMode?: "crop" | "fit";
-  /** Whether an AI enhancement provider is currently enabled and entitled for this user. */
-  enhancementAvailable?: boolean;
   /** Clock override, so freshness and staleness are testable. */
   now?: Date;
 }
@@ -87,7 +84,6 @@ export interface PreflightResult {
     issuesFound: number;
     autoFixable: number;
     needsDecision: number;
-    needsEnhancement: number;
   };
   maxRecommendedSize: { atPreferred: { w: number; h: number }; atMinimum: { w: number; h: number } };
   advanced: Record<string, string>;
@@ -131,7 +127,6 @@ export function runPreflight(input: PreflightInput): PreflightResult {
       sharpness: input.source?.sharpness ?? null,
       cmykConverted: img.colorModel === "cmyk" || img.colorModel === "ycck",
     },
-    1,
     thresholds,
   );
 
@@ -140,7 +135,6 @@ export function runPreflight(input: PreflightInput): PreflightResult {
   const atPreferred = maxPrintSize(img.width, img.height, thresholds.preferred);
   const atMinimum = maxPrintSize(img.width, img.height, thresholds.minimum);
   const maxSizeText = `${formatInches(atMinimum.w)} × ${formatInches(atMinimum.h)}`;
-  const enh = input.enhancementAvailable === true;
   switch (quality.technical) {
     case "acceptable":
       issues.push({
@@ -151,25 +145,25 @@ export function runPreflight(input: PreflightInput): PreflightResult {
       break;
     case "low":
       issues.push({
-        id: "resolution.low", category: "resolution", severity: "problem", resolution: enh ? "ai" : "decision",
+        id: "resolution.low", category: "resolution", severity: "problem", resolution: "decision",
         title: "Not enough detail for this size",
         detail: `At ${size} this image may look soft or pixelated. It prints well up to about ${maxSizeText}. ` +
-          (enh ? "AI enlargement can add pixels, or you can choose a smaller size." : "Choose a smaller size for the best result."),
+          "Choose a smaller size for the best result.",
       });
       break;
     case "very_low":
       issues.push({
-        id: "resolution.very_low", category: "resolution", severity: "problem", resolution: enh ? "ai" : "decision",
+        id: "resolution.very_low", category: "resolution", severity: "problem", resolution: "decision",
         title: "Far too little detail for this size",
-        detail: `This image would need to be enlarged about ${quality.scaleToMinimum.toFixed(1)}× to print at ${size}. ` +
-          `It prints well up to about ${maxSizeText}.` + (enh ? " AI enlargement at this level may look artificial." : ""),
+        detail: `This image has about ${Math.round(100 / quality.scaleToMinimum)}% of the detail ${size} needs. ` +
+          `It prints well up to about ${maxSizeText}.`,
       });
       break;
     case "unusable":
       issues.push({
         id: "resolution.unusable", category: "resolution", severity: "blocker", resolution: "decision",
         title: "Image is much too small for this size",
-        detail: `It would need to be enlarged ${quality.scaleToMinimum.toFixed(1)}×, which no tool can do convincingly. It prints well up to about ${maxSizeText}.`,
+        detail: `It has far too few pixels for this size. It prints well up to about ${maxSizeText}.`,
       });
       break;
   }
@@ -271,10 +265,10 @@ export function runPreflight(input: PreflightInput): PreflightResult {
   } else if (isMislabelledSrgb(img.icc)) {
     issues.push({
       id: "color.mislabelled", category: "color", severity: "warning", resolution: "auto",
-      title: "The colour profile doesn't match its own name",
+      title: "The colours in this file aren't labelled correctly",
       detail:
-        `This file carries a colour profile named "${img.icc!.description}", but its actual colour definition is not ` +
-        "standard sRGB. We'll convert the colours properly; compare the preview against the original.",
+        `This file says its colours are "${img.icc!.description}", but they are really a different range. ` +
+        "We'll convert them to the standard one. The colours will shift a little, so compare the result with your original.",
     });
   } else if (img.icc && img.icc.family !== "sRGB" && img.icc.family !== "Gray") {
     issues.push({
@@ -344,11 +338,12 @@ export function runPreflight(input: PreflightInput): PreflightResult {
   for (const i of issues) {
     if (i.severity === "info" && i.resolution !== "decision") continue;
     if (i.severity === "blocker") status = worst(status, "NOT_RECOMMENDED");
-    else if (i.resolution === "auto" || i.resolution === "decision" || i.resolution === "ai") status = worst(status, "FIXABLE");
+    else if (i.resolution === "auto" || i.resolution === "decision") status = worst(status, "FIXABLE");
     else status = worst(status, "READY_WITH_WARNINGS");
   }
   if (quality.technical === "very_low" || quality.source === "poor") status = worst(status, "REVIEW_RECOMMENDED");
-  if (quality.technical === "low" && !enh) status = worst(status, "REVIEW_RECOMMENDED");
+  // Too few pixels cannot be fixed here; the honest options are a smaller print or a better original.
+  if (quality.technical === "low") status = worst(status, "REVIEW_RECOMMENDED");
   if (!img.complete) status = worst(status, "REVIEW_RECOMMENDED");
 
   const counted = issues.filter((i) => i.severity !== "info" || i.resolution === "decision");
@@ -357,15 +352,14 @@ export function runPreflight(input: PreflightInput): PreflightResult {
     issuesFound: counted.length,
     autoFixable: counted.filter((i) => i.resolution === "auto").length,
     needsDecision: counted.filter((i) => i.resolution === "decision").length,
-    needsEnhancement: counted.filter((i) => i.resolution === "ai").length,
   };
 
   const advanced: Record<string, string> = {
     "Image size": `${img.width} × ${img.height} px (${((img.width * img.height) / 1e6).toFixed(1)} MP)`,
     "Print size":
       `${formatInches(target.trimW)} × ${formatInches(target.trimH)}` +
-      (target.maxBleed ? ` + ${formatInches(target.maxBleed)} bleed on ${bleedEdges.join(", ")}` : ""),
-    "Effective resolution":
+      (target.maxBleed ? ` + ${formatInches(target.maxBleed)} extra edge on ${bleedEdges.join(", ")}` : ""),
+    "Resolution at this size":
       `${Math.round(ppi)} PPI (target ${Math.round(thresholds.preferred)}, minimum ${Math.round(thresholds.minimum)}` +
       `${thresholds.lineArtApplied ? ", raised for line art" : ""})`,
     "Embedded DPI setting": img.embeddedPpi ? `${Math.round(img.embeddedPpi.x)} (${img.embeddedPpi.source}) — does not affect quality` : "none",
@@ -377,7 +371,7 @@ export function runPreflight(input: PreflightInput): PreflightResult {
     "Compression": img.jpegQuality !== null ? `JPEG quality ≈ ${img.jpegQuality}` : "lossless",
     "Requirements trust": [
       `${trustStatus}`,
-      `${profile.source.source_type} v${profile.source.profile_version}`,
+      `${SOURCE_TYPE_LABEL[profile.source.source_type]} v${profile.source.profile_version}`,
       `${METHOD_LABEL[profile.source.verification.method]}${profile.source.verification.verified_by ? ` (${profile.source.verification.verified_by})` : ""}`,
       profile.source.verification.method === "none"
         ? "never verified — needs a first check"
@@ -465,27 +459,27 @@ function buildCoverage(
   }
 
   if (img.icc && !img.icc.readable) {
-    items.push({ id: "color", label: "Colour space", state: "could_not_verify", note: "A colour profile is embedded but could not be read." });
+    items.push({ id: "color", label: "Colours", state: "could_not_verify", note: "A colour profile is embedded but could not be read." });
   } else if (img.structureProblems.some((p) => p.includes("colour profile is incomplete"))) {
-    items.push({ id: "color", label: "Colour space", state: "could_not_verify", note: "The embedded colour profile is incomplete." });
+    items.push({ id: "color", label: "Colours", state: "could_not_verify", note: "The embedded colour profile is incomplete." });
   } else if (img.icc) {
     items.push({
-      id: "color", label: "Colour space", state: "checked",
+      id: "color", label: "Colours", state: "checked",
       note: img.icc.primariesMatchSrgb === undefined
         ? `Identified from the profile name (${img.icc.family}).`
         : `Identified from the profile's own colour definition (${img.icc.family}).`,
     });
   } else {
     items.push({
-      id: "color", label: "Colour space", state: "checked",
+      id: "color", label: "Colours", state: "checked",
       note: img.exifColorSpace === 1 ? "No embedded profile; the camera says sRGB." : "No embedded profile, so we treat it as standard sRGB.",
     });
   }
 
   items.push(
     ctx.bleedSides > 0 || ctx.safe > 0
-      ? { id: "bleed", label: "Bleed and trim", state: "checked", note: `This product is trimmed, so bleed is added on ${ctx.bleedSides} side${ctx.bleedSides === 1 ? "" : "s"}.` }
-      : { id: "bleed", label: "Bleed and trim", state: "not_applicable", note: "This destination does not trim the print, so no bleed is needed." },
+      ? { id: "bleed", label: "Extra edge for trimming", state: "checked", note: `This product is trimmed, so an extra edge is added on ${ctx.bleedSides} side${ctx.bleedSides === 1 ? "" : "s"}.` }
+      : { id: "bleed", label: "Extra edge for trimming", state: "not_applicable", note: "This destination does not trim the print, so no extra edge is needed." },
   );
 
   items.push(
@@ -526,7 +520,7 @@ function buildCoverage(
           label: ownPolicy ? "Resolution guideline" : "Printer's requirements",
           state: "checked",
           note: ownPolicy
-            ? "These resolution targets are PrintReady's own guideline for this print size, not a specific printer's requirement. Follow your printer's own spec if it differs."
+            ? "These resolution targets are Osmanth Image's own guideline for this print size, not a specific printer's requirement. Follow your printer's own spec if it differs."
             : `Verified against ${hostOf(profile.source.source_url)} on ${profile.source.last_verified_at}.`,
         }
       : {

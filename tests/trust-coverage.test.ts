@@ -197,10 +197,10 @@ describe("line-art resolution rule", () => {
     const { spec } = planFix(lineArt, tee, pre, { aspectMode: "crop", cropOffset: 0 });
     const out = setJpegPpi(makeJpeg({ width: spec.canvas.w, height: spec.canvas.h }), spec.ppi);
     const v = verifyOutput(out, "o.jpg", tee, spec, {
-      outputAlphaUsed: false, source: { jpegQuality: null, sharpness: null }, enhancementScale: 1,
+      outputAlphaUsed: false, source: { jpegQuality: null, sharpness: null },
       colorConverted: false, thresholds: pre.thresholds,
     });
-    expect(v.checks.find((c) => c.name === "Effective resolution")?.expected).toBe("≥ 300 PPI");
+    expect(v.checks.find((c) => c.name === "Resolution at this size")?.expected).toBe("≥ 300 PPI");
   });
 });
 
@@ -245,12 +245,12 @@ describe("truncated files are reported, not silently accepted", () => {
 });
 
 describe("our own guidance is never presented as a printer's requirement", () => {
-  it("labels PrintReady policy as a guideline in the coverage list", () => {
+  it("labels Osmanth Image policy as a guideline in the coverage list", () => {
     const img = inspectImage(makeJpeg({ width: 2400, height: 3000 }), "a.jpg").inspection!;
     const r = runPreflight({ inspection: img, profile: requireProfile("photo.8x10"), now: NOW });
     const req = r.coverage.find((c) => c.id === "requirements")!;
     expect(req.label).toBe("Resolution guideline");
-    expect(req.note).toMatch(/PrintReady's own guideline/);
+    expect(req.note).toMatch(/Osmanth Image's own guideline/);
     expect(req.note).not.toMatch(/printful/i);
   });
 

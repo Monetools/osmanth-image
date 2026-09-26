@@ -60,35 +60,29 @@ export const INTENTS: Intent[] = [
   },
   {
     slug: "make-image-print-ready", title: "Make an image print-ready",
-    h1: "Make your image print-ready", description: "Crop, convert and prepare an image for printing — checked against the printer's requirements.",
-    intro: "Choose where you're printing and we'll prepare a file that meets the requirements, then re-check the final file.",
-  },
-  {
-    slug: "upscale-image-for-printing", title: "Upscale an image for printing — only when it helps",
-    h1: "Does my image need upscaling for print?", description: "Check first, upscale only if needed. Most images don't need AI enlargement.",
-    intro: "We check your image first. Many images are already fine — AI enlargement is only suggested when it would genuinely help.",
-    destination: "photo_poster",
+    h1: "Make your image print-ready", description: "Crop, convert and prepare an image for printing, then check the finished file again before you download it.",
+    intro: "Choose where you're printing and we'll prepare the file, then check the finished file again.",
   },
   {
     slug: "etsy-printable-size-generator", title: "Etsy printable size generator",
     h1: "Create every Etsy printable size from one artwork", description: "Generate 2:3, 3:4, 4:5, 5:7, 11:14 and A-series printable files without stretching.",
-    intro: "Upload your artwork and we'll plan each ratio file, show exactly what gets cropped, and package everything within Etsy's file limits.",
+    intro: "Upload your artwork and we'll plan each ratio file, show exactly what gets cropped, and package everything for your listing.",
     destination: "etsy_printable", etsyPack: true,
   },
   {
     slug: "etsy-printable-pack", title: "Etsy printable pack — ready-to-list files",
-    h1: "Build your Etsy printable pack", description: "One upload, every ratio file, packaged to fit Etsy's digital download limits.",
+    h1: "Build your Etsy printable pack", description: "One upload, every ratio file, packaged for an Etsy digital download. We tell you if we couldn't confirm Etsy's limits.",
     intro: "Upload artwork and get a complete, checked set of printable files.", destination: "etsy_printable", etsyPack: true,
   },
   {
     slug: "printful-image-checker", title: "Printful image checker",
-    h1: "Check your image for Printful", description: "Check a design against Printful poster and t-shirt file requirements before you upload.",
-    intro: "Pick a Printful product and we'll check your file against its requirements.", destination: "printful",
+    h1: "Check your image for Printful", description: "Check a design for Printful posters and t-shirts before you upload it. Where we can't confirm Printful's own requirements, we say so.",
+    intro: "Pick a Printful product and we'll check your file against the requirements we have on record, and tell you if we couldn't confirm them.", destination: "printful",
   },
   {
     slug: "printify-image-checker", title: "Printify image checker",
-    h1: "Check your image for Printify", description: "Check a design against Printify poster and t-shirt file requirements before you upload.",
-    intro: "Pick a Printify product and we'll check your file against its requirements.", destination: "printify",
+    h1: "Check your image for Printify", description: "Check a design for Printify posters and t-shirts before you upload it. Where we can't confirm Printify's own requirements, we say so.",
+    intro: "Pick a Printify product and we'll check your file against the requirements we have on record, and tell you if we couldn't confirm them.", destination: "printify",
   },
 ];
 

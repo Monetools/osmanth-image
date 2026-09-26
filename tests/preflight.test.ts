@@ -95,11 +95,6 @@ describe("status model", () => {
     expect(r.status).toBe("REVIEW_RECOMMENDED");
     expect(r.issues.find((i) => i.category === "resolution")?.detail).toMatch(/prints well up to about/);
   });
-  it("low resolution with an entitled provider → FIXABLE via AI", () => {
-    const r = runPreflight({ inspection: jpeg(1200, 1500), profile: p810, enhancementAvailable: true });
-    expect(r.status).toBe("FIXABLE");
-    expect(r.summary.needsEnhancement).toBe(1);
-  });
   it("NOT_RECOMMENDED: tiny image for a big poster", () => {
     const r = runPreflight({ inspection: jpeg(400, 600), profile: requireProfile("photo.24x36") }); // 16.7 PPI: needs 6× to reach 100
     expect(r.quality.technical).toBe("unusable");

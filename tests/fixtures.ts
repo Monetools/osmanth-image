@@ -20,7 +20,7 @@ export function scaledLuma(q: number): number[] {
 }
 
 export type Xyz = [number, number, number];
-/** sRGB colorants exactly as PrintReady's ICC reader expects to find them. */
+/** sRGB colorants exactly as Osmanth Image's ICC reader expects to find them. */
 export const SRGB_XYZ: { r: Xyz; g: Xyz; b: Xyz } = {
   r: [0.4361, 0.2225, 0.0139],
   g: [0.3851, 0.7169, 0.0971],

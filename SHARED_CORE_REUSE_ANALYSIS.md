@@ -1,5 +1,10 @@
 # Shared Core Reuse Analysis — CheckBeforeSubmit ↔ PrintReady
 
+> **Decisions since this audit (2026-09-21):** the two products are split by file type — Check
+> Before Submit handles **PDFs**, PrintReady handles **images** (see `docs/CBS_HANDOFF_PDF_IMAGE_SPLIT.md`).
+> PrintReady's AI enlargement layer (`engine/enhance`, `server/*`, `benchmark/`) was removed. References
+> to it below describe the state at the time of the audit.
+
 Date: 2026-09-20. Method: read-only audit of the real source of both projects (nothing in CheckBeforeSubmit was modified). PrintReady's 74 tests still pass (re-run after writing this document); CheckBeforeSubmit's working tree is untouched (`git status` clean at 85e2ece). No cross-project refactor has been started.
 
 Repositories audited:

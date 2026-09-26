@@ -10,7 +10,7 @@ export interface ExifInfo {
   resolutionUnit: number | null;
 }
 
-/** Parse the IFD0 tags PrintReady needs from a TIFF-structured EXIF block (starting at "II"/"MM"). */
+/** Parse the IFD0 tags Osmanth Image needs from a TIFF-structured EXIF block (starting at "II"/"MM"). */
 export function parseExifTiff(tiff: Uint8Array): ExifInfo {
   const out: ExifInfo = { orientation: null, colorSpace: null, xResolution: null, yResolution: null, resolutionUnit: null };
   const r = new Reader(tiff);

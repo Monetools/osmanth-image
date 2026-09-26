@@ -73,7 +73,7 @@ describe("SEO intents", () => {
     expect(INTENTS.map((i) => i.slug)).toEqual([
       "can-i-print-this", "300-dpi-image-checker", "photo-print-size-checker", "8x10-photo-resolution",
       "a4-print-resolution", "a3-print-resolution", "18x24-poster-resolution", "24x36-poster-resolution",
-      "make-image-print-ready", "upscale-image-for-printing", "etsy-printable-size-generator", "etsy-printable-pack",
+      "make-image-print-ready", "etsy-printable-size-generator", "etsy-printable-pack",
       "printful-image-checker", "printify-image-checker",
     ]);
     for (const i of INTENTS) if (i.profileId) expect(requireProfile(i.profileId).destination).toBe(i.destination);

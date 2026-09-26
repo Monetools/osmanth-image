@@ -1,27 +1,30 @@
 {
-  "name": "printready",
+  "name": "osmanth-image",
   "version": "0.1.0",
   "private": true,
-  "description": "PrintReady \u2014 tell us where you're printing, we'll prepare the file.",
+  "description": "Osmanth Image \u2014 tell us where you're printing, we'll prepare the file.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "postbuild": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-out.mjs",
+    "start": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/serve-out.mjs",
+    "preview": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/serve-out.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
+    "verify": "npm run typecheck && npm test && npm run trust:check && npm run build",
     "profiles:check": "vitest run tests/profiles.test.ts",
     "watch:sources": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/watch-sources.mjs",
     "watch:sources:accept": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/watch-sources.mjs --accept",
     "verify:record": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/record-verification.mjs",
-    "trust:inventory": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/trust-inventory.mjs"
+    "trust:inventory": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/trust-inventory.mjs",
+    "trust:check": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/trust-inventory.mjs --check"
   },
   "dependencies": {
     "fflate": "^0.8.3",
     "next": "^16.3.5",
     "react": "^19.3.0",
-    "react-dom": "^19.3.0",
-    "server-only": "^0.0.1"
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
     "@types/node": "^26.6.2",
@@ -29,5 +32,8 @@
     "@types/react-dom": "^19.3.0",
     "typescript": "^7.0.2",
     "vitest": "^5.0.1"
+  },
+  "engines": {
+    "node": ">=22.18"
   }
 }

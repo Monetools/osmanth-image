@@ -45,7 +45,7 @@ const STATUS_ICON: Record<PrintStatus, string> = {
 
 export function Workflow({ intent }: { intent?: Intent }) {
   const [loaded, setLoaded] = useState<Loaded | null>(null);
-  const [loadError, setLoadError] = useState<string | null>(null);
+  const [loadError, setLoadError] = useState<{ message: string; link?: { label: string; href: string } } | null>(null);
   const [destination, setDestination] = useState<DestinationId | null>(intent?.destination ?? null);
   const [profileId, setProfileId] = useState<string | null>(intent?.profileId ?? null);
   const [custom, setCustom] = useState<{ w: number; h: number; unit: LengthUnit }>({ w: 8, h: 10, unit: "in" });
@@ -76,7 +76,7 @@ export function Workflow({ intent }: { intent?: Intent }) {
     const { inspection, error } = inspectImage(bytes, file.name, file.type || null);
     if (!inspection || error) {
       setLoaded((prev) => { if (prev) URL.revokeObjectURL(prev.url); return null; });
-      setLoadError(error?.message ?? "We couldn't read this file.");
+      setLoadError({ message: error?.message ?? "We couldn't read this file.", link: error?.link });
       return;
     }
     let used: boolean | null = null;
@@ -112,7 +112,6 @@ export function Workflow({ intent }: { intent?: Intent }) {
     if (!loaded || !profile) return null;
     return runPreflight({
       inspection: loaded.inspection, profile, alphaUsed: loaded.alphaUsed, cropOffset, aspectMode,
-      enhancementAvailable: false,
     });
   }, [loaded, profile, cropOffset, aspectMode]);
 
@@ -143,7 +142,6 @@ export function Workflow({ intent }: { intent?: Intent }) {
       const verification = verifyOutput(r.bytes, name, profile, r.spec, {
         outputAlphaUsed: await outputAlphaUsed(r.bytes, r.mime),
         source: { jpegQuality: loaded.inspection.jpegQuality, sharpness: null },
-        enhancementScale: 1,
         colorConverted: plan.steps.some((s) => s.kind === "color"),
         thresholds: pre.thresholds,
       });
@@ -162,16 +160,18 @@ export function Workflow({ intent }: { intent?: Intent }) {
     <div>
       {/* Step 1 — upload */}
       <section className="card" aria-labelledby="s1">
-        <div className="step-label">Step 1</div>
-        <h2 id="s1">Your image</h2>
+        <div className="card-head">
+          <span className="step-num" aria-hidden="true">1</span>
+          <h2 id="s1">Your image</h2>
+        </div>
         {loaded ? (
           <div className="file-row">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={loaded.url} alt="" />
             <div className="meta">
               <div className="name">{loaded.file.name}</div>
-              <div className="sub">
-                {loaded.inspection.width} × {loaded.inspection.height} pixels · {loaded.inspection.format.toUpperCase()} · {formatBytes(loaded.inspection.fileSizeBytes)}
+              <div className="sub data">
+                {loaded.inspection.width} × {loaded.inspection.height} px · {loaded.inspection.format.toUpperCase()} · {formatBytes(loaded.inspection.fileSizeBytes)}
               </div>
             </div>
             <button className="btn secondary small" onClick={() => inputRef.current?.click()}>Change</button>
@@ -198,14 +198,26 @@ export function Workflow({ intent }: { intent?: Intent }) {
           hidden
           onChange={(e) => { const f = e.target.files?.[0]; if (f) void onFile(f); e.target.value = ""; }}
         />
-        {loadError && <p className="error" role="alert">{loadError}</p>}
+        {loadError && (
+          <p className="error" role="alert">
+            {loadError.message}
+            {loadError.link && (
+              <>
+                {" "}
+                <a href={loadError.link.href} target="_blank" rel="noopener">{loadError.link.label} →</a>
+              </>
+            )}
+          </p>
+        )}
         {loaded?.inspection.warnings.map((w) => <p key={w} className="notice">{w}</p>)}
       </section>
 
       {/* Step 2 — destination */}
       <section className="card" aria-labelledby="s2">
-        <div className="step-label">Step 2</div>
-        <h2 id="s2">Where are you printing this?</h2>
+        <div className="card-head">
+          <span className="step-num" aria-hidden="true">2</span>
+          <h2 id="s2">Where are you printing this?</h2>
+        </div>
         <div className="choices">
           {DESTINATIONS.map((d) => (
             <button
@@ -277,8 +289,10 @@ export function Workflow({ intent }: { intent?: Intent }) {
       {/* Step 3 — report */}
       {pre && plan && profile && loaded && destination !== "etsy_printable" && (
         <section className="card" aria-labelledby="s3">
-          <div className="step-label">Step 3</div>
-          <h2 id="s3">Print check</h2>
+          <div className="card-head">
+            <span className="step-num" aria-hidden="true">3</span>
+            <h2 id="s3">Print check</h2>
+          </div>
           <div className={`status ${pre.status}`} role="status">
             <h3>{STATUS_ICON[pre.status]} {pre.summary.headline}</h3>
             <p>{pre.quality.headline}</p>
@@ -327,8 +341,12 @@ export function Workflow({ intent }: { intent?: Intent }) {
             )}
           </div>
 
-          {plan.ai && (
-            <AiCard ai={plan.ai} maxSize={pre.maxRecommendedSize.atMinimum} />
+          {(pre.quality.technical === "low" || pre.quality.technical === "very_low" || pre.quality.technical === "unusable") && (
+            <p className="notice" style={{ marginTop: 16 }}>
+              <b style={{ color: "var(--text)" }}>For a sharper print, choose a smaller size.</b>{" "}
+              This image looks good up to about {formatInches(pre.maxRecommendedSize.atMinimum.w)} ×{" "}
+              {formatInches(pre.maxRecommendedSize.atMinimum.h)}. A larger original photo would also work.
+            </p>
           )}
 
           <details className="advanced">
@@ -352,7 +370,7 @@ export function Workflow({ intent }: { intent?: Intent }) {
                 <tr>
                   <td>{profile.source.source_type === "official_documentation" ? "Requirements source" : "Quality guideline"}</td>
                   <td>
-                    {profile.source.source_type === "official_documentation" ? null : "PrintReady guideline (not a printer requirement); background: "}
+                    {profile.source.source_type === "official_documentation" ? null : "Osmanth Image guideline (not a printer requirement); background: "}
                     <a href={profile.source.source_url} target="_blank" rel="noreferrer noopener">{new URL(profile.source.source_url).hostname}</a>
                   </td>
                 </tr>
@@ -365,18 +383,27 @@ export function Workflow({ intent }: { intent?: Intent }) {
       {/* Step 4 — fix & verify */}
       {pre && plan && profile && loaded && destination !== "etsy_printable" && (
         <section className="card" aria-labelledby="s4">
-          <div className="step-label">Step 4</div>
-          <h2 id="s4">Prepare your file</h2>
+          <div className="card-head">
+            <span className="step-num" aria-hidden="true">4</span>
+            <h2 id="s4">Prepare your file</h2>
+          </div>
           <ul className="muted" style={{ marginTop: 0 }}>
             {plan.steps.map((s, i) => <li key={i}>{s.label}</li>)}
           </ul>
-          <p className="muted">Output: {plan.spec.canvas.w} × {plan.spec.canvas.h} pixels, {profile.output_format.toUpperCase()}.</p>
+          <p className="muted">Your file will be <span className="data">{plan.spec.canvas.w} × {plan.spec.canvas.h} px</span>, {profile.output_format.toUpperCase()}.</p>
           {aspectIssue?.resolution === "decision" && aspectMode === "crop" && (
             <p className="notice">Check the preview above — the darkened area will be cut off.</p>
           )}
-          <button className="btn" onClick={prepare} disabled={busy}>
-            {busy ? "Preparing…" : output ? "Prepare again" : "Prepare print file"}
-          </button>
+          <div className="row">
+            <button className="btn" onClick={prepare} disabled={busy}>
+              {busy ? "Preparing…" : output ? "Prepare again" : "Prepare print file"}
+            </button>
+            {busy && (
+              // Brand Studio's "thinking" expression. Decorative; the button already says what is happening.
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src="/brand/expression-thinking.svg" width="44" height="44" alt="" aria-hidden="true" />
+            )}
+          </div>
           {renderError && <p className="error" role="alert">{renderError}</p>}
           {output && <Result output={output} />}
         </section>
@@ -386,7 +413,7 @@ export function Workflow({ intent }: { intent?: Intent }) {
 }
 
 function IssueRow({ issue }: { issue: Issue }) {
-  const tag = { auto: "We'll fix this", decision: "Your choice", ai: "AI can help", none: "" }[issue.resolution];
+  const tag = { auto: "We'll fix this", decision: "Your choice", none: "" }[issue.resolution];
   return (
     <li className={`issue ${issue.severity === "blocker" ? "blocker" : issue.resolution}`}>
       <b>
@@ -398,40 +425,6 @@ function IssueRow({ issue }: { issue: Issue }) {
   );
 }
 
-function AiCard({ ai, maxSize }: { ai: NonNullable<ReturnType<typeof planFix>["ai"]>; maxSize: { w: number; h: number } }) {
-  const [msg, setMsg] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const check = async () => {
-    setLoading(true);
-    try {
-      // Only dimensions are sent — never the image.
-      const r = await fetch("/api/enhance/quote", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ inputWidth: ai.inputPixels.w, inputHeight: ai.inputPixels.h, scale: ai.scale, imageKind: "unknown", mode: "full" }),
-      });
-      const j = await r.json();
-      setMsg(j.message ?? "AI enlargement isn't available right now.");
-    } catch {
-      setMsg("AI enlargement isn't available right now.");
-    } finally {
-      setLoading(false);
-    }
-  };
-  return (
-    <div className="notice" style={{ marginTop: 16 }}>
-      <b style={{ color: "var(--text)" }}>Options for more detail</b>
-      <ul style={{ margin: "6px 0" }}>
-        <li>Print smaller: this image looks good up to about {formatInches(maxSize.w)} × {formatInches(maxSize.h)}.</li>
-        <li>
-          AI enlargement ({ai.scale}×): {ai.reason} AI adds new pixels — it can&apos;t recover detail that was never captured.{" "}
-          <button className="link-btn" onClick={check} disabled={loading}>{loading ? "Checking…" : "Check availability"}</button>
-        </li>
-      </ul>
-      {msg && <p style={{ margin: 0 }}>{msg}</p>}
-    </div>
-  );
-}
 
 function Result({ output }: { output: Output }) {
   const v = output.verification;
@@ -439,7 +432,7 @@ function Result({ output }: { output: Output }) {
     <div className="stack" style={{ marginTop: 16 }}>
       <div className={`status ${v.status}`} role="status">
         <h3>{STATUS_ICON[v.status]} {v.label}</h3>
-        <p>We re-opened the finished file and checked it against the requirements.</p>
+        <p>We opened the finished file again and checked it.</p>
       </div>
       {[...output.notes, ...v.notes].map((n) => <p key={n} className="notice">{n}</p>)}
       {v.verified && (

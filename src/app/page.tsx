@@ -1,13 +1,20 @@
-import { Workflow } from "@/components/Workflow";
 import { Explainer } from "@/components/Explainer";
+import { Hero } from "@/components/Hero";
+import { JsonLd } from "@/components/JsonLd";
+import { Workflow } from "@/components/Workflow";
+import { pageMetadata, webApplicationJsonLd } from "@/seo";
+import { DESCRIPTION, SITE_NAME, TAGLINE } from "@/site";
+
+export const metadata = pageMetadata({ path: "/" });
 
 export default function Home() {
   return (
     <>
-      <section className="hero">
-        <h1>Will this image print well?</h1>
-        <p>Upload an image, tell us where you&apos;re printing it, and get a clear answer — plus a file that&apos;s checked and ready to send.</p>
-      </section>
+      <JsonLd data={webApplicationJsonLd({ path: "/", name: SITE_NAME, description: DESCRIPTION })} />
+      <Hero
+        title={TAGLINE}
+        lede="Check your image, fix what can be fixed, and download a file that's ready to print. Your image never leaves your device."
+      />
       <Workflow />
       <Explainer />
     </>

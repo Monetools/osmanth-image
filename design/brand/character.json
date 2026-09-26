@@ -1,0 +1,100 @@
+{
+  "id": "bible_gshpkc",
+  "projectId": "proj_006_osmanth_image",
+  "masterId": "child-osmanthimage",
+  "version": 1,
+  "createdAt": "2026-09-26T12:16:50.861Z",
+  "characterName": "Osmanth Image",
+  "archetype": "helper creature",
+  "silhouetteRule": "Osmanth Image: a square body with floppy ears, carrying a set square - the only triangle in the family, which is what keeps it legible once the tick marks disappear at small sizes. The square body is measured rather than chosen for looks: the derived silhouette sat 0.0304 from Osmanth Video's. Inherits the family's eye language, outline weight and corner softness.",
+  "primaryShapeCount": 7,
+  "proportions": {
+    "headToBodyRatio": 0.4722624797001481,
+    "headWidth": 0.49202711714897307,
+    "headHeight": 0.41,
+    "bodyWidth": 0.3791505391383544,
+    "bodyHeight": 0.29,
+    "eyeSpacing": 0.4145260915672407,
+    "eyeSize": 0.07495309962425381,
+    "eyeLine": 0.5,
+    "mouthSize": 0.14,
+    "limbThickness": 0.045,
+    "outlineWidth": 0.011529233228648081,
+    "cornerRadius": 0.7435316451126709
+  },
+  "palette": [
+    {
+      "token": "primary",
+      "hex": "#15471b",
+      "role": "primary",
+      "label": "body"
+    },
+    {
+      "token": "secondary",
+      "hex": "#f1e7cb",
+      "role": "secondary",
+      "label": "support"
+    },
+    {
+      "token": "accent",
+      "hex": "#1f86d6",
+      "role": "accent",
+      "label": "accent"
+    },
+    {
+      "token": "outline",
+      "hex": "#2e261a",
+      "role": "outline",
+      "label": "outline"
+    },
+    {
+      "token": "highlight",
+      "hex": "#ffffff",
+      "role": "highlight",
+      "label": "highlight"
+    }
+  ],
+  "faceFeatures": {
+    "eyeStyle": "round",
+    "mouthStyle": "smile_arc",
+    "earStyle": "floppy",
+    "hasNose": false,
+    "hasBrows": false,
+    "cheekMark": "none"
+  },
+  "bodyStyle": "square",
+  "tailStyle": "curl",
+  "hasArms": true,
+  "hasLegs": true,
+  "accessories": [
+    {
+      "id": "acc_setsquare",
+      "name": "setsquare",
+      "slot": "hand_right",
+      "signature": true,
+      "colorToken": "secondary",
+      "description": "Osmanth Image prop - what this site actually does, in one object.",
+      "shape": "setsquare"
+    }
+  ],
+  "forbiddenChanges": [
+    "Never change the square body shape or the head-to-body ratio by more than 10%.",
+    "Never recolour the body away from #15471b; seasonal palettes swap accents only.",
+    "Never change eye style from \"round\" - expressions swap the eye state, not the eye design.",
+    "Never remove or restyle the floppy ears.",
+    "Never add fingers, detailed teeth, or realistic shading.",
+    "Never render the character with a visible nose if the Bible says it has none."
+  ],
+  "signatureTraits": [
+    "set square prop",
+    "cutting mat green",
+    "refuses to invent pixels"
+  ],
+  "renderingRules": {
+    "outline": "uniform",
+    "shading": "flat",
+    "background": "transparent",
+    "detailLevel": "moderate"
+  },
+  "promptAnchor": "Osmanth, a helper creature mascot: square body, floppy ears, round eyes, smile arc mouth, flat #15471b body with #2e261a outline, minimal detail, transparent background, no text, no gradients, no realistic shading"
+}

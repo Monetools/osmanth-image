@@ -7,7 +7,7 @@ import type { IccInfo } from "./types";
  * The sRGB decision is made from the rXYZ/gXYZ/bXYZ colorants, not from the profile name:
  * a renamed sRGB profile is still sRGB, and a profile that merely *says* "sRGB" while carrying
  * wide-gamut primaries is not. Names are only a fallback when colorants are absent.
- * (Approach adopted from the sibling CheckBeforeSubmit engine; implemented here on PrintReady's
+ * (Approach adopted from the sibling CheckBeforeSubmit engine; implemented here on Osmanth Image's
  * bounds-checked Reader so a malformed profile cannot read out of range.)
  */
 

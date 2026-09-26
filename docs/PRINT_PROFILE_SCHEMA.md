@@ -73,7 +73,7 @@ Two rules the validator enforces that are easy to miss:
 ## Source-of-truth policy (spec §2)
 
 * `official_documentation` is only used when the value comes from the platform's own help/spec page.
-* PrintReady's resolution thresholds for photo/poster sizes are **our policy** (`printready_policy`) — they are never presented as a platform requirement. The UI labels them “PrintReady guideline (not a printer requirement)”.
+* Osmanth Image's resolution thresholds for photo/poster sizes are **our policy** (`printready_policy`) — they are never presented as a platform requirement. The UI labels them “Osmanth Image guideline (not a printer requirement)”.
 * A profile with `review_required: true` can never produce a plain `READY` status; the user sees “Double-check the printer's current requirements”.
 
 ### Current verification state (2026-09-20)
@@ -85,8 +85,8 @@ downgrade; nothing can turn `unverified` into `current` except a human editing t
 
 | Group | Values | review_status | Why |
 |---|---|---|---|
-| Photo / Poster (11 sizes) | PrintReady policy PPI thresholds | `current` | Our own guideline; the UI labels it "Resolution guideline", never a printer's requirement |
-| Etsy ratio profiles — quality | 300 PPI prep / 150 floor | `current` | PrintReady policy |
+| Photo / Poster (11 sizes) | Osmanth Image policy PPI thresholds | `current` | Our own guideline; the UI labels it "Resolution guideline", never a printer's requirement |
+| Etsy ratio profiles — quality | 300 PPI prep / 150 floor | `current` | Osmanth Image policy |
 | Etsy ratio profiles — delivery (`constraints_source`) | 20 MB per file | **`unverified`** | help.etsy.com refuses automated reading (fetch failed 2026-09-20) |
 | Etsy marketplace constraints | 5 files, 20 MB, 70-char names | **`unverified`** | same page |
 | Printful posters + DTG tee | 150/300 DPI, 200 MB, PNG/JPG, sRGB | **`unverified`** | support.printful.com returned 403 / connection failure |
