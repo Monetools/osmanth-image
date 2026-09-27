@@ -135,6 +135,7 @@ export const VERIFIABLE_FIELDS = [
   "color.cmyk_accepted",
   "max_file_size_bytes",
   "max_file_size_bytes_upper",
+  "max_dimension_px",
   "bleed",
   "safe_area",
   "line_art_ppi_multiplier",

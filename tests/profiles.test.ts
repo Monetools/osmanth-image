@@ -22,9 +22,14 @@ describe("profile data", () => {
   });
 
   it("platform rules that could not be directly confirmed are flagged review_required", () => {
-    for (const d of ["printful", "printify"] as const) {
-      for (const p of getGroup(d)!.profiles) expect(p.source.review_required).toBe(true);
+    // Printful's 3 posters were verified against Printful's own page on 2026-09-27, so those are clear.
+    for (const id of ["printful.poster.12x18", "printful.poster.18x24", "printful.poster.24x36"]) {
+      expect(requireProfile(id).source.review_required).toBe(false);
     }
+    // The DTG tee back print was verified against Printful's own page too, on 2026-09-27.
+    expect(requireProfile("printful.dtg-tee.back").source.review_required).toBe(false);
+    // Nothing on Printify has been read by a person yet.
+    for (const p of getGroup("printify")!.profiles) expect(p.source.review_required).toBe(true);
     // Etsy's page was read by a person on 2026-09-26 and quoted; that is what clears the flag.
     const etsy = getGroup("etsy_printable")!.marketplace_constraints!.source;
     expect(etsy.review_required).toBe(false);

@@ -237,6 +237,15 @@ export function runPreflight(input: PreflightInput): PreflightResult {
     }
   }
 
+  const dimLimit = profile.max_dimension_px ?? null;
+  if (dimLimit !== null && Math.max(img.width, img.height) > dimLimit) {
+    issues.push({
+      id: "dimension.over", category: "file_size", severity: "warning", resolution: "auto",
+      title: "Image is too large to upload",
+      detail: `The longest side can be at most ${dimLimit.toLocaleString()} px; this image is ${img.width.toLocaleString()} × ${img.height.toLocaleString()} px. We'll resize it to the print size.`,
+    });
+  }
+
   /* ---------------- Transparency ---------------- */
   const maybeTransparent = img.hasAlphaChannel && input.alphaUsed !== false;
   if (maybeTransparent && profile.transparency === "flatten_to_white") {
@@ -449,6 +458,10 @@ function buildCoverage(
         ? { id: "file_size", label: "Upload size limit", state: "could_not_verify", note: "The published limit can be read two ways and this file falls between them." }
         : { id: "file_size", label: "Upload size limit", state: "checked", note: `Limit: ${describeLimit(profile.max_file_size_bytes, profile.max_file_size_bytes_upper)}.` },
   );
+
+  if (profile.max_dimension_px != null) {
+    items.push({ id: "dimensions", label: "Largest side", state: "checked", note: `Limit: ${profile.max_dimension_px.toLocaleString()} px on the longest side.` });
+  }
 
   if (!img.hasAlphaChannel) {
     items.push({ id: "transparency", label: "Transparency", state: "checked", note: "This file has no transparency." });

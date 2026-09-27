@@ -15,7 +15,7 @@
       "rotatable": true,
       "ppi": {
         "preferred": 300,
-        "minimum": 150
+        "minimum": 300
       },
       "accepted_formats": [
         "png",
@@ -28,6 +28,7 @@
         "cmyk_accepted": false
       },
       "max_file_size_bytes": 200000000,
+      "max_dimension_px": 20000,
       "bleed": null,
       "safe_area": null,
       "viewing_context": "wall",
@@ -35,22 +36,42 @@
         "Size the file to the actual print dimensions."
       ],
       "source": {
-        "source_url": "https://support.printful.com/hc/en-us/articles/41396495537553-What-type-of-print-files-does-Printful-require",
+        "source_url": "https://www.printful.com/custom/wall-art/posters/enhanced-matte-paper-poster-in",
         "source_type": "official_documentation",
-        "last_verified_at": "2026-09-20",
+        "last_verified_at": "2026-09-27",
         "profile_version": "1.0.0",
-        "review_required": true,
-        "notes": "Paper prints: minimum 150 DPI, 300 DPI recommended, max upload 200MB, PNG/JPG, sRGB. Taken from search-engine summaries of official Printful pages on 2026-09-20; direct fetch failed, so a human must confirm. Poster variant list is a representative V1 subset.",
-        "review_status": "unverified",
+        "review_required": false,
+        "notes": "Confirmed by reading the Enhanced Matte Paper Poster product page's own File guidelines tab on 2026-09-27 (covers the whole 5″×7″–24″×36″ size range, which includes 12×18, 18×24 and 24×36): PNG or JPEG, at least 300 DPI (a must-follow guideline, not a lower fallback), sRGB. We raised our minimum PPI from 150 to 300 to match; there is no separate lower floor on this page. Product measurements may vary by up to 0.2in per Printful's own disclaimer.",
+        "review_status": "current",
         "last_checked": null,
         "last_changed": null,
         "verification": {
-          "method": "none",
-          "verified_at": null,
-          "verified_by": null,
+          "method": "human_page_read",
+          "verified_at": "2026-09-27",
+          "verified_by": "Osmanth team",
           "review_due_at": null,
-          "evidence": []
-        }
+          "evidence": [
+            {
+              "quote": "Submit files in PNG or JPEG format with at least 300 DPI",
+              "supports": [
+                "ppi.minimum",
+                "ppi.preferred",
+                "accepted_formats"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "Create files in sRGB color profile",
+              "supports": [
+                "color.expected"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "Submit files in PNG or JPEG format with at least 300 DPI"
       },
       "max_file_size_bytes_upper": 209715200
     },
@@ -67,7 +88,7 @@
       "rotatable": true,
       "ppi": {
         "preferred": 300,
-        "minimum": 150
+        "minimum": 300
       },
       "accepted_formats": [
         "png",
@@ -80,6 +101,7 @@
         "cmyk_accepted": false
       },
       "max_file_size_bytes": 200000000,
+      "max_dimension_px": 20000,
       "bleed": null,
       "safe_area": null,
       "viewing_context": "large_wall",
@@ -87,22 +109,42 @@
         "Size the file to the actual print dimensions."
       ],
       "source": {
-        "source_url": "https://support.printful.com/hc/en-us/articles/41396495537553-What-type-of-print-files-does-Printful-require",
+        "source_url": "https://www.printful.com/custom/wall-art/posters/enhanced-matte-paper-poster-in",
         "source_type": "official_documentation",
-        "last_verified_at": "2026-09-20",
+        "last_verified_at": "2026-09-27",
         "profile_version": "1.0.0",
-        "review_required": true,
-        "notes": "Paper prints: minimum 150 DPI, 300 DPI recommended, max upload 200MB, PNG/JPG, sRGB. Taken from search-engine summaries of official Printful pages on 2026-09-20; direct fetch failed, so a human must confirm. Poster variant list is a representative V1 subset.",
-        "review_status": "unverified",
+        "review_required": false,
+        "notes": "Confirmed by reading the Enhanced Matte Paper Poster product page's own File guidelines tab on 2026-09-27 (covers the whole 5″×7″–24″×36″ size range, which includes 12×18, 18×24 and 24×36): PNG or JPEG, at least 300 DPI (a must-follow guideline, not a lower fallback), sRGB. We raised our minimum PPI from 150 to 300 to match; there is no separate lower floor on this page. Product measurements may vary by up to 0.2in per Printful's own disclaimer.",
+        "review_status": "current",
         "last_checked": null,
         "last_changed": null,
         "verification": {
-          "method": "none",
-          "verified_at": null,
-          "verified_by": null,
+          "method": "human_page_read",
+          "verified_at": "2026-09-27",
+          "verified_by": "Osmanth team",
           "review_due_at": null,
-          "evidence": []
-        }
+          "evidence": [
+            {
+              "quote": "Submit files in PNG or JPEG format with at least 300 DPI",
+              "supports": [
+                "ppi.minimum",
+                "ppi.preferred",
+                "accepted_formats"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "Create files in sRGB color profile",
+              "supports": [
+                "color.expected"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "Submit files in PNG or JPEG format with at least 300 DPI"
       },
       "max_file_size_bytes_upper": 209715200
     },
@@ -119,7 +161,7 @@
       "rotatable": true,
       "ppi": {
         "preferred": 300,
-        "minimum": 150
+        "minimum": 300
       },
       "accepted_formats": [
         "png",
@@ -132,6 +174,7 @@
         "cmyk_accepted": false
       },
       "max_file_size_bytes": 200000000,
+      "max_dimension_px": 20000,
       "bleed": null,
       "safe_area": null,
       "viewing_context": "large_wall",
@@ -139,30 +182,50 @@
         "Size the file to the actual print dimensions."
       ],
       "source": {
-        "source_url": "https://support.printful.com/hc/en-us/articles/41396495537553-What-type-of-print-files-does-Printful-require",
+        "source_url": "https://www.printful.com/custom/wall-art/posters/enhanced-matte-paper-poster-in",
         "source_type": "official_documentation",
-        "last_verified_at": "2026-09-20",
+        "last_verified_at": "2026-09-27",
         "profile_version": "1.0.0",
-        "review_required": true,
-        "notes": "Paper prints: minimum 150 DPI, 300 DPI recommended, max upload 200MB, PNG/JPG, sRGB. Taken from search-engine summaries of official Printful pages on 2026-09-20; direct fetch failed, so a human must confirm. Poster variant list is a representative V1 subset.",
-        "review_status": "unverified",
+        "review_required": false,
+        "notes": "Confirmed by reading the Enhanced Matte Paper Poster product page's own File guidelines tab on 2026-09-27 (covers the whole 5″×7″–24″×36″ size range, which includes 12×18, 18×24 and 24×36): PNG or JPEG, at least 300 DPI (a must-follow guideline, not a lower fallback), sRGB. We raised our minimum PPI from 150 to 300 to match; there is no separate lower floor on this page. Product measurements may vary by up to 0.2in per Printful's own disclaimer.",
+        "review_status": "current",
         "last_checked": null,
         "last_changed": null,
         "verification": {
-          "method": "none",
-          "verified_at": null,
-          "verified_by": null,
+          "method": "human_page_read",
+          "verified_at": "2026-09-27",
+          "verified_by": "Osmanth team",
           "review_due_at": null,
-          "evidence": []
-        }
+          "evidence": [
+            {
+              "quote": "Submit files in PNG or JPEG format with at least 300 DPI",
+              "supports": [
+                "ppi.minimum",
+                "ppi.preferred",
+                "accepted_formats"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "Create files in sRGB color profile",
+              "supports": [
+                "color.expected"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "Submit files in PNG or JPEG format with at least 300 DPI"
       },
       "max_file_size_bytes_upper": 209715200
     },
     {
-      "id": "printful.dtg-tee.front",
+      "id": "printful.dtg-tee.back",
       "destination": "printful",
       "product": "Unisex t-shirt (DTG)",
-      "variant": "Front print area 12×16 in",
+      "variant": "Back print area 12×16 in",
       "size": {
         "width": 12,
         "height": 16,
@@ -184,6 +247,7 @@
         "cmyk_accepted": false
       },
       "max_file_size_bytes": 200000000,
+      "max_dimension_px": 20000,
       "bleed": null,
       "safe_area": null,
       "viewing_context": "apparel",
@@ -193,25 +257,221 @@
         "1-bit line art (solid black artwork) is judged at twice the normal resolution: hard edges show ragged on fabric."
       ],
       "source": {
-        "source_url": "https://support.printful.com/hc/en-us/articles/41396495537553-What-type-of-print-files-does-Printful-require",
+        "source_url": "https://www.printful.com/custom/mens/t-shirts/unisex-staple-t-shirt-bella-canvas-3001",
         "source_type": "official_documentation",
-        "last_verified_at": "2026-09-20",
+        "last_verified_at": "2026-09-27",
         "profile_version": "1.0.0",
-        "review_required": true,
-        "notes": "Paper prints: minimum 150 DPI, 300 DPI recommended, max upload 200MB, PNG/JPG, sRGB. Taken from search-engine summaries of official Printful pages on 2026-09-20; direct fetch failed, so a human must confirm. Poster variant list is a representative V1 subset. The 12×16 in front print area and 150 DPI DTG file convention are NOT verified against a current product page.",
-        "review_status": "unverified",
+        "review_required": false,
+        "notes": "This was originally recorded as the DTG tee's FRONT print area, cited to a generic help article. Reading the product's own File guidelines on 2026-09-27 (Unisex Staple T-Shirt, Bella+Canvas 3001) showed that was wrong: 12x16in is the BACK print area for all sizes. The front is size-dependent (11.5x13.8in for XS-M, 15x18in from size L up) and isn't modelled yet — there is no separate front profile until someone adds one. File library limits (200 MB, 20,000 x 20,000 px) are confirmed from the general help article and apply regardless of placement.",
+        "review_status": "current",
         "last_checked": null,
         "last_changed": null,
         "verification": {
-          "method": "none",
-          "verified_at": null,
-          "verified_by": null,
+          "method": "human_page_read",
+          "verified_at": "2026-09-27",
+          "verified_by": "Osmanth team",
           "review_due_at": null,
-          "evidence": []
-        }
+          "evidence": [
+            {
+              "quote": "Back print\tAll sizes\t12″ × 16″",
+              "supports": [
+                "size"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "Submit files in PNG or JPEG format with at least 150 DPI",
+              "supports": [
+                "ppi.minimum",
+                "ppi.preferred",
+                "accepted_formats"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "Create files in sRGB color profile",
+              "supports": [
+                "color.expected"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "Back print\tAll sizes\t12″ × 16″"
       },
       "max_file_size_bytes_upper": 209715200,
       "line_art_ppi_multiplier": 2
+    },
+    {
+      "id": "printful.dtg-tee.front-xs-m",
+      "destination": "printful",
+      "product": "Unisex t-shirt (DTG)",
+      "variant": "Front print area (XS–M) 11.5×13.8 in",
+      "size": {
+        "width": 11.5,
+        "height": 13.8,
+        "unit": "in"
+      },
+      "rotatable": false,
+      "ppi": {
+        "preferred": 150,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "png",
+        "jpeg"
+      ],
+      "output_format": "png",
+      "transparency": "preferred",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": 200000000,
+      "max_dimension_px": 20000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "apparel",
+      "special_rules": [
+        "Transparent background recommended; the garment shows through transparent areas.",
+        "Artwork does not need to fill the whole print area.",
+        "1-bit line art (solid black artwork) is judged at twice the normal resolution: hard edges show ragged on fabric.",
+        "Garment sizes XS, S and M use this front print area."
+      ],
+      "source": {
+        "source_url": "https://www.printful.com/custom/mens/t-shirts/unisex-staple-t-shirt-bella-canvas-3001#dtg-front-xs-m",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-27",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "Front print area from the product's own File guidelines (Unisex Staple T-Shirt, Bella+Canvas 3001), read 2026-09-27. The front print area is size-dependent, unlike the back (a single 12x16in for all sizes): XS-M gets 11.5x13.8in, and L through 5XL gets 15x18in. This profile is one of that pair; pick the matching garment size when using it.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null,
+        "verification": {
+          "method": "human_page_read",
+          "verified_at": "2026-09-27",
+          "verified_by": "Osmanth team",
+          "review_due_at": null,
+          "evidence": [
+            {
+              "quote": "Front\tXS - M\t11.5″ × 13.8″",
+              "supports": [
+                "size"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "Submit files in PNG or JPEG format with at least 150 DPI",
+              "supports": [
+                "ppi.minimum",
+                "ppi.preferred",
+                "accepted_formats"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "Create files in sRGB color profile",
+              "supports": [
+                "color.expected"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "Front\tXS - M\t11.5″ × 13.8″"
+      },
+      "max_file_size_bytes_upper": 209715200
+    },
+    {
+      "id": "printful.dtg-tee.front-l-up",
+      "destination": "printful",
+      "product": "Unisex t-shirt (DTG)",
+      "variant": "Front print area (L–5XL) 15×18 in",
+      "size": {
+        "width": 15,
+        "height": 18,
+        "unit": "in"
+      },
+      "rotatable": false,
+      "ppi": {
+        "preferred": 150,
+        "minimum": 150
+      },
+      "accepted_formats": [
+        "png",
+        "jpeg"
+      ],
+      "output_format": "png",
+      "transparency": "preferred",
+      "color": {
+        "expected": "sRGB",
+        "cmyk_accepted": false
+      },
+      "max_file_size_bytes": 200000000,
+      "max_dimension_px": 20000,
+      "bleed": null,
+      "safe_area": null,
+      "viewing_context": "apparel",
+      "special_rules": [
+        "Transparent background recommended; the garment shows through transparent areas.",
+        "Artwork does not need to fill the whole print area.",
+        "1-bit line art (solid black artwork) is judged at twice the normal resolution: hard edges show ragged on fabric.",
+        "Garment sizes L, XL, 2XL, 3XL, 4XL and 5XL use this larger front print area."
+      ],
+      "source": {
+        "source_url": "https://www.printful.com/custom/mens/t-shirts/unisex-staple-t-shirt-bella-canvas-3001#dtg-front-l-up",
+        "source_type": "official_documentation",
+        "last_verified_at": "2026-09-27",
+        "profile_version": "1.0.0",
+        "review_required": false,
+        "notes": "Front print area from the product's own File guidelines (Unisex Staple T-Shirt, Bella+Canvas 3001), read 2026-09-27. The front print area is size-dependent, unlike the back (a single 12x16in for all sizes): XS-M gets 11.5x13.8in, and L through 5XL gets 15x18in. This profile is one of that pair; pick the matching garment size when using it.",
+        "review_status": "current",
+        "last_checked": null,
+        "last_changed": null,
+        "verification": {
+          "method": "human_page_read",
+          "verified_at": "2026-09-27",
+          "verified_by": "Osmanth team",
+          "review_due_at": null,
+          "evidence": [
+            {
+              "quote": "From size L\t15″ × 18″\t15″ × 18″\t15″ × 18″",
+              "supports": [
+                "size"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "Submit files in PNG or JPEG format with at least 150 DPI",
+              "supports": [
+                "ppi.minimum",
+                "ppi.preferred",
+                "accepted_formats"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "Create files in sRGB color profile",
+              "supports": [
+                "color.expected"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "From size L\t15″ × 18″\t15″ × 18″\t15″ × 18″"
+      },
+      "max_file_size_bytes_upper": 209715200
     }
   ]
 }

@@ -82,9 +82,11 @@ describe("source trust and freshness", () => {
     const etsy = requireProfile("etsy.2x3");
     expect(etsy.source.source_type).toBe("printready_policy");
     expect(etsy.constraints_source?.review_status).toBe("current");
-    for (const d of ["printful", "printify"] as const) {
-      for (const p of getGroup(d)!.profiles) expect(p.source.review_status).toBe("unverified");
+    for (const id of ["printful.poster.12x18", "printful.poster.18x24", "printful.poster.24x36"]) {
+      expect(requireProfile(id).source.review_status).toBe("current");
     }
+    expect(requireProfile("printful.dtg-tee.back").source.review_status).toBe("current");
+    for (const p of getGroup("printify")!.profiles) expect(p.source.review_status).toBe("unverified");
     for (const p of getGroup("photo_poster")!.profiles) expect(p.source.review_status).toBe("current");
   });
 
@@ -160,7 +162,7 @@ describe("line-art resolution rule", () => {
   const photo = inspectImage(makePng({ width: 1800, height: 2400 }), "photo.png").inspection!;
 
   it("only applies where the profile asks for it", () => {
-    const tee = requireProfile("printful.dtg-tee.front"); // 12×16 in, 150 PPI, multiplier 2
+    const tee = requireProfile("printful.dtg-tee.back"); // 12×16 in, 150 PPI, multiplier 2
     const paper = requireProfile("photo.11x14");
     expect(tee.line_art_ppi_multiplier).toBe(2);
     expect(paper.line_art_ppi_multiplier).toBeUndefined();
@@ -175,7 +177,7 @@ describe("line-art resolution rule", () => {
   });
 
   it("does not raise the bar for photographs on the same product", () => {
-    const tee = requireProfile("printful.dtg-tee.front");
+    const tee = requireProfile("printful.dtg-tee.back");
     const r = runPreflight({ inspection: photo, profile: tee, now: NOW });
     expect(r.thresholds.lineArtApplied).toBe(false);
     expect(r.thresholds.minimum).toBe(150);
@@ -183,7 +185,7 @@ describe("line-art resolution rule", () => {
   });
 
   it("explains itself when it changes the verdict", () => {
-    const tee = requireProfile("printful.dtg-tee.front");
+    const tee = requireProfile("printful.dtg-tee.back");
     const r = runPreflight({ inspection: lineArt, profile: tee, now: NOW });
     // 1800 px over 12 in = 150 PPI: fine for a photo, too soft for line art at 300.
     expect(Math.round(r.effectivePpi)).toBe(150);
@@ -192,7 +194,7 @@ describe("line-art resolution rule", () => {
   });
 
   it("carries the same thresholds into output verification", () => {
-    const tee = requireProfile("printful.dtg-tee.front");
+    const tee = requireProfile("printful.dtg-tee.back");
     const pre = runPreflight({ inspection: lineArt, profile: tee, now: NOW });
     const { spec } = planFix(lineArt, tee, pre, { aspectMode: "crop", cropOffset: 0 });
     const out = setJpegPpi(makeJpeg({ width: spec.canvas.w, height: spec.canvas.h }), spec.ppi);
@@ -255,11 +257,11 @@ describe("our own guidance is never presented as a printer's requirement", () =>
   });
 
   it("still names the real source for a platform profile", () => {
-    const img = inspectImage(makeJpeg({ width: 3600, height: 5400 }), "a.jpg").inspection!;
-    const r = runPreflight({ inspection: img, profile: requireProfile("printful.poster.12x18"), now: NOW });
+    const img = inspectImage(makeJpeg({ width: 2400, height: 3200 }), "a.jpg").inspection!;
+    const r = runPreflight({ inspection: img, profile: requireProfile("printify.tee.front"), now: NOW });
     const req = r.coverage.find((c) => c.id === "requirements")!;
     expect(req.state).toBe("could_not_verify");
-    expect(req.note).toMatch(/printful\.com/);
+    expect(req.note).toMatch(/printify\.com/);
   });
 });
 

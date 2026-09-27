@@ -100,6 +100,11 @@ export function verifyOutput(
     }
   }
 
+  if (profile.max_dimension_px != null) {
+    add("Largest side", Math.max(out.width, out.height) <= profile.max_dimension_px,
+      `≤ ${profile.max_dimension_px.toLocaleString()} px`, `${Math.max(out.width, out.height).toLocaleString()} px`);
+  }
+
   const colorOk = out.colorModel === "rgb" || out.colorModel === "gray" ? !out.icc || out.icc.family === "sRGB" : false;
   add("Colour", colorOk, "sRGB (or untagged, treated as sRGB)",
     `${out.colorModel.toUpperCase()}${out.icc ? ` / ${out.icc.family}` : " / untagged"}`);

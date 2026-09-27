@@ -213,7 +213,7 @@ not mentioned in the report. Profiles with no bleed at all report "Not applicabl
   "viewing_context": "large_wall",
   "special_rules": ["Size the file to the actual print dimensions."],
   "source": {
-    "source_url": "https://support.printful.com/hc/en-us/articles/41396495537553-What-type-of-print-files-does-Printful-require",
+    "source_url": "https://help.printful.com/hc/en-us/articles/50264019148177-How-should-I-prepare-my-print-file-for-the-best-results",
     "source_type": "official_documentation",
     "last_verified_at": "2026-09-20",
     "last_checked": "2026-09-20",

@@ -111,6 +111,11 @@ export interface PrintProfile {
    * judged either way and is reported as "could not verify" rather than guessed.
    */
   max_file_size_bytes_upper?: number | null;
+  /**
+   * Largest width or height, in pixels, the destination accepts for an upload. Absent = the
+   * destination publishes no such limit.
+   */
+  max_dimension_px?: number | null;
   /** Bleed required beyond the finished size, per side. null = no bleed. */
   bleed: BleedSpec | null;
   /** Inset from the trim edge that important content should stay within. null = none. */
@@ -212,6 +217,9 @@ export function validateProfile(p: PrintProfile): void {
   if (!["flatten_to_white", "allowed", "preferred"].includes(p.transparency)) fail(id, "bad transparency");
   if (p.transparency !== "flatten_to_white" && p.output_format === "jpeg") fail(id, "transparency needs png output");
   if (p.max_file_size_bytes !== null && !(p.max_file_size_bytes > 0)) fail(id, "max_file_size_bytes must be > 0 or null");
+  if (p.max_dimension_px != null && !(Number.isInteger(p.max_dimension_px) && p.max_dimension_px > 0)) {
+    fail(id, "max_dimension_px must be a positive whole number");
+  }
   if (p.max_file_size_bytes_upper != null) {
     if (p.max_file_size_bytes === null) fail(id, "max_file_size_bytes_upper needs a lower bound");
     if (p.max_file_size_bytes_upper < p.max_file_size_bytes) fail(id, "max_file_size_bytes_upper must be >= max_file_size_bytes");

@@ -110,9 +110,25 @@ describe("status model", () => {
     expect(r.status).toBe("REVIEW_RECOMMENDED");
   });
   it("platform profiles pending review never report plain READY", () => {
-    const r = runPreflight({ inspection: jpeg(3600, 5400), profile: requireProfile("printful.poster.12x18") });
+    // Printful's 3 posters and its DTG tee back print were verified against Printful's own pages on
+    // 2026-09-27; nothing on Printify has been read by a person yet, so that's the pending one.
+    const r = runPreflight({ inspection: jpeg(4500, 5100), profile: requireProfile("printify.tee.front") });
     expect(r.status).toBe("READY_WITH_WARNINGS");
     expect(r.issues.some((i) => i.id === "profile.review")).toBe(true);
+    const verified = runPreflight({ inspection: jpeg(3600, 5400), profile: requireProfile("printful.poster.12x18") });
+    expect(verified.issues.some((i) => i.id === "profile.review")).toBe(false);
+  });
+  it("Printful's 20,000 px upload limit: over it is flagged and fixable, under it is silent", () => {
+    const poster = requireProfile("printful.poster.24x36");
+    expect(poster.max_dimension_px).toBe(20000);
+    const over = runPreflight({ inspection: jpeg(20001, 100), profile: poster });
+    expect(over.issues.find((i) => i.id === "dimension.over")?.resolution).toBe("auto");
+    const exactly = runPreflight({ inspection: jpeg(20000, 100), profile: poster });
+    expect(exactly.issues.find((i) => i.id === "dimension.over")).toBeUndefined();
+    // Destinations that publish no such limit never get the warning.
+    const none = runPreflight({ inspection: jpeg(20001, 100), profile: p810 });
+    expect(none.issues.find((i) => i.id === "dimension.over")).toBeUndefined();
+    expect(none.coverage.some((i) => i.id === "dimensions")).toBe(false);
   });
   it("transparency: flattened for paper, missing for apparel", () => {
     const png = inspectImage(makePng({ width: 2400, height: 3000, colorType: 6 }), "a.png").inspection!;
@@ -121,7 +137,7 @@ describe("status model", () => {
     const unused = runPreflight({ inspection: png, profile: p810, alphaUsed: false });
     expect(unused.issues.find((i) => i.id === "transparency.flatten")).toBeUndefined();
     const opaque = inspectImage(makePng({ width: 1800, height: 2400 }), "a.png").inspection!;
-    const tee = runPreflight({ inspection: opaque, profile: requireProfile("printful.dtg-tee.front") });
+    const tee = runPreflight({ inspection: opaque, profile: requireProfile("printful.dtg-tee.back") });
     expect(tee.issues.find((i) => i.id === "transparency.missing")).toBeDefined();
   });
   it("CMYK is converted, not blindly required", () => {

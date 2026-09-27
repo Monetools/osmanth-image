@@ -253,11 +253,16 @@ describe("the shipped data tells the truth about itself", () => {
   });
 
   it("platform requirements we could not read are recorded as never verified", () => {
-    for (const d of ["printful", "printify"] as const) {
-      for (const p of getGroup(d)!.profiles) {
-        expect(p.source.verification.method).toBe("none");
-        expect(p.source.review_status).toBe("unverified");
-      }
+    for (const p of getGroup("printify")!.profiles) {
+      expect(p.source.verification.method).toBe("none");
+      expect(p.source.review_status).toBe("unverified");
+    }
+    // The 3 Printful posters and the DTG tee back print were each read by a person on 2026-09-27
+    // and quoted, so they carry evidence instead of "none".
+    for (const id of ["printful.poster.12x18", "printful.poster.18x24", "printful.poster.24x36", "printful.dtg-tee.back"]) {
+      const v = requireProfile(id).source.verification;
+      expect(v.method).toBe("human_page_read");
+      expect(v.evidence.length).toBeGreaterThan(0);
     }
     // Etsy's page was read by a person and quoted verbatim, so it carries evidence instead.
     const etsy = requireProfile("etsy.2x3");

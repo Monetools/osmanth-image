@@ -65,6 +65,15 @@ describe("verification inspects the actual output", () => {
     expect(v.status).toBe("READY");
     expect(v.label).toBe(READY_LABEL);
   });
+  it("fails when the output is larger than the destination's pixel limit", () => {
+    const out = setJpegPpi(makeJpeg({ width: 2400, height: 3000, quality: 92 }), 300);
+    const capped = { ...p810, max_dimension_px: 2999 };
+    const v = verifyOutput(out, "o.jpg", capped, spec, ctx);
+    expect(v.checks.find((c) => c.name === "Largest side")?.passed).toBe(false);
+    expect(v.verified).toBe(false);
+    const roomy = verifyOutput(out, "o.jpg", { ...p810, max_dimension_px: 3000 }, spec, ctx);
+    expect(roomy.checks.find((c) => c.name === "Largest side")?.passed).toBe(true);
+  });
   it("fails when the output dimensions differ from what was requested", () => {
     const out = setJpegPpi(makeJpeg({ width: 2400, height: 2990 }), 300);
     const v = verifyOutput(out, "o.jpg", p810, spec, ctx);

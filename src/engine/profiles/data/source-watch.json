@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-09-20",
+  "updatedAt": "2026-09-27",
   "sources": [
     {
       "url": "https://help.printful.com/hc/en-us/articles/360014067019-Is-there-a-difference-in-quality-between-150-and-300-DPI",
       "verifiedHash": null,
       "lastSeenHash": null,
-      "lastChecked": "2026-09-20",
+      "lastChecked": "2026-09-27",
       "lastChanged": null,
       "status": "fetch-failed",
       "usedBy": [
@@ -33,7 +33,7 @@
       "url": "https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings",
       "verifiedHash": null,
       "lastSeenHash": null,
-      "lastChecked": "2026-09-20",
+      "lastChecked": "2026-09-27",
       "lastChanged": null,
       "status": "fetch-failed",
       "usedBy": [
@@ -48,25 +48,60 @@
       "note": "Could not fetch: fetch failed. Freshness cannot be confirmed automatically; a human must check this page."
     },
     {
-      "url": "https://support.printful.com/hc/en-us/articles/41396495537553-What-type-of-print-files-does-Printful-require",
+      "url": "https://www.printful.com/custom/wall-art/posters/enhanced-matte-paper-poster-in",
       "verifiedHash": null,
       "lastSeenHash": null,
-      "lastChecked": "2026-09-20",
+      "lastChecked": "2026-09-27",
       "lastChanged": null,
       "status": "fetch-failed",
       "usedBy": [
-        "printful.dtg-tee.front",
         "printful.poster.12x18",
         "printful.poster.18x24",
         "printful.poster.24x36"
       ],
-      "note": "Could not fetch: fetch failed. Freshness cannot be confirmed automatically; a human must check this page."
+      "note": "Could not fetch: HTTP 403. Freshness cannot be confirmed automatically; a human must check this page."
+    },
+    {
+      "url": "https://www.printful.com/custom/mens/t-shirts/unisex-staple-t-shirt-bella-canvas-3001",
+      "verifiedHash": null,
+      "lastSeenHash": null,
+      "lastChecked": "2026-09-27",
+      "lastChanged": null,
+      "status": "fetch-failed",
+      "usedBy": [
+        "printful.dtg-tee.back"
+      ],
+      "note": "Could not fetch: HTTP 403. Freshness cannot be confirmed automatically; a human must check this page."
+    },
+    {
+      "url": "https://www.printful.com/custom/mens/t-shirts/unisex-staple-t-shirt-bella-canvas-3001#dtg-front-xs-m",
+      "verifiedHash": null,
+      "lastSeenHash": null,
+      "lastChecked": "2026-09-27",
+      "lastChanged": null,
+      "status": "fetch-failed",
+      "usedBy": [
+        "printful.dtg-tee.front-xs-m"
+      ],
+      "note": "Could not fetch: HTTP 403. Freshness cannot be confirmed automatically; a human must check this page."
+    },
+    {
+      "url": "https://www.printful.com/custom/mens/t-shirts/unisex-staple-t-shirt-bella-canvas-3001#dtg-front-l-up",
+      "verifiedHash": null,
+      "lastSeenHash": null,
+      "lastChecked": "2026-09-27",
+      "lastChanged": null,
+      "status": "fetch-failed",
+      "usedBy": [
+        "printful.dtg-tee.front-l-up"
+      ],
+      "note": "Could not fetch: HTTP 403. Freshness cannot be confirmed automatically; a human must check this page."
     },
     {
       "url": "https://help.printify.com/hc/en-us/articles/4483617936657-What-type-of-print-files-does-Printify-require",
       "verifiedHash": null,
       "lastSeenHash": null,
-      "lastChecked": "2026-09-20",
+      "lastChecked": "2026-09-27",
       "lastChanged": null,
       "status": "fetch-failed",
       "usedBy": [
