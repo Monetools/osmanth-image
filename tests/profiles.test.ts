@@ -21,19 +21,26 @@ describe("profile data", () => {
     }
   });
 
-  it("platform rules that could not be directly confirmed are flagged review_required", () => {
-    // Printful's 3 posters were verified against Printful's own page on 2026-09-27, so those are clear.
-    for (const id of ["printful.poster.12x18", "printful.poster.18x24", "printful.poster.24x36"]) {
-      expect(requireProfile(id).source.review_required).toBe(false);
+  it("every platform rule has been read and quoted by a person, so nothing is flagged review_required", () => {
+    // All 34 real trust records were verified against their own official pages by 2026-09-27 (see
+    // docs/PROFILE_TRUST_INVENTORY.md); review_required flipping true for an unverified source is
+    // covered separately with synthetic data in trust-coverage.test.ts and verification.test.ts.
+    for (const g of listGroups()) {
+      for (const p of g.profiles) {
+        if (p.source.source_type !== "printready_policy") {
+          expect(p.source.review_required, p.id).toBe(false);
+          expect(p.source.verification.evidence.length, p.id).toBeGreaterThan(0);
+        }
+        if (p.constraints_source) {
+          expect(p.constraints_source.review_required, `${p.id} (constraints)`).toBe(false);
+          expect(p.constraints_source.verification.evidence.length, `${p.id} (constraints)`).toBeGreaterThan(0);
+        }
+      }
+      if (g.marketplace_constraints) {
+        expect(g.marketplace_constraints.source.review_required).toBe(false);
+        expect(g.marketplace_constraints.source.verification.evidence.length).toBeGreaterThan(0);
+      }
     }
-    // The DTG tee back print was verified against Printful's own page too, on 2026-09-27.
-    expect(requireProfile("printful.dtg-tee.back").source.review_required).toBe(false);
-    // Nothing on Printify has been read by a person yet.
-    for (const p of getGroup("printify")!.profiles) expect(p.source.review_required).toBe(true);
-    // Etsy's page was read by a person on 2026-09-26 and quoted; that is what clears the flag.
-    const etsy = getGroup("etsy_printable")!.marketplace_constraints!.source;
-    expect(etsy.review_required).toBe(false);
-    expect(etsy.verification.evidence.length).toBeGreaterThan(0);
   });
 
   it("third-party conventions are never labelled as official platform requirements", () => {

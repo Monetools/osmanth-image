@@ -20,6 +20,20 @@ import { runPreflight } from "@/engine/preflight/preflight";
 import { makeJpeg } from "./fixtures";
 
 const NOW = new Date("2026-09-20T12:00:00Z");
+// All 34 real trust records are verified as of 2026-09-27 (see docs/PROFILE_TRUST_INVENTORY.md), so
+// tests that need "unverified" behaviour build a synthetic profile from a real one.
+const asUnverified = (id: string) => {
+  const p = requireProfile(id);
+  return {
+    ...p,
+    source: {
+      ...p.source,
+      review_status: "unverified" as const,
+      review_required: true,
+      verification: { method: "none" as const, verified_at: null, verified_by: null, review_due_at: null, evidence: [] },
+    },
+  };
+};
 
 const humanRecord = (over: Partial<Verification> = {}): Verification => ({
   method: "human_page_read",
@@ -253,16 +267,18 @@ describe("the shipped data tells the truth about itself", () => {
   });
 
   it("platform requirements we could not read are recorded as never verified", () => {
-    for (const p of getGroup("printify")!.profiles) {
-      expect(p.source.verification.method).toBe("none");
-      expect(p.source.review_status).toBe("unverified");
-    }
-    // The 3 Printful posters and the DTG tee back print were each read by a person on 2026-09-27
-    // and quoted, so they carry evidence instead of "none".
-    for (const id of ["printful.poster.12x18", "printful.poster.18x24", "printful.poster.24x36", "printful.dtg-tee.back"]) {
+    // All 34 real trust records are verified as of 2026-09-27; the "never verified" state itself is
+    // exercised with a synthetic profile.
+    const synthetic = asUnverified("printify.tee.front");
+    expect(synthetic.source.verification.method).toBe("none");
+    expect(synthetic.source.review_status).toBe("unverified");
+    for (const id of [
+      "printful.poster.12x18", "printful.poster.18x24", "printful.poster.24x36", "printful.dtg-tee.back",
+      "printify.poster.12x18", "printify.poster.18x24", "printify.poster.24x36", "printify.tee.front",
+    ]) {
       const v = requireProfile(id).source.verification;
-      expect(v.method).toBe("human_page_read");
-      expect(v.evidence.length).toBeGreaterThan(0);
+      expect(v.method, id).toBe("human_page_read");
+      expect(v.evidence.length, id).toBeGreaterThan(0);
     }
     // Etsy's page was read by a person and quoted verbatim, so it carries evidence instead.
     const etsy = requireProfile("etsy.2x3");
@@ -279,8 +295,8 @@ describe("the shipped data tells the truth about itself", () => {
 
 describe("a rule nobody checked is never described as due for a re-check", () => {
   it("says it was never verified instead", () => {
-    const img = inspectImage(makeJpeg({ width: 3600, height: 5400 }), "a.jpg").inspection!;
-    const unverified = runPreflight({ inspection: img, profile: requireProfile("printify.poster.18x24"), now: NOW });
+    const img = inspectImage(makeJpeg({ width: 4500, height: 5100 }), "a.jpg").inspection!;
+    const unverified = runPreflight({ inspection: img, profile: asUnverified("printify.tee.front"), now: NOW });
     expect(unverified.advanced["Requirements trust"]).toMatch(/never verified/);
     expect(unverified.advanced["Requirements trust"]).not.toMatch(/re-check by/);
 

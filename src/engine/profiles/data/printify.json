@@ -35,20 +35,46 @@
       "source": {
         "source_url": "https://help.printify.com/hc/en-us/articles/4483617936657-What-type-of-print-files-does-Printify-require",
         "source_type": "official_documentation",
-        "last_verified_at": "2026-09-20",
+        "last_verified_at": "2026-09-27",
         "profile_version": "1.0.0",
-        "review_required": true,
-        "notes": "JPEG/PNG max 100MB; 300 DPI recommended (120-150 DPI acceptable for large products); PNG must be RGB; JPEG RGB or CMYK (converted to RGB internally). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm. Exact print-area pixel sizes vary per print provider and are NOT verified.",
-        "review_status": "unverified",
+        "review_required": false,
+        "notes": "Format/DPI/file-size confirmed by reading Printify's own \"What type of print files does Printify require?\" article on 2026-09-27 (quoted in evidence below). Size cross-checked directly in Printify's Product Creator (Matte Vertical Posters, product 282, https://printify.com/app/editor/282/99/digital-printing) on 2026-09-27: its \"Print area size\" for this variant reads 3600 × 5400 px, which is exactly 300 DPI at this profile's size — that pixel figure isn't tracked as formal evidence here because it came from a different page than source_url, but it was read directly, not guessed. cmyk_accepted=true is our own carry-over assumption, NOT confirmed by either page — Printify's article doesn't mention colour mode at all.",
+        "review_status": "current",
         "last_checked": null,
         "last_changed": null,
         "verification": {
-          "method": "none",
-          "verified_at": null,
-          "verified_by": null,
+          "method": "human_page_read",
+          "verified_at": "2026-09-27",
+          "verified_by": "Osmanth team",
           "review_due_at": null,
-          "evidence": []
-        }
+          "evidence": [
+            {
+              "quote": "These are the supported file types: JPEG, PNG, and SVG.",
+              "supports": [
+                "accepted_formats"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "The recommended resolution for JPEG/PNG files is 300 DPI",
+              "supports": [
+                "ppi.preferred"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "The maximum file size is 100 MB for JPEG and PNG files",
+              "supports": [
+                "max_file_size_bytes"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "These are the supported file types: JPEG, PNG, and SVG."
       },
       "max_file_size_bytes_upper": 104857600
     },
@@ -85,20 +111,46 @@
       "source": {
         "source_url": "https://help.printify.com/hc/en-us/articles/4483617936657-What-type-of-print-files-does-Printify-require",
         "source_type": "official_documentation",
-        "last_verified_at": "2026-09-20",
+        "last_verified_at": "2026-09-27",
         "profile_version": "1.0.0",
-        "review_required": true,
-        "notes": "JPEG/PNG max 100MB; 300 DPI recommended (120-150 DPI acceptable for large products); PNG must be RGB; JPEG RGB or CMYK (converted to RGB internally). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm. Exact print-area pixel sizes vary per print provider and are NOT verified.",
-        "review_status": "unverified",
+        "review_required": false,
+        "notes": "Format/DPI/file-size confirmed by reading Printify's own \"What type of print files does Printify require?\" article on 2026-09-27 (quoted in evidence below). Size cross-checked directly in Printify's Product Creator (Matte Vertical Posters, product 282, https://printify.com/app/editor/282/99/digital-printing) on 2026-09-27: its \"Print area size\" for this variant reads 5400 × 7200 px, which is exactly 300 DPI at this profile's size — that pixel figure isn't tracked as formal evidence here because it came from a different page than source_url, but it was read directly, not guessed. cmyk_accepted=true is our own carry-over assumption, NOT confirmed by either page — Printify's article doesn't mention colour mode at all.",
+        "review_status": "current",
         "last_checked": null,
         "last_changed": null,
         "verification": {
-          "method": "none",
-          "verified_at": null,
-          "verified_by": null,
+          "method": "human_page_read",
+          "verified_at": "2026-09-27",
+          "verified_by": "Osmanth team",
           "review_due_at": null,
-          "evidence": []
-        }
+          "evidence": [
+            {
+              "quote": "These are the supported file types: JPEG, PNG, and SVG.",
+              "supports": [
+                "accepted_formats"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "The recommended resolution for JPEG/PNG files is 300 DPI",
+              "supports": [
+                "ppi.preferred"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "The maximum file size is 100 MB for JPEG and PNG files",
+              "supports": [
+                "max_file_size_bytes"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "These are the supported file types: JPEG, PNG, and SVG."
       },
       "max_file_size_bytes_upper": 104857600
     },
@@ -135,31 +187,57 @@
       "source": {
         "source_url": "https://help.printify.com/hc/en-us/articles/4483617936657-What-type-of-print-files-does-Printify-require",
         "source_type": "official_documentation",
-        "last_verified_at": "2026-09-20",
+        "last_verified_at": "2026-09-27",
         "profile_version": "1.0.0",
-        "review_required": true,
-        "notes": "JPEG/PNG max 100MB; 300 DPI recommended (120-150 DPI acceptable for large products); PNG must be RGB; JPEG RGB or CMYK (converted to RGB internally). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm. Exact print-area pixel sizes vary per print provider and are NOT verified.",
-        "review_status": "unverified",
+        "review_required": false,
+        "notes": "Format/DPI/file-size confirmed by reading Printify's own \"What type of print files does Printify require?\" article on 2026-09-27 (quoted in evidence below). Size cross-checked directly in Printify's Product Creator (Matte Vertical Posters, product 282, https://printify.com/app/editor/282/99/digital-printing) on 2026-09-27: its \"Print area size\" for this variant reads 7200 × 10800 px, which is exactly 300 DPI at this profile's size — that pixel figure isn't tracked as formal evidence here because it came from a different page than source_url, but it was read directly, not guessed. cmyk_accepted=true is our own carry-over assumption, NOT confirmed by either page — Printify's article doesn't mention colour mode at all.",
+        "review_status": "current",
         "last_checked": null,
         "last_changed": null,
         "verification": {
-          "method": "none",
-          "verified_at": null,
-          "verified_by": null,
+          "method": "human_page_read",
+          "verified_at": "2026-09-27",
+          "verified_by": "Osmanth team",
           "review_due_at": null,
-          "evidence": []
-        }
+          "evidence": [
+            {
+              "quote": "These are the supported file types: JPEG, PNG, and SVG.",
+              "supports": [
+                "accepted_formats"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "The recommended resolution for JPEG/PNG files is 300 DPI",
+              "supports": [
+                "ppi.preferred"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "The maximum file size is 100 MB for JPEG and PNG files",
+              "supports": [
+                "max_file_size_bytes"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "These are the supported file types: JPEG, PNG, and SVG."
       },
       "max_file_size_bytes_upper": 104857600
     },
     {
       "id": "printify.tee.front",
       "destination": "printify",
-      "product": "Unisex t-shirt",
-      "variant": "Front print area 15×17 in",
+      "product": "Unisex Heavy Cotton Tee (Gildan 5000)",
+      "variant": "Front print area (size L) 13.17×16.4 in",
       "size": {
-        "width": 15,
-        "height": 17,
+        "width": 13.17,
+        "height": 16.4,
         "unit": "in"
       },
       "rotatable": false,
@@ -189,20 +267,46 @@
       "source": {
         "source_url": "https://help.printify.com/hc/en-us/articles/4483617936657-What-type-of-print-files-does-Printify-require",
         "source_type": "official_documentation",
-        "last_verified_at": "2026-09-20",
+        "last_verified_at": "2026-09-27",
         "profile_version": "1.0.0",
-        "review_required": true,
-        "notes": "JPEG/PNG max 100MB; 300 DPI recommended (120-150 DPI acceptable for large products); PNG must be RGB; JPEG RGB or CMYK (converted to RGB internally). Taken from a search-engine summary of the official page on 2026-09-20; the page returned HTTP 403 to automated fetching, so a human must confirm. Exact print-area pixel sizes vary per print provider and are NOT verified. The 15×17 in (4500×5100 px) front area is a common provider size and must be confirmed per provider.",
-        "review_status": "unverified",
+        "review_required": false,
+        "notes": "Printify's tee catalog has many products with their own print areas; we picked the Gildan 5000 (marked 'Bestseller' in Printify's own catalog, the same role Bella+Canvas 3001 plays for Printful) as the representative product, the same choice pattern used for Printful. Confirmed 2026-09-27 directly in Printify's Product Creator (product 6, DTG, https://printify.com/app/editor/6/99/dtg): its own 'Print area size' panel reads 3951 x 4919 px at DPI 300 for the FRONT, size L -- exactly 13.17x16.4in, which is what's now stored (previously this held an unrelated 15x17in with no known source). Printify shows a 'Product size' control next to that panel, so this may vary by garment size the way Printful's front print area does; only size L was checked. Format/DPI/file-size guidance (JPEG/PNG/SVG; 300 DPI recommended, 120-150 for large-format products; 100MB max for JPEG/PNG) is confirmed generically by Printify's own help article (quoted in evidence). cmyk_accepted=false and the PNG/RGB special rule are our own carry-over assumptions, not confirmed by either page.",
+        "review_status": "current",
         "last_checked": null,
         "last_changed": null,
         "verification": {
-          "method": "none",
-          "verified_at": null,
-          "verified_by": null,
+          "method": "human_page_read",
+          "verified_at": "2026-09-27",
+          "verified_by": "Osmanth team",
           "review_due_at": null,
-          "evidence": []
-        }
+          "evidence": [
+            {
+              "quote": "These are the supported file types: JPEG, PNG, and SVG.",
+              "supports": [
+                "accepted_formats"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "The recommended resolution for JPEG/PNG files is 300 DPI",
+              "supports": [
+                "ppi.preferred"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            },
+            {
+              "quote": "The maximum file size is 100 MB for JPEG and PNG files",
+              "supports": [
+                "max_file_size_bytes"
+              ],
+              "archived_copy": null,
+              "archived_sha256": null
+            }
+          ]
+        },
+        "source_quote": "These are the supported file types: JPEG, PNG, and SVG."
       },
       "max_file_size_bytes_upper": 104857600,
       "line_art_ppi_multiplier": 2

@@ -12,6 +12,20 @@ import { describeLimit, formatBytes } from "@/engine/units";
 import { makeJpeg, makePng } from "./fixtures";
 
 const NOW = new Date("2026-09-20T12:00:00Z");
+// All 34 real trust records are verified as of 2026-09-27 (see docs/PROFILE_TRUST_INVENTORY.md), so
+// tests that need to exercise "unverified" behaviour build a synthetic profile from a real one.
+const asUnverified = (id: string) => {
+  const p = requireProfile(id);
+  return {
+    ...p,
+    source: {
+      ...p.source,
+      review_status: "unverified" as const,
+      review_required: true,
+      verification: { method: "none" as const, verified_at: null, verified_by: null, review_due_at: null, evidence: [] },
+    },
+  };
+};
 const src = (over: Partial<ProfileSource> = {}): ProfileSource => {
   const base: ProfileSource = {
     source_url: "https://example.com/spec",
@@ -86,13 +100,17 @@ describe("source trust and freshness", () => {
       expect(requireProfile(id).source.review_status).toBe("current");
     }
     expect(requireProfile("printful.dtg-tee.back").source.review_status).toBe("current");
-    for (const p of getGroup("printify")!.profiles) expect(p.source.review_status).toBe("unverified");
+    for (const id of ["printify.poster.12x18", "printify.poster.18x24", "printify.poster.24x36"]) {
+      expect(requireProfile(id).source.review_status).toBe("current");
+    }
+    // As of 2026-09-27 the Gildan 5000 front print area is verified too (size L only; see its notes).
+    expect(requireProfile("printify.tee.front").source.review_status).toBe("current");
     for (const p of getGroup("photo_poster")!.profiles) expect(p.source.review_status).toBe("current");
   });
 
   it("preflight reports the weakest source and never says READY for an unverified one", () => {
     const img = inspectImage(makeJpeg({ width: 4800, height: 7200, quality: 92 }), "a.jpg").inspection!;
-    const r = runPreflight({ inspection: img, profile: requireProfile("printify.poster.18x24"), now: NOW });
+    const r = runPreflight({ inspection: img, profile: asUnverified("printify.tee.front"), now: NOW });
     expect(r.trust.status).toBe("unverified");
     expect(r.status).not.toBe("READY");
     expect(r.issues.find((i) => i.id === "profile.review")?.detail).toMatch(/printify\.com/);
@@ -258,7 +276,7 @@ describe("our own guidance is never presented as a printer's requirement", () =>
 
   it("still names the real source for a platform profile", () => {
     const img = inspectImage(makeJpeg({ width: 2400, height: 3200 }), "a.jpg").inspection!;
-    const r = runPreflight({ inspection: img, profile: requireProfile("printify.tee.front"), now: NOW });
+    const r = runPreflight({ inspection: img, profile: asUnverified("printify.tee.front"), now: NOW });
     const req = r.coverage.find((c) => c.id === "requirements")!;
     expect(req.state).toBe("could_not_verify");
     expect(req.note).toMatch(/printify\.com/);

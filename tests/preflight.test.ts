@@ -11,6 +11,22 @@ import { makeJpeg, makePng, type JpegOpts } from "./fixtures";
 const jpeg = (w: number, h: number, extra: Partial<JpegOpts> = {}) =>
   inspectImage(makeJpeg({ width: w, height: h, quality: 92, ...extra }), "img.jpg").inspection!;
 
+// All 34 real trust records are verified as of 2026-09-27 (see docs/PROFILE_TRUST_INVENTORY.md), so
+// tests that need to exercise "pending review" behaviour build a synthetic unverified profile from
+// a real one rather than depending on real data staying unverified.
+const asUnverified = (id: string) => {
+  const p = requireProfile(id);
+  return {
+    ...p,
+    source: {
+      ...p.source,
+      review_status: "unverified" as const,
+      review_required: true,
+      verification: { method: "none" as const, verified_at: null, verified_by: null, review_due_at: null, evidence: [] },
+    },
+  };
+};
+
 describe("pixel / PPI math", () => {
   it("3000 pixels / 10 inches = 300 PPI", () => {
     expect(effectivePpi(3000, 10)).toBe(300);
@@ -110,9 +126,9 @@ describe("status model", () => {
     expect(r.status).toBe("REVIEW_RECOMMENDED");
   });
   it("platform profiles pending review never report plain READY", () => {
-    // Printful's 3 posters and its DTG tee back print were verified against Printful's own pages on
-    // 2026-09-27; nothing on Printify has been read by a person yet, so that's the pending one.
-    const r = runPreflight({ inspection: jpeg(4500, 5100), profile: requireProfile("printify.tee.front") });
+    // All 34 real trust records are verified as of 2026-09-27; build a synthetic unverified one to
+    // exercise the pending-review path.
+    const r = runPreflight({ inspection: jpeg(3951, 4919), profile: asUnverified("printify.tee.front") });
     expect(r.status).toBe("READY_WITH_WARNINGS");
     expect(r.issues.some((i) => i.id === "profile.review")).toBe(true);
     const verified = runPreflight({ inspection: jpeg(3600, 5400), profile: requireProfile("printful.poster.12x18") });
