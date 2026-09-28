@@ -1,0 +1,11 @@
+{
+  // Osmanth Image is a pure static export (see next.config.ts: output: "export") -- there is no
+  // server code, so this is an assets-only Worker. This file's presence is what stops Cloudflare's
+  // dashboard from auto-detecting "next" in package.json and routing the build through OpenNext
+  // (which expects a server-rendered Next.js app and fails on a static-export-only project).
+  "name": "osmanth-image",
+  "compatibility_date": "2026-09-27",
+  "assets": {
+    "directory": "./out"
+  }
+}
