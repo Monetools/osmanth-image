@@ -45,6 +45,11 @@ export default function Privacy() {
         </a>
         , which checks PDFs. Those are separate sites with their own privacy practices.
       </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about this page or the site: <a href="mailto:support@osmanth.com">support@osmanth.com</a>.
+      </p>
     </div>
   );
 }
