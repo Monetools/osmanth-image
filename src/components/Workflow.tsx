@@ -43,6 +43,14 @@ const STATUS_ICON: Record<PrintStatus, string> = {
   READY: "✓", READY_WITH_WARNINGS: "✓", FIXABLE: "↻", REVIEW_RECOMMENDED: "⚠", NOT_RECOMMENDED: "✕", UNVERIFIED: "?",
 };
 
+/** Human-readable crop position for sighted users and for the slider's `aria-valuetext`. */
+function cropPositionLabel(offset: number, axis: "x" | "y" | "none"): string {
+  if (axis === "none" || Math.abs(offset) < 0.02) return "Centered";
+  const pct = Math.round(Math.abs(offset) * 100);
+  const dir = axis === "x" ? (offset < 0 ? "left" : "right") : offset < 0 ? "up" : "down";
+  return `${pct}% toward the ${dir} edge`;
+}
+
 export function Workflow({ intent }: { intent?: Intent }) {
   const [loaded, setLoaded] = useState<Loaded | null>(null);
   const [loadError, setLoadError] = useState<{ message: string; link?: { label: string; href: string } } | null>(null);
@@ -56,6 +64,10 @@ export function Workflow({ intent }: { intent?: Intent }) {
   const [renderError, setRenderError] = useState<string | null>(null);
   const [drag, setDrag] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  // Steps 3/4 are inserted below the fold once a size/product is chosen. Move focus there so
+  // keyboard and screen-reader users notice the new content instead of hunting for it.
+  const reportHeadingRef = useRef<HTMLHeadingElement>(null);
+  const focusedForProfileId = useRef<string | null>(null);
 
   // Object URLs are revoked when replaced (not in effect cleanups, which StrictMode double-runs).
   const outputUrl = useRef<string | null>(null);
@@ -124,6 +136,15 @@ export function Workflow({ intent }: { intent?: Intent }) {
 
   // Any change to the job invalidates a previously produced file.
   useEffect(() => replaceOutput(null), [profile, cropOffset, aspectMode, loaded, replaceOutput]);
+
+  // Announce the newly revealed print check by moving focus to it -- once per distinct product/size
+  // choice, not on every crop-slider drag (which also recomputes `pre` but not `profile.id`).
+  useEffect(() => {
+    if (pre && profile && profile.id !== focusedForProfileId.current) {
+      focusedForProfileId.current = profile.id;
+      reportHeadingRef.current?.focus();
+    }
+  }, [pre, profile]);
 
   const prepare = useCallback(async () => {
     if (!loaded || !profile || !plan || !pre) return;
@@ -218,12 +239,13 @@ export function Workflow({ intent }: { intent?: Intent }) {
           <span className="step-num" aria-hidden="true">2</span>
           <h2 id="s2">Where are you printing this?</h2>
         </div>
-        <div className="choices">
+        <div className="choices" role="radiogroup" aria-labelledby="s2">
           {DESTINATIONS.map((d) => (
             <button
               key={d.id}
               className="choice"
-              aria-pressed={destination === d.id}
+              role="radio"
+              aria-checked={destination === d.id}
               onClick={() => {
                 setDestination(d.id);
                 if (d.id !== destination) setProfileId(null);
@@ -266,11 +288,21 @@ export function Workflow({ intent }: { intent?: Intent }) {
           <div className="row" style={{ marginTop: 16 }}>
             <div className="field">
               <label htmlFor="cw">Width</label>
-              <input id="cw" type="number" min={1} step="any" value={custom.w} onChange={(e) => setCustom({ ...custom, w: Number(e.target.value) })} />
+              <input
+                id="cw" type="number" min={1} step="any" value={custom.w}
+                aria-invalid={!(custom.w > 0)} aria-describedby={!(custom.w > 0) ? "cw-error" : undefined}
+                onChange={(e) => setCustom({ ...custom, w: Number(e.target.value) })}
+              />
+              {!(custom.w > 0) && <p id="cw-error" className="field-error" role="alert">Width must be greater than 0.</p>}
             </div>
             <div className="field">
               <label htmlFor="ch">Height</label>
-              <input id="ch" type="number" min={1} step="any" value={custom.h} onChange={(e) => setCustom({ ...custom, h: Number(e.target.value) })} />
+              <input
+                id="ch" type="number" min={1} step="any" value={custom.h}
+                aria-invalid={!(custom.h > 0)} aria-describedby={!(custom.h > 0) ? "ch-error" : undefined}
+                onChange={(e) => setCustom({ ...custom, h: Number(e.target.value) })}
+              />
+              {!(custom.h > 0) && <p id="ch-error" className="field-error" role="alert">Height must be greater than 0.</p>}
             </div>
             <div className="field">
               <label htmlFor="cu">Unit</label>
@@ -291,7 +323,7 @@ export function Workflow({ intent }: { intent?: Intent }) {
         <section className="card" aria-labelledby="s3">
           <div className="card-head">
             <span className="step-num" aria-hidden="true">3</span>
-            <h2 id="s3">Print check</h2>
+            <h2 id="s3" ref={reportHeadingRef} tabIndex={-1}>Print check</h2>
           </div>
           <div className={`status ${pre.status}`} role="status">
             <h3>{STATUS_ICON[pre.status]} {pre.summary.headline}</h3>
@@ -324,17 +356,22 @@ export function Workflow({ intent }: { intent?: Intent }) {
             {aspectIssue && (
               <div className="stack">
                 <div className="row" role="radiogroup" aria-label="How to handle the shape">
-                  <button className="choice" aria-pressed={aspectMode === "crop"} onClick={() => setAspectMode("crop")}>
+                  <button className="choice" role="radio" aria-checked={aspectMode === "crop"} onClick={() => setAspectMode("crop")}>
                     <b>Fill the print</b><small>Trim the edges</small>
                   </button>
-                  <button className="choice" aria-pressed={aspectMode === "fit"} onClick={() => setAspectMode("fit")}>
+                  <button className="choice" role="radio" aria-checked={aspectMode === "fit"} onClick={() => setAspectMode("fit")}>
                     <b>Keep everything</b><small>Add white borders</small>
                   </button>
                 </div>
                 {aspectMode === "crop" && pre.crop.axis !== "none" && (
                   <div className="field">
                     <label htmlFor="off">Move the crop {pre.crop.axis === "x" ? "left / right" : "up / down"}</label>
-                    <input id="off" className="slider" type="range" min={-1} max={1} step={0.01} value={cropOffset} onChange={(e) => setCropOffset(Number(e.target.value))} />
+                    <input
+                      id="off" className="slider" type="range" min={-1} max={1} step={0.01} value={cropOffset}
+                      aria-valuetext={cropPositionLabel(cropOffset, pre.crop.axis)}
+                      onChange={(e) => setCropOffset(Number(e.target.value))}
+                    />
+                    <output htmlFor="off" className="muted">{cropPositionLabel(cropOffset, pre.crop.axis)}</output>
                   </div>
                 )}
               </div>
@@ -428,10 +465,14 @@ function IssueRow({ issue }: { issue: Issue }) {
 
 function Result({ output }: { output: Output }) {
   const v = output.verification;
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  // Each "Prepare" click produces a fresh object URL, which we use as the cue to re-announce a
+  // regenerated result -- the whole page can be long, so completion is easy to miss otherwise.
+  useEffect(() => { headingRef.current?.focus(); }, [output.url]);
   return (
     <div className="stack" style={{ marginTop: 16 }}>
       <div className={`status ${v.status}`} role="status">
-        <h3>{STATUS_ICON[v.status]} {v.label}</h3>
+        <h3 ref={headingRef} tabIndex={-1}>{STATUS_ICON[v.status]} {v.label}</h3>
         <p>We opened the finished file again and checked it.</p>
       </div>
       {[...output.notes, ...v.notes].map((n) => <p key={n} className="notice">{n}</p>)}
