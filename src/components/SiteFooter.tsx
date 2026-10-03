@@ -39,6 +39,9 @@ export function SiteFooter() {
                 </a>
               </li>
               <li>
+                <a href="/guides/">Guides</a>
+              </li>
+              <li>
                 <a href="/privacy/">Privacy</a>
               </li>
             </ul>

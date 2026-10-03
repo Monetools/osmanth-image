@@ -12,6 +12,7 @@ import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { findNeverWords } from "../src/brandLanguage.ts";
 import { INTENTS } from "../src/engine/intents.ts";
+import { parseGuide } from "../src/guides/frontmatter.ts";
 import { ENDORSEMENT, SITE_NAME, SITE_ORIGIN } from "../src/site.ts";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -37,9 +38,16 @@ const visibleText = (html) =>
   decode(html.replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ");
 
 // ------------------------------------------------------------------ pages that must exist
+const guideDir = join(root, "content", "guides");
+const guides = readdirSync(guideDir)
+  .filter((f) => f.endsWith(".md"))
+  .map((f) => parseGuide(readFileSync(join(guideDir, f), "utf8"), f));
+
 const pages = [
   { file: "index.html", path: "/" },
   ...INTENTS.map((i) => ({ file: `${i.slug}/index.html`, path: `/${i.slug}/` })),
+  { file: "guides/index.html", path: "/guides/", kind: "guides-index" },
+  ...guides.map((g) => ({ file: `guides/${g.slug}/index.html`, path: `/guides/${g.slug}/`, kind: "guide", guide: g })),
   { file: "privacy/index.html", path: "/privacy/" },
 ];
 
@@ -88,11 +96,38 @@ for (const p of pages) {
     else {
       try {
         const d = JSON.parse(ld[0]);
-        if (d.url !== expected) fail(where, `JSON-LD url is ${d.url}`);
+        if (p.kind === "guide") {
+          const article = (d["@graph"] ?? []).find((n) => n["@type"] === "Article");
+          const crumbs = (d["@graph"] ?? []).find((n) => n["@type"] === "BreadcrumbList");
+          if (!article) fail(where, "JSON-LD has no Article");
+          else {
+            if (article.url !== expected) fail(where, `Article url is ${article.url}`);
+            if (article.datePublished !== p.guide.date || article.dateModified !== p.guide.updated) fail(where, "Article dates differ from the guide's metadata");
+          }
+          if (!crumbs || crumbs.itemListElement?.length !== 3) fail(where, "JSON-LD has no 3-step BreadcrumbList");
+        } else if (d.url !== expected) fail(where, `JSON-LD url is ${d.url}`);
       } catch {
         fail(where, "JSON-LD does not parse");
       }
     }
+  }
+
+  // ---- guides: the whole point is that a crawler that never runs JavaScript can read the article.
+  if (p.kind === "guide") {
+    const article = /<article[\s\S]*?<\/article>/i.exec(html)?.[0] ?? "";
+    const words = visibleText(article).split(" ").filter(Boolean).length;
+    if (words < 500) fail(where, `article text in the raw HTML is only ${words} words (need at least 500)`);
+    if (!new RegExp(`<a[^>]+href="${p.guide.toolCta}"`).test(article)) fail(where, `the tool button to ${p.guide.toolCta} is missing`);
+    if (!article.includes('aria-label="Breadcrumb"')) fail(where, "no breadcrumb");
+    for (const s of p.guide.sources) if (!article.includes(`href="${s.url}"`)) fail(where, `source link missing: ${s.url}`);
+    // Every site link inside the article must lead to a page that exists.
+    for (const href of new Set(tags(article, "a").map(attrs).map((a) => a.href).filter((h) => h?.startsWith("/")))) {
+      const target = join(out, href.split("#")[0].replace(/^\//, ""), "index.html");
+      if (href !== "/" && !existsSync(target)) fail(where, `internal link ${href} has no page behind it`);
+    }
+  }
+  if (p.kind === "guides-index") {
+    for (const g of guides) if (!html.includes(`href="/guides/${g.slug}/"`)) fail(where, `the index does not link to /guides/${g.slug}/`);
   }
 }
 

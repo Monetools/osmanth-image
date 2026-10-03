@@ -1,7 +1,9 @@
 import { Explainer } from "@/components/Explainer";
+import { GuidesTeaser } from "@/components/GuideLinks";
 import { Hero } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
 import { Workflow } from "@/components/Workflow";
+import { allGuides } from "@/guides/guides";
 import { pageMetadata, webApplicationJsonLd } from "@/seo";
 import { DESCRIPTION, SITE_NAME, TAGLINE } from "@/site";
 
@@ -17,6 +19,7 @@ export default function Home() {
       />
       <Workflow />
       <Explainer />
+      <GuidesTeaser guides={allGuides().slice(0, 3)} />
     </>
   );
 }
