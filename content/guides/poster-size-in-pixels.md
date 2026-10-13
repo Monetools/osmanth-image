@@ -70,7 +70,7 @@ Printify's help article says:
 
 It adds that the specific requirements differ for each product and are shown in Printify's product editor. When we opened that editor for Matte Vertical Posters on 27 September 2026, its print area was 3,600 × 5,400 pixels for 12×18 in, 5,400 × 7,200 for 18×24 in and 7,200 × 10,800 for 24×36 in. Each is exactly 300 PPI at that size.
 
-## What a real photo gives you
+## What we tested: two real-sized photos
 
 We ran two photos through the Osmanth Image check, one 3,000 × 4,000 pixels (12 megapixels) and one 4,000 × 6,000 pixels (24 megapixels). The table shows the pixels per inch each gives at a poster size, and how much of the picture the crop removes when the photo's shape doesn't match the poster's.
 
@@ -85,6 +85,13 @@ We ran two photos through the Osmanth Image check, one 3,000 × 4,000 pixels (12
 The first photo has the same shape as an 18×24 in poster, so nothing is cropped there, and the tool called it "Enough detail for this size." At 24×36 in it comes to 111 PPI. By our guideline that is above the lowest figure but short of the target, and the tool said: "Enough detail at normal viewing distance, but it won't be tack-sharp up close." The second photo has the shape of a 24×36 in poster and gives 167 PPI there, which the tool called "Plenty of detail for this size."
 
 Against Printful's 300 DPI, though, neither photo is close at poster sizes. An 18×24 in poster at 300 PPI needs about 38.9 million pixels, and the first photo has 12 million. These numbers are what the tool reported for these two test photos; yours will differ.
+
+## Limits and what we are unsure of
+
+- The pixel tables are arithmetic. The "target" and "lowest PPI we call enough" figures are Osmanth Image's own guideline for judging a print, not a printer's rule; a print service can ask for more, as Printful does.
+- Printful's guidelines cover a size range, 5×7 in to 24×36 in, and we applied its 300 DPI to the sizes in the table. Printify says its requirements differ by product.
+- The Printify print areas are what its editor showed on 27 September 2026 for one fulfilment option; we did not compare print providers.
+- The two photos are test images with a known pixel size, so the table shows what the check reports for them. Paper, ink and viewing light are not modelled.
 
 ## Before you order
 

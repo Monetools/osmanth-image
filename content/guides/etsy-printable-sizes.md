@@ -1,17 +1,20 @@
 ---
-title: Etsy printable sizes: the complete size guide for digital downloads
+title: What sizes should an Etsy printable come in?
 metaTitle: Etsy printable sizes: a digital download size guide
 description: Which sizes to offer for an Etsy printable, the pixels each one needs, and the file limits Etsy states for digital listings.
 slug: etsy-printable-sizes
 date: 2026-10-03
-updated: 2026-10-03
+updated: 2026-10-13
 targetQuery: etsy printable sizes
 toolCta: /etsy-printable-size-generator/
 ctaText: Build your size set from one artwork
 relatedTools: etsy-printable-pack
 sources:
   - Etsy Help Center: How to Manage Your Digital Listings | https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings | 2026-10-03
+  - ISO 216:2007, Writing paper and certain classes of printed matter: trimmed sizes, A and B series (standard record) | https://www.iso.org/standard/36631.html | 2026-10-13
 ---
+Offer one file per print shape: 2:3, 3:4, 4:5, 5:7, 11:14 and the A-series. Build each at the pixels of its largest size, which at 300 pixels per inch is 7,200 × 10,800 for 24×36 in. Etsy allows five digital files per listing, up to 20MB each, so group sizes by shape rather than by size.
+
 When you sell a printable on Etsy, the buyer prints the file at home or at a print shop, so you never choose the paper. What you choose is which sizes the download covers. This guide covers the sizes worth offering, how many pixels each one needs, and the limits Etsy states for digital files.
 
 ## What Etsy limits, and what it leaves to you
@@ -43,7 +46,7 @@ These are the six proportion groups the Osmanth Image printable tool builds, wit
 | 11:14 | 11×14, 22×28 in | 22×28 in | 6,600 × 8,400 |
 | ISO A-series | A5, A4, A3, A2, A1 | A1 (594 × 841 mm) | 7,016 × 9,933 |
 
-The A-series are the ISO paper sizes; A4 is 210 × 297 mm.
+The A-series sizes are defined in ISO 216. The tool uses A5 148 × 210 mm, A4 210 × 297 mm, A3 297 × 420 mm, A2 420 × 594 mm and A1 594 × 841 mm.
 
 ## How many pixels does a size need?
 
@@ -51,7 +54,7 @@ Pixels needed = size in inches × pixels per inch. A 16×24 in print at 300 PPI 
 
 The "DPI" number saved inside an image file doesn't change this. It is a label, it adds no pixels, and it doesn't make a print sharper. The pixel count is what counts.
 
-## A worked example, run through the tool
+## What we tested: a worked example, run through the tool
 
 We ran two test images through the printable planner in Osmanth Image. The first is 4,800 × 7,200 pixels, a 2:3 picture. For each group, the table shows how much of the picture the crop removes and the pixels per inch the file delivers at each size.
 
@@ -85,5 +88,12 @@ These numbers are what the tool reported for these two test images. Your artwork
 2. **Choose which proportions to offer.** Each proportion is its own file. Six groups are six files, one more than the five Etsy allows per listing. Etsy lists .zip among the file types it accepts, so the files can go into ZIP archives, as long as each upload stays under 20MB. The Osmanth Image planner packs the files that way and tells you when they don't fit.
 3. **Name files plainly.** Etsy says the names buyers see are the names you uploaded, and that it can't edit a name after upload. Keep names under 70 characters, using only letters, numbers, periods, underscores and hyphens. The planner adds the proportion to the end of the name, for example _3x4 or _ISO-A.
 4. **Look at the crops.** A file that removes a lot of the picture needs your decision, not a default. The planner shows what each crop removes before it makes anything.
+
+## Limits and what we are unsure of
+
+- The pixel counts are arithmetic: size in inches × pixels per inch. Etsy does not state any print size or resolution, so the 300 and 150 PPI figures are Osmanth Image's own guideline, not an Etsy rule.
+- The six groups are the ones our tool builds. They are not a list Etsy publishes, and we have not checked what buyers search for.
+- Etsy can change its limits at any time. We read its help page on 3 October 2026; read it again before you rely on it.
+- Both examples are test images, so the tables show what the tool reports for those files. Your artwork will give different numbers.
 
 If you also sell prints rather than downloads, the pixel maths for posters is in [poster size in pixels](/guides/poster-size-in-pixels/). The planner works on your device, and your artwork is not uploaded; the [privacy page](/privacy/) says exactly what that means.

@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { allGuides, getGuide, relatedGuides } from "@/guides/guides";
 import { Markdown } from "@/guides/markdown";
 import { guideJsonLd, pageMetadata } from "@/seo";
+import { SITE_NAME } from "@/site";
 
 // A guide is a file in content/guides/. Unknown slugs are a real 404, not a blank page.
 export const dynamicParams = false;
@@ -35,10 +36,8 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         </ol>
       </nav>
       <h1>{g.title}</h1>
-      <p className="guide-meta">
-        Published {fmt(g.date)}
-        {g.updated !== g.date && <> · Updated {fmt(g.updated)}</>}
-      </p>
+      {/* The byline the GEO article template asks for. The publication date stays in the JSON-LD. */}
+      <p className="guide-meta">By {SITE_NAME} · Updated {fmt(g.updated)}</p>
 
       <Markdown source={g.body} />
 
